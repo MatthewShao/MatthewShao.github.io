@@ -1045,7 +1045,7 @@ pre .javascript .function {
 .site-subtitle {
   margin-top: 10px;
   font-size: 13px;
-  color: #999;
+  color: grey-dark;
 }
 .use-motion .brand {
   opacity: 0;
@@ -1716,7 +1716,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #66f925;
+  background: #788b44;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2557,7 +2557,7 @@ embed {
   overflow: hidden;
 }
 #centerbg {
-  background-image: url("../images/headerbg.jpg");
+  background-image: url("../images/winter-mountain.jpg");
 }
 #centerbg {
   width: 100%;
@@ -2638,6 +2638,9 @@ embed {
 .index-menu .menu-item {
   display: inline-block;
   margin: 0 10px;
+}
+.index-menu .menu-item a {
+  color: #555;
 }
 .index-menu a {
   border: none;
