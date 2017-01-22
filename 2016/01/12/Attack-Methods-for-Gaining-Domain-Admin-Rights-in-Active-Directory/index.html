@@ -5,7 +5,11 @@
   
 
 
-<html class="theme-next mist use-motion" lang="">
+
+    
+  
+
+<html class="theme-next logos use-motion" lang="zh-hk">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -89,7 +93,7 @@
 对于一个攻击者来说，有很多方法能在活动目录中获得域管理员权限。这篇文章旨在介绍一些当下比较流行的方法，这里介绍的方法都基于一个前提——攻击者已经获得内网中一台（或几台）机器的权限并且获得了普通域用户的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从活动目录获取域管理员权限的各种姿势">
-<meta property="og:url" content="http://yoursite.com/2016/01/12/Attack-Methods-for-Gaining-Domain-Admin-Rights-in-Active-Directory/index.html">
+<meta property="og:url" content="http://matshao.com/2016/01/12/Attack-Methods-for-Gaining-Domain-Admin-Rights-in-Active-Directory/index.html">
 <meta property="og:site_name" content="Mid Station">
 <meta property="og:description" content="From: Attack Methods for Gaining Domain Admin Rights in Active Directoryby Sean Metcalf
 译文首发于：乌云知识库
@@ -113,6 +117,7 @@
 <meta name="twitter:description" content="From: Attack Methods for Gaining Domain Admin Rights in Active Directoryby Sean Metcalf
 译文首发于：乌云知识库
 对于一个攻击者来说，有很多方法能在活动目录中获得域管理员权限。这篇文章旨在介绍一些当下比较流行的方法，这里介绍的方法都基于一个前提——攻击者已经获得内网中一台（或几台）机器的权限并且获得了普通域用户的">
+<meta name="twitter:image" content="https://adsecurity.org/wp-content/uploads/2015/12/GroupPolicyPreferences-Password-XMLFileContents.png">
 
 
 
@@ -120,7 +125,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Logos',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -140,7 +145,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/01/12/Attack-Methods-for-Gaining-Domain-Admin-Rights-in-Active-Directory/"/>
+  <link rel="canonical" href="http://matshao.com/2016/01/12/Attack-Methods-for-Gaining-Domain-Admin-Rights-in-Active-Directory/"/>
 
 
 
@@ -149,7 +154,7 @@
   <title> 从活动目录获取域管理员权限的各种姿势 | Mid Station </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
 
   
 
@@ -171,7 +176,15 @@
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
+    <div class="header-logos"> 
+      <div class="site-meta ">
+  
+    <div class="site-meta-headline">
+      <a href="/">
+        <img class="custom-logo-image" src="/images/logo_light.png"
+             alt="Mid Station"/>
+      </a>
+    </div>
   
 
   <div class="custom-logo-site-title">
@@ -181,7 +194,9 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle"></p>
+    
+      <p class="site-subtitle"></p>
+    
 </div>
 
 <div class="site-nav-toggle">
@@ -209,22 +224,22 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            標籤
           </a>
         </li>
       
@@ -238,7 +253,9 @@
 
 
 
- </div>
+ 
+            
+      </div>
     </header>
 
     <main id="main" class="main">
@@ -257,7 +274,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/12/Attack-Methods-for-Gaining-Domain-Admin-Rights-in-Active-Directory/">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2016/01/12/Attack-Methods-for-Gaining-Domain-Admin-Rights-in-Active-Directory/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Matthew Shao">
@@ -268,7 +285,7 @@
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Mid Station">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Mid Station" src="">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
     </span>
   </span>
 
@@ -293,8 +310,10 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">發表於</span>
-              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-01-12T14:24:22+08:00">
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-12T14:24:22+08:00">
                 2016-01-12
               </time>
             
@@ -306,11 +325,15 @@
 
           
             <span class="post-category" >
+            
               <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Hack/" itemprop="url" rel="index">
@@ -351,14 +374,14 @@
         <p>From: <a href="https://adsecurity.org/?p=2362" target="_blank" rel="external">Attack Methods for Gaining Domain Admin Rights in Active Directory</a><br>by Sean Metcalf</p>
 <p>译文首发于：<a href="http://drops.wooyun.org/tips/12021" target="_blank" rel="external">乌云知识库</a></p>
 <p>对于一个攻击者来说，有很多方法能在活动目录中获得域管理员权限。这篇文章旨在介绍一些当下比较流行的方法，这里介绍的方法都基于一个前提——攻击者已经获得内网中一台（或几台）机器的权限并且获得了普通域用户的账户。<br><a id="more"></a></p>
-<h2 id="0x01_SYSVOL中的密码和组策略">0x01 SYSVOL中的密码和组策略</h2><p>这种方法是最简单的，因为不需要特殊的工具就能实现。攻击者只需要打开文件管理器搜索 SYSVOL DFS 共享中的XML文件。大多数时候，<code>groups.xml</code>、<code>scheduledtasks.xml</code>、<code>Services.xml</code>文件中都会含有用户凭证。<br>SYSVOL 是活动目录中的全域共享文件夹，所有认证用户都拥有读权限。SYSVOL 中包含了登陆脚本，组策略以及其他域控制器需要需要用到的数据（因为SYSVOL会在所有域控之间自动同步和共享）。所有的组策略文件会存放在：<code>\\&lt;DOMAIN&gt;\SYSVOL\&lt;DOMAIN&gt;\Policies\</code><br>当一个GPP(组策略)被新建，就会有相关的组策略文件在SYSVOL中被创建，如果提供了密码，组策略文件中会同时包含AES-256位的加密后的密码数据，这加密似乎是足够安全了。<br>除了Windows 2012之前的某些系统，微软在MSDN中提供了<a href="">解密所需要的AES私钥</a>。因为认证用户（信任域中的用户）都具有SYSVOL的读权限，任何人都可以搜索包含“cpassword”字段的XML文件，而里面正好有AES加密后的密码。<br><img src="https://adsecurity.org/wp-content/uploads/2015/12/GroupPolicyPreferences-Password-XMLFileContents.png" alt="GroupPolicyPreferences-Password-XMLFileContents"><br>有了这类XML的访问权限，攻击者可以用AES私钥解密GPP密码。PowerSploit的<code>Get-GPPPassword</code>函数被认为最好用的攻击实现，下面的截图展示了一个类似的PowerShell函数正在解密在SYSVOL中找到的XML文件中包含的密码。<br><img src="https://adsecurity.org/wp-content/uploads/2015/12/GroupPolicyPreferences-Decrypted-Password.png" alt="GroupPolicyPreferences-Decrypted-Password"><br>其他文件类型，例如<code>.vbs</code>和<code>.bat</code>也可能包含嵌入的密码（经常是明文）。<br><img src="https://adsecurity.org/wp-content/uploads/2015/12/VBS-Scripts-In-SYSVOL.jpg" alt="VBS-Scripts-In-SYSVOL"><br>你可能会觉得已经发布的补丁能够防止用户凭证被放置在组策略配置文件中，所以这个问题得到了证明。事实证明，笔者在渗透测试中仍然能在SYSVOL目录中中找到用户凭证。<br>对策：</p>
+<h2 id="0x01-SYSVOL中的密码和组策略"><a href="#0x01-SYSVOL中的密码和组策略" class="headerlink" title="0x01 SYSVOL中的密码和组策略"></a>0x01 SYSVOL中的密码和组策略</h2><p>这种方法是最简单的，因为不需要特殊的工具就能实现。攻击者只需要打开文件管理器搜索 SYSVOL DFS 共享中的XML文件。大多数时候，<code>groups.xml</code>、<code>scheduledtasks.xml</code>、<code>Services.xml</code>文件中都会含有用户凭证。<br>SYSVOL 是活动目录中的全域共享文件夹，所有认证用户都拥有读权限。SYSVOL 中包含了登陆脚本，组策略以及其他域控制器需要需要用到的数据（因为SYSVOL会在所有域控之间自动同步和共享）。所有的组策略文件会存放在：<code>\\&lt;DOMAIN&gt;\SYSVOL\&lt;DOMAIN&gt;\Policies\</code><br>当一个GPP(组策略)被新建，就会有相关的组策略文件在SYSVOL中被创建，如果提供了密码，组策略文件中会同时包含AES-256位的加密后的密码数据，这加密似乎是足够安全了。<br>除了Windows 2012之前的某些系统，微软在MSDN中提供了<a href="">解密所需要的AES私钥</a>。因为认证用户（信任域中的用户）都具有SYSVOL的读权限，任何人都可以搜索包含“cpassword”字段的XML文件，而里面正好有AES加密后的密码。<br><img src="https://adsecurity.org/wp-content/uploads/2015/12/GroupPolicyPreferences-Password-XMLFileContents.png" alt="GroupPolicyPreferences-Password-XMLFileContents"><br>有了这类XML的访问权限，攻击者可以用AES私钥解密GPP密码。PowerSploit的<code>Get-GPPPassword</code>函数被认为最好用的攻击实现，下面的截图展示了一个类似的PowerShell函数正在解密在SYSVOL中找到的XML文件中包含的密码。<br><img src="https://adsecurity.org/wp-content/uploads/2015/12/GroupPolicyPreferences-Decrypted-Password.png" alt="GroupPolicyPreferences-Decrypted-Password"><br>其他文件类型，例如<code>.vbs</code>和<code>.bat</code>也可能包含嵌入的密码（经常是明文）。<br><img src="https://adsecurity.org/wp-content/uploads/2015/12/VBS-Scripts-In-SYSVOL.jpg" alt="VBS-Scripts-In-SYSVOL"><br>你可能会觉得已经发布的补丁能够防止用户凭证被放置在组策略配置文件中，所以这个问题得到了证明。事实证明，笔者在渗透测试中仍然能在SYSVOL目录中中找到用户凭证。<br>对策：</p>
 <ul>
 <li>在每台电脑上都安装上KB2962486补丁，可以防止新的用户凭证被放到组策略配置文件当中。</li>
 <li>删除SYSVOL目录中包含密码的GPP xml文件。</li>
 <li>不要把密码放在所有认证用户都有权访问的文件当中。</li>
 </ul>
 <p>关于这种攻击方法的更多信息可以参考这篇文章：<a href="https://adsecurity.org/?p=2288" target="_blank" rel="external">Finding Passwords in SYSVOL &amp; Exploiting Group Policy Preferences</a></p>
-<h2 id="0x02_针对没打补丁的域控利用MS14-068漏洞">0x02 针对没打补丁的域控利用MS14-068漏洞</h2><p>距离MS14-068的补丁KB3011780发布已经有超过一年时间了，也出现了很多方法来确保针对MS14-068的攻击被检测和识别出来。然而这并不意味着域控就一定打上了补丁或者配置了监测系统。很多公司机构在补丁发布后的一个月内打上了补丁；但是不能保证每台新上线的域控都在被配置好之前就打上了补丁。<br>感谢Gavin Milard（@gmillard on Twitter）,我们有了以下的图，很好地解释这个漏洞。<br><img src="http://adsecurity.org/wp-content/uploads/2014/11/Kerb-MS14-068-twitterpic-BoardingPass-Pilot.png" alt="Kerb-MS14-068-twitterpic-BoardingPass-Pilot"><br>简单来讲，通过MS14-048，攻击者可以在五分钟内重写有效的Kerberos TGT 认证票据并且成为域管理员（企业管理员）。攻击原理就像上面的机票一样，随便写上“飞行员”字样就能通过认证，登上飞机就能理所当然地坐到驾驶舱冒充飞行员享受咖啡福利。<br>第一个EXP在补丁发布后的两周后被公布，叫做PyKEK，作者是Sylvain Monné (@BiDOrD). PyKEK是一个能在所有安装了python的机器（Raspberry Pi？）上运行的脚本，只要机器能连接到一台没打补丁的域控就能发挥作用。它会生成一个ccache文件。用Mimikatz可以把这个生成的ccache文件注入到内存当中，攻击者就能成为域管理员！有了这个票据，就能被允许访问域控上面的admin$共享！<br><img src="https://adsecurity.org/wp-content/uploads/2015/09/Mimikatz-PTC-PyKEK-ccacheFile.jpg" alt="Mimikatz-PTC-PyKEK-ccacheFile"><br>限制条件：打了补丁或者域中有Win2012/2012R2 域控<br>利用MS14-068的步骤：</p>
+<h2 id="0x02-针对没打补丁的域控利用MS14-068漏洞"><a href="#0x02-针对没打补丁的域控利用MS14-068漏洞" class="headerlink" title="0x02 针对没打补丁的域控利用MS14-068漏洞"></a>0x02 针对没打补丁的域控利用MS14-068漏洞</h2><p>距离MS14-068的补丁KB3011780发布已经有超过一年时间了，也出现了很多方法来确保针对MS14-068的攻击被检测和识别出来。然而这并不意味着域控就一定打上了补丁或者配置了监测系统。很多公司机构在补丁发布后的一个月内打上了补丁；但是不能保证每台新上线的域控都在被配置好之前就打上了补丁。<br>感谢Gavin Milard（@gmillard on Twitter）,我们有了以下的图，很好地解释这个漏洞。<br><img src="http://adsecurity.org/wp-content/uploads/2014/11/Kerb-MS14-068-twitterpic-BoardingPass-Pilot.png" alt="Kerb-MS14-068-twitterpic-BoardingPass-Pilot"><br>简单来讲，通过MS14-048，攻击者可以在五分钟内重写有效的Kerberos TGT 认证票据并且成为域管理员（企业管理员）。攻击原理就像上面的机票一样，随便写上“飞行员”字样就能通过认证，登上飞机就能理所当然地坐到驾驶舱冒充飞行员享受咖啡福利。<br>第一个EXP在补丁发布后的两周后被公布，叫做PyKEK，作者是Sylvain Monné (@BiDOrD). PyKEK是一个能在所有安装了python的机器（Raspberry Pi？）上运行的脚本，只要机器能连接到一台没打补丁的域控就能发挥作用。它会生成一个ccache文件。用Mimikatz可以把这个生成的ccache文件注入到内存当中，攻击者就能成为域管理员！有了这个票据，就能被允许访问域控上面的admin$共享！<br><img src="https://adsecurity.org/wp-content/uploads/2015/09/Mimikatz-PTC-PyKEK-ccacheFile.jpg" alt="Mimikatz-PTC-PyKEK-ccacheFile"><br>限制条件：打了补丁或者域中有Win2012/2012R2 域控<br>利用MS14-068的步骤：</p>
 <ol>
 <li>作为普通用户向域控请求一个没有PAC的Kerberos TGT认证的票据，域控会返回一个TGT（不包含PAC，PAC通常包含有用户组中的成员关系）</li>
 <li>生成一个伪造的PAC，因为没有密钥，所以生成的PAC“被标记”有MD5算法，而不是带有域用户密码数据的HMAC_MD5类型。</li>
@@ -372,7 +395,7 @@
 <li>确保机器在运行DCPromo命令（被提升为域控）前就安装上了KB3011780补丁。一个快速简单的方法是用PowerShell命令：<code>get-hotfix 3011780</code></li>
 <li>同时，为机器开启自动安装关键补丁的选项。</li>
 </ul>
-<h2 id="0x03_Kerberos_TGS_服务_Ticket离线破解（Kerberoast）">0x03 Kerberos TGS 服务 Ticket离线破解（Kerberoast）</h2><p>Kerberoast 能够在不对目标系统发送任何数据的情况下用普通用户身份从活动目录中提取服务的账户凭证。人们总是设置弱口令，所以这种攻击往往能够得逞。这种攻击能够成功的原因是：大多数服务账户的密码都和域的密码最短长度限制一样长（通常是10个或12个字符）,这意味着即使是采用暴力破解的方式，所花费的时间也不太可能超过密码过期时限。有的服务账户甚至还没有设置密码过期时限，所以同一个密码能够用个一年半载的也不足为奇。更好玩的是，大多数服务账户都有权限过大的问题，通常还是域管理员组的成员，有着对活动目录的全部权限（尽管有时候服务账户只需要修改某些特定对象的属性或者只需在特定服务上拥有管理权限）。</p>
+<h2 id="0x03-Kerberos-TGS-服务-Ticket离线破解（Kerberoast）"><a href="#0x03-Kerberos-TGS-服务-Ticket离线破解（Kerberoast）" class="headerlink" title="0x03 Kerberos TGS 服务 Ticket离线破解（Kerberoast）"></a>0x03 Kerberos TGS 服务 Ticket离线破解（Kerberoast）</h2><p>Kerberoast 能够在不对目标系统发送任何数据的情况下用普通用户身份从活动目录中提取服务的账户凭证。人们总是设置弱口令，所以这种攻击往往能够得逞。这种攻击能够成功的原因是：大多数服务账户的密码都和域的密码最短长度限制一样长（通常是10个或12个字符）,这意味着即使是采用暴力破解的方式，所花费的时间也不太可能超过密码过期时限。有的服务账户甚至还没有设置密码过期时限，所以同一个密码能够用个一年半载的也不足为奇。更好玩的是，大多数服务账户都有权限过大的问题，通常还是域管理员组的成员，有着对活动目录的全部权限（尽管有时候服务账户只需要修改某些特定对象的属性或者只需在特定服务上拥有管理权限）。</p>
 <blockquote>
 <p>注意：这种攻击对Windows系统管理的目标服务不会成功，因为这类服务会在活动目录中映射成为一个有着128位长密码的账户，这么长的密码不可能在短时间内破解出来。</p>
 </blockquote>
@@ -388,7 +411,7 @@
 <li>托管服务账户（Managed Service Accounts）和用户组托管服务账户（Group Managed Service Accounts）是能够确保账户密码足够长、足够复杂、并且定期更改。一些第三方的密码管理器也是管理服务账户的不错的解决方案。</li>
 </ul>
 <p>关于这种攻击方法的更多信息可以参考这篇文章：<a href="https://adsecurity.org/?p=2293" target="_blank" rel="external">Cracking Kerberos TGS Tickets Using Kerberoast – Exploiting Kerberos to Compromise the Active Directory Domain</a></p>
-<h2 id="0x04_“瞒天过海”">0x04 “瞒天过海”</h2><p>我把下面这一部分叫做“瞒天过海”，因为很难把这类攻击进行具体的归类。可以把它比作一种舞蹈。拿下一台机器，提权，导出凭证。然后用凭证跳到另外的机器上，提权，再拿下更多的凭证。<br>这种攻击在域中通常能很快见效，因为大多数活动目录管理员都是用一个账户登陆到一台机器上，并切会用到RunAs（使得管理员的凭证留在了本地机器上面）或者用RDP连接到一台服务器（凭证就能通过键盘记录器记录下来）。</p>
+<h2 id="0x04-“瞒天过海”"><a href="#0x04-“瞒天过海”" class="headerlink" title="0x04 “瞒天过海”"></a>0x04 “瞒天过海”</h2><p>我把下面这一部分叫做“瞒天过海”，因为很难把这类攻击进行具体的归类。可以把它比作一种舞蹈。拿下一台机器，提权，导出凭证。然后用凭证跳到另外的机器上，提权，再拿下更多的凭证。<br>这种攻击在域中通常能很快见效，因为大多数活动目录管理员都是用一个账户登陆到一台机器上，并切会用到RunAs（使得管理员的凭证留在了本地机器上面）或者用RDP连接到一台服务器（凭证就能通过键盘记录器记录下来）。</p>
 <ul>
 <li>第一步： 攻下一台机器，通过提权漏洞获取本地管理员权限。用Mimikatz或者其他类似的工具导出最近登陆过本机的用户凭证。</li>
 <li>第二步： 用本地管理员的凭证尝试登陆到别的机器上。这常常很有效，因为本地管理员的账户密码曾经很难被配置正确（现在你可以用微软提供的 LAPS）。假如很多(甚至是所有)机器上都用着同样的账户密码，那么得到一组账户密码就相当于拥有了所有机器的管理员权限。你可以用凭证登陆到不同的机器上，直到找到域管理员的凭证。用本地账户登陆到不同机器是一种理想的做法，因为这样的登陆不需要连接到域控上面，也很少有公司机构把机器的安全日志都发送到日志中心系统（SIEM）。</li>
@@ -406,7 +429,7 @@
 <p>  更新：以上测试是在Windows Server 2012上面进行的。微软已经在Windows Server 2012R2和Windows8.1中限制了在内存中存放明文凭证。这意味着使用Mimikatz的攻击者们可能将不会直接看到有明文密码。不过攻击者仍能看到NT密码哈希和Kerberos TGT，这两者都能和密码产生同样的效果，可以被用于网络的登陆认证。<br>    另外，即使明文凭证没有被存放在内存当中，它依然被发送到了远程服务器。攻击者能够向本地安全认证子系统服务(LSASS.exe)注入恶意代码并且在传输过程中截获明文密码。所以即使用Mimikatz找不到明文密码了，攻击者还是会有办法获得它。</p>
 </blockquote>
 <p>综上所述，不要用CredSSP就对了。<br>还有一个类似的问题就是<a href="http://blogs.msdn.com/b/powershell/archive/2015/10/27/compromising-yourself-with-winrm-s-allowunencrypted-true.aspx" target="_blank" rel="external">WinRM（PowerShell远程操作用到的东西）的“AllowUnencrypted”配置</a>。把这个值设为“True”会禁用掉系统WinRM连接时的加密，包括PowerShell的远程操作时的密码加密。</p>
-<h3 id="从哈希传递攻击(Pass-the-hash)到凭证传递攻击(Pass-the-Credential)">从哈希传递攻击(Pass-the-hash)到凭证传递攻击(Pass-the-Credential)</h3><p>大多数人都听说过哈希传递攻击(PtH)，它通过找到账户相关的密码哈希(通常是NTLM密码哈希)来进行攻击。有趣的是有了PtH，就不必费时间破解密码的哈希值来获得密码明文了，因为在Windows网络中，哈希值就是用来证明身份的(知道了用户名和密码哈希值就能够通过验证)。微软自家的产品和攻击显然不会支持这种攻击，所以我们需要第三方工具来完成任务，例如：Mimikatz。</p>
+<h3 id="从哈希传递攻击-Pass-the-hash-到凭证传递攻击-Pass-the-Credential"><a href="#从哈希传递攻击-Pass-the-hash-到凭证传递攻击-Pass-the-Credential" class="headerlink" title="从哈希传递攻击(Pass-the-hash)到凭证传递攻击(Pass-the-Credential)"></a>从哈希传递攻击(Pass-the-hash)到凭证传递攻击(Pass-the-Credential)</h3><p>大多数人都听说过哈希传递攻击(PtH)，它通过找到账户相关的密码哈希(通常是NTLM密码哈希)来进行攻击。有趣的是有了PtH，就不必费时间破解密码的哈希值来获得密码明文了，因为在Windows网络中，哈希值就是用来证明身份的(知道了用户名和密码哈希值就能够通过验证)。微软自家的产品和攻击显然不会支持这种攻击，所以我们需要第三方工具来完成任务，例如：Mimikatz。</p>
 <p>一旦攻击者找到了密码哈希，很多大门都会向他们打开，但是他们可不只有PtH这一种选择。</p>
 <p><strong>票据传递攻击(Pass-the-Ticket——PtT)</strong>是通过抓取现有的Kerberos票据来冒充一个用户。Mimikatz能够抓取当前用户的Kerberos票据，也能抓取每一个通过系统认证的用户的所有票据(如果配置了Kerberos委派机制的不受限访问，这可成了大问题)。一旦获得了Kerberos票据，攻击者就能用Mimikatz来传递它并访问到目标资源(当然是在Kerberos票据的有效时间内)。</p>
 <p><strong>超-哈希传递攻击(OverPass-the-Hash)</strong>也就是秘钥传递攻击，通过获得的密码哈希来获得Kerberos票据。这种技巧会清除当前用户的所有Kerberos秘钥(哈希值)然后把得到的哈希值注入到内存当中，以此请求获得Kerberos票据。下次访问资源需要用到Kerberos票据的时候，被注入的哈希值(现在是内存中的Kerberos秘钥)会被用来请求Kerberos票据。Mimikatz提供了实现这种攻击的功能，相比起PtH，这是更加隐秘的一种手段，因为现在已经有好几种方法能够检测到PtH。</p>
@@ -430,7 +453,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="获取访问活动目录数据库文件的权限(ntds-dit)">获取访问活动目录数据库文件的权限(ntds.dit)</h3><p>活动目录数据库(ntds.dit)包含了活动目录域中所有对象的所有信息。这个数据库中的数据会被复制到域中的所有域控。这个文件照样包含了所有域用户和计算机账户的密码哈希值。只有能登陆到域控上的用户才能访问到ntds.dit文件。<br>显然，保护好这个文件是很重要滴，因为攻击者访问它就能导致整个域和目录林(forest)被攻陷。<br>下面列出了几种不用成为域管理员就能获取ntds.dit数据的方法：<br><strong>备份路径（备份服务器储存，媒体，网络共享）</strong><br>攻击者访问到域控的备份并在备份共享的ntds.dit文件安放后门。管理员应该确保所有能通过网络访问的保存域备份的目录都是安全的。只有域管理员可以访问它们，只要有其他人能访问，那个人就能摇身一变成为域管理员。<br><strong>在准备配置成域控的服务器上找NTDS.dit文件</strong><br>DCPromo 中会有一个叫IFA的步骤，也就是“从媒体安装”,这个步骤可以使服务器不通过网络来复制域中的数据。这个IFA集是NTDS.dit的拷贝，它可能出现在为新域控准备的共享目录中，也可能在还没配置成域控的服务器上找到，这样的服务器就是不安全的。<br><strong>有虚拟机的管理权限，就能克隆虚拟的域控并离线获取数据</strong><br>获得虚拟域控的访问权并获取域中的凭证。你有用VMWare吗？VCenter的管理员是拥有全部权限的。有了VCenter的管理员权限，就能克隆域控直接把数据拷贝到本地。<br>在VM被挂起的情况下，还可以从虚拟机内存直接提取LSASS数据。不要小看虚拟机管理员在虚拟域控上所拥有的能力。<br>如果你的VCenter管理员组在活动目录里，你应该考虑改掉它。<br>对合适的用户组赋予恰当的权限，不要给攻击者提供通过服务器管理员权限给整个活动目录安装后门的能力。<br>    <strong>你的虚拟机管理员应该被视作是与管理员（如果有虚拟域控的话）</strong></p>
+<h3 id="获取访问活动目录数据库文件的权限-ntds-dit"><a href="#获取访问活动目录数据库文件的权限-ntds-dit" class="headerlink" title="获取访问活动目录数据库文件的权限(ntds.dit)"></a>获取访问活动目录数据库文件的权限(ntds.dit)</h3><p>活动目录数据库(ntds.dit)包含了活动目录域中所有对象的所有信息。这个数据库中的数据会被复制到域中的所有域控。这个文件照样包含了所有域用户和计算机账户的密码哈希值。只有能登陆到域控上的用户才能访问到ntds.dit文件。<br>显然，保护好这个文件是很重要滴，因为攻击者访问它就能导致整个域和目录林(forest)被攻陷。<br>下面列出了几种不用成为域管理员就能获取ntds.dit数据的方法：<br><strong>备份路径（备份服务器储存，媒体，网络共享）</strong><br>攻击者访问到域控的备份并在备份共享的ntds.dit文件安放后门。管理员应该确保所有能通过网络访问的保存域备份的目录都是安全的。只有域管理员可以访问它们，只要有其他人能访问，那个人就能摇身一变成为域管理员。<br><strong>在准备配置成域控的服务器上找NTDS.dit文件</strong><br>DCPromo 中会有一个叫IFA的步骤，也就是“从媒体安装”,这个步骤可以使服务器不通过网络来复制域中的数据。这个IFA集是NTDS.dit的拷贝，它可能出现在为新域控准备的共享目录中，也可能在还没配置成域控的服务器上找到，这样的服务器就是不安全的。<br><strong>有虚拟机的管理权限，就能克隆虚拟的域控并离线获取数据</strong><br>获得虚拟域控的访问权并获取域中的凭证。你有用VMWare吗？VCenter的管理员是拥有全部权限的。有了VCenter的管理员权限，就能克隆域控直接把数据拷贝到本地。<br>在VM被挂起的情况下，还可以从虚拟机内存直接提取LSASS数据。不要小看虚拟机管理员在虚拟域控上所拥有的能力。<br>如果你的VCenter管理员组在活动目录里，你应该考虑改掉它。<br>对合适的用户组赋予恰当的权限，不要给攻击者提供通过服务器管理员权限给整个活动目录安装后门的能力。<br>    <strong>你的虚拟机管理员应该被视作是与管理员（如果有虚拟域控的话）</strong></p>
 <p><strong>获取一个有权登陆域控的账户</strong><br>在活动目录中有几个组不应该有登陆域控的默认权限。<br><img src="http://adsecurity.org/wp-content/uploads/2014/02/Default-DC-LogOnLocallyGroups.png" alt="Default-DC-LogOnLocallyGroups"><br>以下是默认有权登陆域控的用户组：</p>
 <ul>
 <li>Enterprise Admins (目录林管理员组)</li>
@@ -469,7 +492,7 @@
 <li>Tim Medin’s DerbyCon “Attacking Microsoft Kerberos Kicking the Guard Dog of Hades” presentation in 2014(<a href="https://files.sans.org/summit/hackfest2014/PDFs/Kicking%20the%20Guard%20Dog%20of%20Hades%20-%20Attacking%20Microsoft%20Kerberos%20%20-%20Tim%20Medin%281%29.pdf" target="_blank" rel="external">slides</a>&amp;<a href="https://www.youtube.com/watch?v=PUyhlN-E5MU&amp;feature=youtu.be" target="_blank" rel="external">video</a>)where he released the <a href="https://github.com/nidem/kerberoast" target="_blank" rel="external">]Kerberoast Python TGS cracker</a>.</li>
 </ul>
 <hr>
-<h2 id="0x05_译后记">0x05 译后记</h2><p>drops和zone上已经有很多域渗透相关的资料了，尤其是<a href="http://drops.wooyun.org/author/%E4%B8%89%E5%A5%BD%E5%AD%A6%E7%94%9F" target="_blank" rel="external">三好学生</a>发表的一系列文章，在实战中具有很好的参考意义。翻译的这篇文章里面大多数方法的详细利用步骤都能在drops上找到，文章的意义在于给刚进入内网的同学提供思路和方向。<br>至于工具方面个人也有一些体会，首先Mimikatz是域渗透中必不可少的神器，<a href="http://zone.wooyun.org/content/23396" target="_blank" rel="external">就像猪猪侠说的：</a></p>
+<h2 id="0x05-译后记"><a href="#0x05-译后记" class="headerlink" title="0x05 译后记"></a>0x05 译后记</h2><p>drops和zone上已经有很多域渗透相关的资料了，尤其是<a href="http://drops.wooyun.org/author/%E4%B8%89%E5%A5%BD%E5%AD%A6%E7%94%9F" target="_blank" rel="external">三好学生</a>发表的一系列文章，在实战中具有很好的参考意义。翻译的这篇文章里面大多数方法的详细利用步骤都能在drops上找到，文章的意义在于给刚进入内网的同学提供思路和方向。<br>至于工具方面个人也有一些体会，首先Mimikatz是域渗透中必不可少的神器，<a href="http://zone.wooyun.org/content/23396" target="_blank" rel="external">就像猪猪侠说的：</a></p>
 <blockquote>
 <p>  撸域控，就是先搞定域里面的任何一台机器，想办法弄到SYSTEM权限，mimikataz一上，就收工了。<br>    域渗透，mimikataz出来后，几乎没有新思路了。 </p>
 </blockquote>
@@ -531,7 +554,7 @@
     </div>
   </div>
 
-
+          
           </div>
           
 
@@ -576,15 +599,18 @@
                src="/images/avatar.gif"
                alt="Matthew Shao" />
           <p class="site-author-name" itemprop="name">Matthew Shao</p>
-          <p class="site-description motion-element" itemprop="description">I am here to discover myself.</p>
+          <p class="site-description motion-element" itemprop="description">太初有道，曰逻各斯</p>
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">22</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
-          </div>
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
 
           
             <div class="site-state-item site-state-categories">
@@ -597,10 +623,10 @@
 
           
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              
                 <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">標籤</span>
-              </a>
+              
             </div>
           
 
@@ -644,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01_SYSVOL中的密码和组策略"><span class="nav-number">1.</span> <span class="nav-text">0x01 SYSVOL中的密码和组策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02_针对没打补丁的域控利用MS14-068漏洞"><span class="nav-number">2.</span> <span class="nav-text">0x02 针对没打补丁的域控利用MS14-068漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03_Kerberos_TGS_服务_Ticket离线破解（Kerberoast）"><span class="nav-number">3.</span> <span class="nav-text">0x03 Kerberos TGS 服务 Ticket离线破解（Kerberoast）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04_“瞒天过海”"><span class="nav-number">4.</span> <span class="nav-text">0x04 “瞒天过海”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从哈希传递攻击(Pass-the-hash)到凭证传递攻击(Pass-the-Credential)"><span class="nav-number">4.1.</span> <span class="nav-text">从哈希传递攻击(Pass-the-hash)到凭证传递攻击(Pass-the-Credential)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取访问活动目录数据库文件的权限(ntds-dit)"><span class="nav-number">4.2.</span> <span class="nav-text">获取访问活动目录数据库文件的权限(ntds.dit)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05_译后记"><span class="nav-number">5.</span> <span class="nav-text">0x05 译后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-SYSVOL中的密码和组策略"><span class="nav-number">1.</span> <span class="nav-text">0x01 SYSVOL中的密码和组策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-针对没打补丁的域控利用MS14-068漏洞"><span class="nav-number">2.</span> <span class="nav-text">0x02 针对没打补丁的域控利用MS14-068漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-Kerberos-TGS-服务-Ticket离线破解（Kerberoast）"><span class="nav-number">3.</span> <span class="nav-text">0x03 Kerberos TGS 服务 Ticket离线破解（Kerberoast）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-“瞒天过海”"><span class="nav-number">4.</span> <span class="nav-text">0x04 “瞒天过海”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从哈希传递攻击-Pass-the-hash-到凭证传递攻击-Pass-the-Credential"><span class="nav-number">4.1.</span> <span class="nav-text">从哈希传递攻击(Pass-the-hash)到凭证传递攻击(Pass-the-Credential)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取访问活动目录数据库文件的权限-ntds-dit"><span class="nav-number">4.2.</span> <span class="nav-text">获取访问活动目录数据库文件的权限(ntds.dit)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-译后记"><span class="nav-number">5.</span> <span class="nav-text">0x05 译后记</span></a></li></ol></div>
             
 
           </div>
@@ -665,7 +691,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -680,7 +706,7 @@
 <div class="theme-info">
   主題 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Logos
   </a>
 </div>
 
@@ -716,6 +742,7 @@
 
 
 
+
   
   <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
@@ -747,6 +774,11 @@
   
   
 
+
+  <script type="text/javascript" src="/js/src/schemes/logos.js?v=5.1.0"></script>
+
+
+
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
@@ -770,6 +802,24 @@
 
 
 	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
 
 
 
