@@ -227,6 +227,163 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2016/04/03/没关系也没关系/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Matthew Shao">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Mid Station">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/03/没关系也没关系/" itemprop="url">
+                  没关系也没关系
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-03T22:18:01+08:00">
+                2016-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hack/" itemprop="url" rel="index">
+                    <span itemprop="name">Hack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/04/03/没关系也没关系/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/03/没关系也没关系/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>计划着有时间就要陆续把Centaur完善起来了，虽说现在怎么看都只能算是一匹弱智矮脚马，有机会还是要往怪兽的方向发展一下。</p>
+<p>也算是历史遗留问题，在为Centaur做架构选型的时候，因为有前面的烂尾项目铺路，就颇为放心地沿用了<code>PostgreSQL</code>来做数据库，心想搭配着<code>SQLAlchemy</code>应该也出不了什么乱子。到了上学期末心血来潮大刀阔斧地改架构适应灵活的脚本机制的时候，再用起这套黄金搭档就好像有些力不从心了。起初觉得是<code>SQLAlchemy</code>太过<strong>笨重</strong>，常常是翻了大半天文档也挤不出半行代码，而且大部分高级的功能也用不到。于是就移花接木般地改用了<code>peewee</code>这个库，果然是轻量级的ORM库，写起来也顺手多了。</p>
+<p>又是为了适配自定义脚本的机制，由于每个扫描脚本返回结果的数据最好能灵活地反应数据本身的结构，这样传统用ORM定义字段就不太好使了，最好是能用<code>JSON</code>格式来保存结果。还好<code>PostgreSQL</code>在9.4版本加入了一个叫<code>JSONB</code>的字段类型，正好适用于这种灵活的数据场景，同时，翻遍文档挠破头皮的我还发现，<code>JSONB</code>字段正是从一种叫做<code>NoSQL</code>的玩意儿里面偷师过来的。以<code>MongoDB</code>为代表的<code>NoSQL</code>，中文译作<strong>非关系型数据库</strong>, 自然是为了和传统<strong>关系型数据库</strong>对着干才起了个这样大逆不道的名字。两者最大区别就在于<code>NoSQL</code>可以说省去了建表这样的操作，数据可以直接以松散的key-value方式存放在数据库中。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/04/03/没关系也没关系/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://matshao.com/2016/03/12/海伯利安/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1586,143 +1743,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://matshao.com/2015/09/05/Mr-Robot/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Matthew Shao">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Mid Station">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/05/Mr-Robot/" itemprop="url">
-                  Mr.Robot
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-09-05T19:59:09+08:00">
-                2015-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/09/05/Mr-Robot/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/05/Mr-Robot/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center">Hack me like a hacker</blockquote></p>
-<h1 id="0x01-Name"><a href="#0x01-Name" class="headerlink" title="0x01 Name"></a>0x01 Name</h1><p>对于被中文译名坑害的好作品已经见怪不怪了，这部译名虽然够恶俗，但严格上说不在其列，因为即使是英文名就够让人摸不着头脑的。也许平庸简单的名字更能凸显一部作品的口碑。<br>而对于“黑客军团”这个译名，我意见倒不是很大，毕竟译者当初定不能预料到剧情的高深莫测扑朔迷离，至少这样简单粗暴的译名恰能引起我等甚少追剧的人的兴趣。即使是现在看完第一季，我对一个又贴切又传神的译名还是没有半点头绪，或者说可能要等到全剧结束冲出迷雾才能以一个全知全能者的态度概括出一个配得上其内容的译名。</p>
-<h1 id="0x02-God-or-Man"><a href="#0x02-God-or-Man" class="headerlink" title="0x02 God or Man"></a>0x02 God or Man</h1><p>许多剧情简介是这样说的“Elliot无法正常与身边的人交流，他唯一的沟通方式就是黑别人。”的确，当看到他对着双显示器电脑运行那个神一般的gmail账号破解脚本，我一边在想，拥有这样犯规的能力在信息时代除了“神”也没什么别的词可以形容了。轻而易举地获取Email账号并辐射式地接管所有与Email链接的其他网络账号，从点到面地剖析一个人在网络上呈现的所有活动从而推断其心理状态，这样对信息的全面掌控就像是上帝对天下子民的无所不知一样。<br>神一样的能力终究是安放在了一个普通人身上，而且不是一个正常人。<br>不擅交流，不用社交网络，几乎从不参加社交活动，这可以说是“神性”的体现，感觉无法与人正常交流一方面固然是因为有心理障碍，另一方面是因为知道的太多，仅仅通过“黑”的方式就能获取到想要的任何信息，如此以来任何程度的交流都变得多余。也许在Elliot看来Hack的本领就像说话一样自然，甚至比开口交流更加简单，与其说是一种对自身技术的依赖，不如说是Hack已经成为他自己的一种本能。<br>但是与其他剧的神酷主角不同，原本应该是理性操控的技术背后则是紊乱疲弱的心灵。也许看的剧集实在太少，有意无意就把Elliot和Sherlock比较，Sherlock就是那种不食人间烟火的死理性派神酷主角，而Elliot，除了莫名其妙的入侵技术就谈不上半点主角光环。童年阴影，心理疾病， 滥药成瘾，基本就是社会底层小混混的标配，甚至不惜在观众面前因孤独抱头痛哭肆意展现人性的软弱。<br>所谓黑客，不过是这样半人半神，不，是不人不神的混合体。Elliot的行为可以说是纯粹由感性来推动的，由感性推动理性技术，反社会的神性和作为孤独个体的人性相碰撞产生的奇特人格。从Elliot之中好像看到了自己的影子……</p>
-<h1 id="0x03-Hack-in-this-way-or-another"><a href="#0x03-Hack-in-this-way-or-another" class="headerlink" title="0x03 Hack in this way or another"></a>0x03 Hack in this way or another</h1><p>从一开始就看不惯Tyrell这厮，心想为什么要花那么多功夫来对一个不择手段上位的2B高管进行展开。最后我算是明白了，同样是Hack people，只是采取的方法不同。遑论Tyrell背后是有什么大阴谋，Tyrell的所作所为在某种程度上和Elliot的Hack是殊途同归的。相同的是对人控制的野心，不同的只是手法。相比之下只是前者做得更肆无忌惮死皮赖脸。两人分线展开叙述最后没头没脑地就一起干了一票大的。剧情不明朗，也不好给这个Tyrell一个定位。</p>
-<h1 id="0x04-Tools"><a href="#0x04-Tools" class="headerlink" title="0x04 Tools"></a>0x04 Tools</h1><p>要是以前，我肯定把这个放在第一个写。不得不说这剧绝对算是“有干货”的那类。有些片子只会遍几个炫酷的见面再敲击几下键盘就算是完成了入侵过程。但是，这片可是直接放特写让你看清命令行的每个字符，真真切切，与现实接轨。Metasploit，SET,还有Raspberry Pi，让行家有种神奇的爽快感。还顺便争论一下KDE和Gnome哪个好用，或者是教导一下小青年们破解不了WPA-2加密的WIFI信号时应该怎么办。好玩归好玩，工具是其次，重要的还是灵魂。</p>
-<h1 id="？"><a href="#？" class="headerlink" title="？"></a>？</h1><p>感觉10集看完下来有不少细节是可以前后呼应来揭示真相的，然而感觉剧情已成次要，最是喜欢每集Elliot深沉的自言自语，总是能给我带来新的思考。就选择第一集的一段来结尾。</p>
-<blockquote>
-<p><em>What is it about society that disappoints you so much?</em><br>Oh, I don’t know. Is it that we collectively thought Steve Jobs was a great man, even when we knew he made billions off the backs of children? Or maybe it’s that it fells like all our heroes are conterfeit. The world itself’s just one big hoax. Spamming each other with our running commentary of bullshit masquerading as insight, our social media faking as intimacy. Or is it that we voted for this? Not with our rigged elections, but with our things, our proterty, our money. I’m not saying anything new. We all know why we do this, not because Hunger Games books make us happy but because we wanna be sedated. Becuse it’s painful not to pretend, because we’re cowards.</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1770,7 +1790,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -1788,7 +1808,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">標籤</span>
               </a>
             </div>
