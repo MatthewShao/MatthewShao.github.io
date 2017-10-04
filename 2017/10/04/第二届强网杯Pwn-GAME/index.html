@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://matshao.qiniudn.com/qwb4.png">
 <meta property="og:image" content="http://matshao.qiniudn.com/qwb5.png">
 <meta property="og:image" content="http://matshao.qiniudn.com/qwb6.png">
-<meta property="og:updated_time" content="2017-10-04T08:42:01.310Z">
+<meta property="og:updated_time" content="2017-10-04T08:47:24.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二届强网杯Pwn-GAME">
 <meta name="twitter:description" content="在强网杯这种省级比赛遇到了这样的题目，就有种小学期末考试碰到了微积分题目的感觉。">
@@ -339,7 +339,7 @@
         <blockquote>
 <p>在强网杯这种省级比赛遇到了这样的题目，就有种小学期末考试碰到了微积分题目的感觉。<br><a id="more"></a></p>
 </blockquote>
-<h2 id="QEMU-aarch64"><a href="#QEMU-aarch64" class="headerlink" title="QEMU aarch64"></a>QEMU aarch64</h2><p><a href="http://matshao.qiniudn.com/GAME_d3c4b09f9c2341cfa95e3aad9c22ec21.zip" target="_blank" rel="external">Download here</a><br>第一个难点就是把程序跑起来，这是一个armv8的程序，比赛时候想了很多方法。包括想到用树莓派甚至是iPhone来跑这个程序来调试，这些想法都不现实，后来还是老老实实搭建QEMU，期间找到了一个开箱即用的Ubuntu虚拟机：<a href="https://blahcat.github.io/2017/06/25/qemu-images-to-play-with/" target="_blank" rel="external">Some Qemu images to play with
+<h2 id="QEMU-aarch64"><a href="#QEMU-aarch64" class="headerlink" title="QEMU aarch64"></a>QEMU aarch64</h2><p><a href="http://matshao.qiniudn.com/GAME_d3c4b09f9c2341cfa95e3aad9c22ec21.zip" target="_blank" rel="external">Challenge Binary Download here</a><br>第一个难点就是把程序跑起来，这是一个armv8的程序，比赛时候想了很多方法。包括想到用树莓派甚至是iPhone来跑这个程序来调试，这些想法都不现实，后来还是老老实实搭建QEMU，期间找到了一个开箱即用的Ubuntu虚拟机：<a href="https://blahcat.github.io/2017/06/25/qemu-images-to-play-with/" target="_blank" rel="external">Some Qemu images to play with
 </a>,跑起来又觉得太卡，输入命令行等回显都要两三秒，更不用说用gdb来调试了。</p>
 <p>这两天有时间又重新找了一下aarch64 QEMU虚拟机的搭建方法，然后按照<a href="https://zhiwei.li/text/2015/07/11/%E7%94%A8qemu%E8%BF%90%E8%A1%8Carm64%E7%89%88%E6%9C%AC%E7%9A%84debian8/" target="_blank" rel="external">用QEMU运行ARM64版本的Debian8</a>这里的方法搭建了一台Debian系统的。讲道理Ubuntu系统当然是首选，但是可能是网络的原因，载入网络镜像之后虚拟机就启动不了，Debian用起来也没有区别。</p>
 <p>参照链接里面的命令把虚拟机的端口转发出来，我除了转发22端口，来多转了一个4444端口，用于连接程序。然后把gdb，pwntools，gef等一系列必备工具装上。（这又是一个痛苦的等待过程，QEMU跑起来真的很慢）</p>
