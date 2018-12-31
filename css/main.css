@@ -1150,6 +1150,8 @@ pre .javascript .function {
   color: #999;
   font-weight: bold;
   line-height: 1;
+  position: absolute;
+  left: 43%;
 }
 .post-sticky-flag {
   display: inline-block;
@@ -1716,7 +1718,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9efc06;
+  background: #ff7fa4;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2796,4 +2798,14 @@ embed {
 }
 .headband {
   display: none;
+}
+.image-caption-center {
+  margin: 10px auto 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+  font-weight: bold;
+  line-height: 1;
+  position: absolute;
+  left: 42%;
 }
