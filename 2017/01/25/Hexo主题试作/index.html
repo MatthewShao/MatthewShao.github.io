@@ -10,15 +10,15 @@
   
 
 <html class="theme-next logos use-motion" lang="zh-hk">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -33,7 +33,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -67,21 +67,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Hexo,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="http://matshao.com/2017/01/25/Hexo主题试作/"/>
+  <link rel="canonical" href="http://matshao.com/2017/01/25/Hexo主题试作/">
 
 
 
@@ -165,14 +165,13 @@
   
     <div class="site-meta-headline">
       <a href="/">
-        <img class="custom-logo-image" src="/images/logo_light.png"
-             alt="Mid Station"/>
+        <img class="custom-logo-image" src="/images/logo_light.png" alt="Mid Station">
       </a>
     </div>
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Mid Station</span>
       <span class="logo-line-after"><i></i></span>
@@ -201,7 +200,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首頁
           </a>
@@ -211,7 +210,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             歸檔
           </a>
@@ -221,7 +220,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             關於
           </a>
@@ -262,7 +261,7 @@
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Matthew Shao">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content>
     <meta itemprop="image" content="/images/avatar.gif">
   </span>
 
@@ -308,7 +307,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -355,7 +354,7 @@
       
 
       
-        <p>曾经见到某同学手执一本《21天精通HTML+CSS》摇头晃脑，心想这俩玩意儿上手甚至都不需要三天，想必剩下那十八天都是作者在聊人生了。就算你花21天时间把书上代码认认真真敲了一通，也不能大大方方在简历上写上“精通HTML”，何况我学习时间统共都没有超过三天。<br><span itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="https://i.loli.net/2019/02/12/5c62e282dbd04.jpg" class="full-image" alt="H.T.M.L" title="Silicon Valley S1"><span class="image-caption">H.T.M.L</span><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span><br>这样一来，如果我的简历上大言不惭说自己精通HTML字样，大概就会被当作Erlich老兄一样此地无银三百两了。<br><a id="more"></a><br>首先尝试用<code>yeoman</code>来搭建框架，参考<a href="https://chensd.com/2016-06/hexo-theme-guide.html" target="_blank" rel="noopener">Hexo主题制作指南</a>，同样选择了<code>Swig</code>模板引擎以及<code>Stylus</code>CSS预处理。<br>生成出来是一个不带任何CSS样式的页面，只是简单把可能用到的一下JSON数据堆叠起来渲染成HTML。各个文件的架构很清晰明确，从这里我们就可以找照葫芦画瓢地逐一堆砌起整个主题的架构了。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">├── _config<span class="selector-class">.yml</span> <span class="comment">// 主题配置文件</span></span><br><span class="line">├── languages <span class="comment">// 多语言文件夹</span></span><br><span class="line">├── layout</span><br><span class="line">│   ├── archive<span class="selector-class">.swig</span> <span class="comment">// 存档页模板</span></span><br><span class="line">│   ├── category<span class="selector-class">.swig</span> <span class="comment">// 分类文章列表页模板</span></span><br><span class="line">│   ├── includes <span class="comment">// 各页面共享的模板</span></span><br><span class="line">│   │   ├── layout<span class="selector-class">.swig</span> <span class="comment">// 页面布局模板，其它的页面模板都是根据它扩展来的</span></span><br><span class="line">│   │   ├── pagination<span class="selector-class">.swig</span> <span class="comment">// 翻页按钮模板</span></span><br><span class="line">│   │   └── recent-posts<span class="selector-class">.swig</span> <span class="comment">// 文章列表模板</span></span><br><span class="line">│   ├── index<span class="selector-class">.swig</span> <span class="comment">// 首页模板</span></span><br><span class="line">│   ├── page<span class="selector-class">.swig</span> <span class="comment">// 页面详情页模板</span></span><br><span class="line">│   ├── post<span class="selector-class">.swig</span> <span class="comment">// 文章详情页模板</span></span><br><span class="line">│   └── tag<span class="selector-class">.swig</span> <span class="comment">// 标签文章列表页模板</span></span><br><span class="line">└── source</span><br><span class="line">    ├── css</span><br><span class="line">    │   └── theme<span class="selector-class">.styl</span> <span class="comment">// 主题自定义 CSS 文件</span></span><br><span class="line">    ├── favicon.ico</span><br><span class="line">    └── js</span><br><span class="line">        └── theme<span class="selector-class">.js</span> <span class="comment">// 主题 JavaScript 文件</span></span><br></pre></td></tr></table></figure></p>
+        <p>曾经见到某同学手执一本《21天精通HTML+CSS》摇头晃脑，心想这俩玩意儿上手甚至都不需要三天，想必剩下那十八天都是作者在聊人生了。就算你花21天时间把书上代码认认真真敲了一通，也不能大大方方在简历上写上“精通HTML”，何况我学习时间统共都没有超过三天。<br><span itemprop="image" itemscope itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="https://i.loli.net/2019/02/12/5c62e282dbd04.jpg" class="full-image" alt="H.T.M.L" title="Silicon Valley S1"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span><br>这样一来，如果我的简历上大言不惭说自己精通HTML字样，大概就会被当作Erlich老兄一样此地无银三百两了。<br><a id="more"></a><br>首先尝试用<code>yeoman</code>来搭建框架，参考<a href="https://chensd.com/2016-06/hexo-theme-guide.html" target="_blank" rel="noopener">Hexo主题制作指南</a>，同样选择了<code>Swig</code>模板引擎以及<code>Stylus</code>CSS预处理。<br>生成出来是一个不带任何CSS样式的页面，只是简单把可能用到的一下JSON数据堆叠起来渲染成HTML。各个文件的架构很清晰明确，从这里我们就可以找照葫芦画瓢地逐一堆砌起整个主题的架构了。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">├── _config<span class="selector-class">.yml</span> <span class="comment">// 主题配置文件</span></span><br><span class="line">├── languages <span class="comment">// 多语言文件夹</span></span><br><span class="line">├── layout</span><br><span class="line">│   ├── archive<span class="selector-class">.swig</span> <span class="comment">// 存档页模板</span></span><br><span class="line">│   ├── category<span class="selector-class">.swig</span> <span class="comment">// 分类文章列表页模板</span></span><br><span class="line">│   ├── includes <span class="comment">// 各页面共享的模板</span></span><br><span class="line">│   │   ├── layout<span class="selector-class">.swig</span> <span class="comment">// 页面布局模板，其它的页面模板都是根据它扩展来的</span></span><br><span class="line">│   │   ├── pagination<span class="selector-class">.swig</span> <span class="comment">// 翻页按钮模板</span></span><br><span class="line">│   │   └── recent-posts<span class="selector-class">.swig</span> <span class="comment">// 文章列表模板</span></span><br><span class="line">│   ├── index<span class="selector-class">.swig</span> <span class="comment">// 首页模板</span></span><br><span class="line">│   ├── page<span class="selector-class">.swig</span> <span class="comment">// 页面详情页模板</span></span><br><span class="line">│   ├── post<span class="selector-class">.swig</span> <span class="comment">// 文章详情页模板</span></span><br><span class="line">│   └── tag<span class="selector-class">.swig</span> <span class="comment">// 标签文章列表页模板</span></span><br><span class="line">└── source</span><br><span class="line">    ├── css</span><br><span class="line">    │   └── theme<span class="selector-class">.styl</span> <span class="comment">// 主题自定义 CSS 文件</span></span><br><span class="line">    ├── favicon.ico</span><br><span class="line">    └── js</span><br><span class="line">        └── theme<span class="selector-class">.js</span> <span class="comment">// 主题 JavaScript 文件</span></span><br></pre></td></tr></table></figure></p>
 <p>本来打算按照Next主题的布局重新再写一个主题的，但是写着不到半天就发觉不对劲了。主要发现有一下几个问题：</p>
 <ol>
 <li>Next用CSS预处理的方式构建了大量函数，比如响应式布局。想要模仿着重新写一个主题，要么就直接借用这些在<code>base.styl</code>里面的应用，要么就重新自己写。这就类似与是写程序时候的库函数，当然可以直接调用，但是在没有文档，接口有不那么清晰的CSS预处理环境下，首先完全搞懂这堆东西就是一个大问题。</li>
@@ -460,9 +459,7 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Matthew Shao" />
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matthew Shao">
           <p class="site-author-name" itemprop="name">Matthew Shao</p>
           <p class="site-description motion-element" itemprop="description">迹去梦一觉，年来事百般</p>
         </div>
@@ -471,7 +468,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -537,7 +534,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
