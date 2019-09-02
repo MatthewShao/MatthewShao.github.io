@@ -376,7 +376,7 @@
 <pre><code>1. 上传漏洞
 2. SQL注入
 3. 弱口令
-</code></pre><p>在测试过程中寻找这三类漏洞的时间占的时间比重很大，因为一旦发现攻陷系统就是分分钟的事情了，而Centaur目前主要也是往这三个方向挖掘漏洞。<br>架构：<br><img src="http://7j1yti.com1.z0.glb.clouddn.com/Centaur.png" alt="img"></p>
+</code></pre><p>在测试过程中寻找这三类漏洞的时间占的时间比重很大，因为一旦发现攻陷系统就是分分钟的事情了，而Centaur目前主要也是往这三个方向挖掘漏洞。<br>架构：<br><img src="http://7j1yti.com1.z0.glb.clouddn.com/Centaur.png" alt="img"><span class="image-caption">img</span></p>
 <ul>
 <li>Cilent(客户端)：基于mitmproxy实现，mitmproxy所提供的libmproxy库提供灵活的方式来处理代理方式接收到的HTTP包，通过filter(过滤器)来进行去重，去掉不适用的url，去掉不相关站点链接等操作，然后通过handler把数据包按GET，POST，PATH三个分类转发到Server(服务端)，其中GET对应的是SQL注入漏洞，POST对应的是POST类型的SQL注入漏洞和弱口令，PATH主要对应上传漏洞和列目录漏洞。</li>
 <li>Server(服务端)：通过restful api的方式接收到数据包以后通过异步的方法调用celery任务分发系统，celery能自动检测在线的Worker(子节点)，并把任务分发到Worker上。Server还负责把子节点的扫描结果储存到数据库里。</li>
@@ -488,7 +488,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
