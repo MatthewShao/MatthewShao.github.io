@@ -88,16 +88,16 @@
 
 
 
-<meta name="description" content="Pwning with Confidence!🤟">
+<meta name="description" content="早起烟霜白，初寒鸟雀愁">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mid Station">
 <meta property="og:url" content="http://matshao.com/page/8/index.html">
 <meta property="og:site_name" content="Mid Station">
-<meta property="og:description" content="Pwning with Confidence!🤟">
+<meta property="og:description" content="早起烟霜白，初寒鸟雀愁">
 <meta property="og:locale" content="zh-hk">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mid Station">
-<meta name="twitter:description" content="Pwning with Confidence!🤟">
+<meta name="twitter:description" content="早起烟霜白，初寒鸟雀愁">
 
 
 
@@ -181,7 +181,7 @@
 			</a>
 		</div>
 		<div class="header-info site-subtitle">
-			<p>Pwning with Confidence!🤟</p>
+			<p>早起烟霜白，初寒鸟雀愁</p>
 		</div>
 		<div class="index-menu">
 		
@@ -229,6 +229,164 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2015/11/09/Centaur/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Matthew Shao">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Mid Station">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/09/Centaur/" itemprop="url">
+                  Centaur
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-09T20:11:22+08:00">
+                2015-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hack/" itemprop="url" rel="index">
+                    <span itemprop="name">Hack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="0x01-What"><a href="#0x01-What" class="headerlink" title="0x01 What"></a>0x01 What</h2><p>Centaur 是一个<strong>基于代理转发的分布式扫描系统</strong>。</p>
+<h2 id="0x02-Why"><a href="#0x02-Why" class="headerlink" title="0x02 Why"></a>0x02 Why</h2><h3 id="为什么需要这样的软件？"><a href="#为什么需要这样的软件？" class="headerlink" title="为什么需要这样的软件？"></a>为什么需要这样的软件？</h3><p>互联网时代，企业需要确保自己网络的安全来保障业务的正常运作。渗透测试就是其中一种通过发现漏洞来确保网络安全的测试方式，而专业完整的渗透测试对于测试人员来说往往费时费力，单一地用扫描器发现漏洞误报率高，效率低，流量大容易拖慢网络。所以一个灵活快捷的辅助型扫描系统将大大降低测试人员的工作量，提高测试的效率。</p>
+<h3 id="为什么采用这种架构？"><a href="#为什么采用这种架构？" class="headerlink" title="为什么采用这种架构？"></a>为什么采用这种架构？</h3><p>之前也有写过基于scarpy的爬虫式扫描脚本，效果不是很理想，原因如下：</p>
+<ul>
+<li>精准度。大多数情况下扫描系统都是对某一固定的目标进行检测，而基于爬虫的扫描系统发散性较强，往往几个链接就爬到了其他无关站点导致偏离目标。</li>
+<li>灵活度。由于scarpy的架构，一旦开始了抓取就容易失去控制，即使通过输出看见偏移了目标站点也无法即使改变方式。另外对url的识别也不够成熟。</li>
+<li>效率。其实一切问题都是效率的问题，爬虫适合大规模抓取url，但是实际可能存在漏洞的url少之又少，还要写比较精密的过滤器来去重和识别。<br>一般Web检测都是针对目标站点的，基于代理转发的办法就相对与通过人工控制输入流，用半自动的方法提高针对性和精确度。浏览器挂上代理，代理部分处理接收的HTTP(S)数据包转发到服务器端，服务器端通过异步的方法把扫描的任务分发到各个子节点，子节点完成任务后把结果重新传回服务端并存入数据库。在渗透测试中测试人员的经验起到决定性的作用，Centaur可以把测试人员的经验和机器扫描的速度结合起来，测试人员只需正常地浏览页面，点击可能出现漏洞的链接，后台就自动开始对链接进行检测。Centaur是希腊神话中的半人马，取其为名因为系统结合了人的智慧和机器的速度，恰是战场所向披靡的半人马。</li>
+</ul>
+<h2 id="0x03-How"><a href="#0x03-How" class="headerlink" title="0x03 How"></a>0x03 How</h2><p>上面提到系统的三个部分，接下来详细谈谈实现方式。<br>首先根据经验，Web安全中最容易直接获取系统权限危害系统数据的漏洞一般有三类：</p>
+<pre><code>1. 上传漏洞
+2. SQL注入
+3. 弱口令
+</code></pre><p>在测试过程中寻找这三类漏洞的时间占的时间比重很大，因为一旦发现攻陷系统就是分分钟的事情了，而Centaur目前主要也是往这三个方向挖掘漏洞。<br>架构：<br><img src="http://7j1yti.com1.z0.glb.clouddn.com/Centaur.png" alt="img"><span class="image-caption">img</span></p>
+<ul>
+<li>Cilent(客户端)：基于mitmproxy实现，mitmproxy所提供的libmproxy库提供灵活的方式来处理代理方式接收到的HTTP包，通过filter(过滤器)来进行去重，去掉不适用的url，去掉不相关站点链接等操作，然后通过handler把数据包按GET，POST，PATH三个分类转发到Server(服务端)，其中GET对应的是SQL注入漏洞，POST对应的是POST类型的SQL注入漏洞和弱口令，PATH主要对应上传漏洞和列目录漏洞。</li>
+<li>Server(服务端)：通过restful api的方式接收到数据包以后通过异步的方法调用celery任务分发系统，celery能自动检测在线的Worker(子节点)，并把任务分发到Worker上。Server还负责把子节点的扫描结果储存到数据库里。</li>
+<li>Worker(子节点)：对应三种不同的任务，调用不同的测试工具来检测，PATH类型对应的是dirs3arch，GET类型对应的是sqlmap，POST对应的是sqlmap和弱口令检测脚本。调用工具完成扫描后，通过sqlAlchemy用ORM方式把结果回传到服务端的数据库中。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -886,151 +1044,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://matshao.com/2015/06/30/想上什么大学就上什么大学/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Matthew Shao">
-    <meta itemprop="description" content>
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Mid Station">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/30/想上什么大学就上什么大学/" itemprop="url">
-                  想上什么大学就上什么大学
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-06-30T19:40:27+08:00">
-                2015-06-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/碎念/" itemprop="url" rel="index">
-                    <span itemprop="name">碎念</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>还是陆续把旧Blog里面有价值的文章搬过来吧。<br>这是高三时很喜欢的文章，每次觉得前途渺茫的时候都会想起它。</p>
-<blockquote>
-<p> 继续聊聊大学。<br>   我这个人对生活的记忆力一向不怎么好，所以现在每每回想起大学生涯，恍如隔世一般，很多记忆碎片都模糊了。以后再想起什么就写点什么吧。<br>   有一个被人问滥了的问题，你为什么要上大学？继而引申出来的问题有：为什么要考研？为什么要读博？为什么要出国？<br>   听说今年大学生就业率再创新低，于是有很多农村子弟选择放弃高考，外出务工。原因是大学每年要交2w的学费和生活费，读完大学对很多家庭来说是一个沉重的负担，最后读了4年出来还找不到工作。<br>   所以为什么要上大学？是为了学到知识吗？<br>   很遗憾的是，我认为大多数人不是为了学到知识而来上大学，而是为了文凭。<br>   很多人可能会说，读大学可以改变一个人的命运。很多人父母没有受过高等教育，因此迫切希望子女能够读一个大学，毕业后可以搏一个好的前程。其实在这种心态看重的还是文凭，希望那张薄薄的纸可以改变命运。<br> 在徐公子胜治的小说《地师》中，主人公却是“想上什么大学就上什么大学”，世间的大学无论是清华、北大，还是哈佛、剑桥，人家想上就想。<br>   靠，这么牛？<br>   没错，因为人家真的是去“上大学”、学知识的，而不是去搞文凭的。<br>   他用的办法说穿了也很简单：混进大学里去听公共课。一般几个班在一起上的公共课，也没什么人会管是不是多了个不认识的人。混的脸熟了，还有可能混进去听一些小班的专业课，授课老师一般也不会管。<br>   被发现了怎么办？发现了就发现了呗，又不会揍你，换个大学接着混。<br>   有趣的是在电影《3 Idiots》（三傻大闹宝莱坞）里也描述了类似的场景。主人公兰乔在大学里遇到了一个杂役，杂役家中贫困，没钱读书。兰乔有一天就跟这个杂役说，去花点钱买身校服，然后就可以混进来读大学了，想听什么课就听什么课。<br>   顺带一提的是，这是部很好看的励志电影，在豆瓣上获得了9.1分的高分，如果还没看过的话，强烈推荐看看。<br>   也是在这部影片中，兰乔说了这么句话：“你们都陷入比赛中，就算你是第一，这种方式又有什么用？你的知识会增长吗？不会，增长的只有压力。这里是大学，不是高压锅……”。<br>   兰乔无情的抨击了应试教育，中国的教育何尝不是如此，训练出来的人都是做题高手，但知识和学问增长的真的有限。<br> “想上什么大学就上什么大学”的方法我没有用过，也不知道在现实中是否有效。但根据我在大学里的经历，想要混去听听课，多半是可行的。<br>   可能有人还是要问，那文凭怎么办？看，看重的还是文凭吧！<br>   如果用黑客的思维方式，那就是买一张呗！想要啥文凭就有啥文凭。<br>   你这不是怂恿人违法犯罪么？那就当我什么都没说吧！<br>   我想说的是，你上大学真的是为了学知识，还是为了那张文凭？<br>   学知识是为了提高自身的素质和修养，拿文凭是为了敲门砖。敲门砖可以有很多方法，提高修养却只有一条路。<br>   转自<a href="http://www1.taosay.net/index.php/2013/06/26/%E6%83%B3%E4%B8%8A%E4%BB%80%E4%B9%88%E5%A4%A7%E5%AD%A6%E5%B0%B1%E4%B8%8A%E4%BB%80%E4%B9%88%E5%A4%A7%E5%AD%A6/" target="_blank" rel="noopener">道哥的黑板报</a></p>
-</blockquote>
-<p>刚好又到了高考报志愿的时候，分数理想的当然就如同文章标题一样，或是有着一种选择太多而导致的<strong>幸福的烦恼</strong>；而分数不理想的要好好看看文章，如果一个人连上大学是为了什么都不知道，那还不如不上大学。我好像没有什么资格理直气壮地说这些话，有时候选择太多的确就容易忘记初衷。还记得高三开始时最放松的时间就是拿着手机边走回宿舍边看每天更新的<em>道哥的黑板报</em>。即使道哥好久没有更新黑板报了，只愿当初他带给我的想法永远留在心上。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1069,14 +1082,14 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matthew Shao">
           <p class="site-author-name" itemprop="name">Matthew Shao</p>
-          <p class="site-description motion-element" itemprop="description">Pwning with Confidence!🤟</p>
+          <p class="site-description motion-element" itemprop="description">早起烟霜白，初寒鸟雀愁</p>
         </div>
         <nav class="site-state motion-element">
         
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
