@@ -345,26 +345,22 @@
       
         <p><img src="http://react-etc.net/files/2015-11/danguu.jpg" alt="frameworks"><span class="image-caption">frameworks</span></p>
 <blockquote>
-<p>选择困难症患者的痛苦并不在于没有对应的专科门诊，或是买不到治病的药，而是在于，往往在选择医院或者买药的过程中，他们就已经开始发病了。</p>
+<p>选择困难症患者的痛苦并不在于没有对应的专科门诊，或是买不到治病的药，而是在于，往往在选择医院或者买药的过程中，他们就已经开始发病了。<br><a id="more"></a></p>
 </blockquote>
-<a id="more"></a>
-<h2 id="印象"><a class="header-anchor" href="#印象">¶</a>印象</h2>
-<p>对于这三个流行的前端框架，我稀里糊涂都用过。有的是在自己的项目中从一开始就使用，有的是加入现有的项目，在探索过程中接触到的。首先从最主观的角度逐一谈谈吧。</p>
+<h2 id="印象"><a href="#印象" class="headerlink" title="印象"></a>印象</h2><p>对于这三个流行的前端框架，我稀里糊涂都用过。有的是在自己的项目中从一开始就使用，有的是加入现有的项目，在探索过程中接触到的。首先从最主观的角度逐一谈谈吧。</p>
 <ul>
 <li>Angular.js是Google出品的框架，想要深入学习的原因是因为Google 的 Material Design 在Web应用中有十分惊艳的表现效果，然后就找到了Angular Material， 基于Angular.js的UI组件框架。原本以为直接从Angular Material的文档入手就能开发出一个能用的网页应用，结果发现还是得从Angular.js的教程从头学起，学习过程中又参考了各种网上的教程，包括还从图书馆借了几本书好不容易搞清楚了model， controller， Service等概念，挽起袖子打算大干一场。根据教程用Yeoman构建起项目框架以后，马上就懵了，这么复杂的结构，跟说好的不一样啊。</li>
 <li>React.js来自Facebook，也是三个框架里面最后接触的一个，学习是为了加入已有的项目。页面渲染部分其实不算复杂，但是一旦提到了state，reducer， action，包括更加复杂的redux.js状态管理，就必须花大功夫慢慢消化了。</li>
 <li>Vue则是独立的前端框架，与Angular和React相比都显得十分的轻量，开发过程主要关注在视图层，而不用把过多的精力放在状态的维护或是对组件的处理。学习的曲线也远没有前两者那么陡峭，对于熟悉Javascript并且有后端相关经验的开发者来说，几乎就是手到擒来。若是引入了Vuex模块，还可以把HTML，CSS，Javascript写在同一个<code>.vue</code>文件里面，系统会把代码分别注入到合适的位置，开发体验十分优秀。</li>
 </ul>
-<h2 id="选择"><a class="header-anchor" href="#选择">¶</a>选择</h2>
-<p>如果你是以独立开发者的身份参与到项目的开发当中，你当然可以只根据自己的喜好来选择一个适合自己的框架。影响喜好的因素就很复杂了：</p>
+<h2 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h2><p>如果你是以独立开发者的身份参与到项目的开发当中，你当然可以只根据自己的喜好来选择一个适合自己的框架。影响喜好的因素就很复杂了：</p>
 <ol>
-<li>之前开发中使用编程语言和各种工具的经验，<a href="http://xn--bvss82auma104k.Net" target="_blank" rel="noopener">如果有过.Net</a> MVC 的项目经验，相信对Angular.js的接受程度会比较高；如果了解flux的框架工作模式，React.js自然是首选；如果你想我一样有过Python Flask，(Jinja 2渲染引擎)的使用经验，相信用起Vue会得心应手。</li>
+<li>之前开发中使用编程语言和各种工具的经验，如果有过.Net MVC 的项目经验，相信对Angular.js的接受程度会比较高；如果了解flux的框架工作模式，React.js自然是首选；如果你想我一样有过Python Flask，(Jinja 2渲染引擎)的使用经验，相信用起Vue会得心应手。</li>
 <li>想要一个开发一个怎样的应用， Angular.js 可以说是大而全的框架，如果想要应用有良好的可拓展性，可以考虑它；React.js的优势在于组件化的操作，同时还有最近很热的React Native，有不少公司都是采用React Native来开发手机APP；Vue.js简单易上手，尤其适合小型项目，学习周期短更合适敏捷开发的开发理念。</li>
 <li>喜好当然也包括对框架所属公司的好感度，选Google还是Facebook，还是两个都不喜欢？</li>
 <li>如果觉得参考的资料越多，越是仔细分析就越难作出选择。那么最好是打开框架的主页，找到官方提供的教程，粗略翻看一遍，觉得哪个最容易看懂，就决定是它了。</li>
 </ol>
-<h2 id="提醒"><a class="header-anchor" href="#提醒">¶</a>提醒</h2>
-<p>刚开始使用这类前端框架的人很可能会走进一些误区，请时刻提醒自己以下几点：</p>
+<h2 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h2><p>刚开始使用这类前端框架的人很可能会走进一些误区，请时刻提醒自己以下几点：</p>
 <ol>
 <li>不要混用前后端渲染引擎。用前端框架其中一个很重要的原因就是实现前后端的分离，后端专注与业务逻辑的实现，前端专注于视图的渲染。混用渲染引擎最典型的例子就是把接收到的参数先通过后端的引擎渲染，在交个前端渲染一遍。实现的逻辑混乱不说，还有可能造成模板注入漏洞。</li>
 <li>能交给框架处理就不要用JQuery。即便选择使用了框架，开发者仍然保留着传统Web开发模式：查找DOM-&gt;绑定监听的思维定式。但是框架都已经通过模板渲染解决了绑定的问题，很多情况下需要JQuery的操作也能通过框架的API直接实现。</li>
@@ -493,7 +489,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分類</span>
               </a>
             </div>
@@ -548,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#印象"><span class="nav-number">1.</span> <span class="nav-text">¶印象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择"><span class="nav-number">2.</span> <span class="nav-text">¶选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提醒"><span class="nav-number">3.</span> <span class="nav-text">¶提醒</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#印象"><span class="nav-number">1.</span> <span class="nav-text">印象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择"><span class="nav-number">2.</span> <span class="nav-text">选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提醒"><span class="nav-number">3.</span> <span class="nav-text">提醒</span></a></li></ol></div>
             
 
           </div>
