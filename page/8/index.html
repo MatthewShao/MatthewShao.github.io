@@ -88,16 +88,16 @@
 
 
 
-<meta name="description" content="👋🤷🔄🌐🔄🔄🤼🔄🔄🐚😭🤼🤼🔄🌐🤼😭🌐🤼🌐🔄🌐🤼🤼🤼">
+<meta name="description" content="Twenty-Five">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mid Station">
 <meta property="og:url" content="http://matshao.com/page/8/index.html">
 <meta property="og:site_name" content="Mid Station">
-<meta property="og:description" content="👋🤷🔄🌐🔄🔄🤼🔄🔄🐚😭🤼🤼🔄🌐🤼😭🌐🤼🌐🔄🌐🤼🤼🤼">
+<meta property="og:description" content="Twenty-Five">
 <meta property="og:locale" content="zh-hk">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mid Station">
-<meta name="twitter:description" content="👋🤷🔄🌐🔄🔄🤼🔄🔄🐚😭🤼🤼🔄🌐🤼😭🌐🤼🌐🔄🌐🤼🤼🤼">
+<meta name="twitter:description" content="Twenty-Five">
 
 
 
@@ -181,7 +181,7 @@
 			</a>
 		</div>
 		<div class="header-info site-subtitle">
-			<p>👋🤷🔄🌐🔄🔄🤼🔄🔄🐚😭🤼🤼🔄🌐🤼😭🌐🤼🌐🔄🌐🤼🤼🤼</p>
+			<p>Twenty-Five</p>
 		</div>
 		<div class="index-menu">
 		
@@ -229,6 +229,153 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2016/04/03/没关系也没关系/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Matthew Shao">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Mid Station">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/03/没关系也没关系/" itemprop="url">
+                  没关系也没关系
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-03T22:18:01+08:00">
+                2016-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hack/" itemprop="url" rel="index">
+                    <span itemprop="name">Hack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>计划着有时间就要陆续把Centaur完善起来了，虽说现在怎么看都只能算是一匹弱智矮脚马，有机会还是要往怪兽的方向发展一下。</p>
+<p>也算是历史遗留问题，在为Centaur做架构选型的时候，因为有前面的烂尾项目铺路，就颇为放心地沿用了<code>PostgreSQL</code>来做数据库，心想搭配着<code>SQLAlchemy</code>应该也出不了什么乱子。到了上学期末心血来潮大刀阔斧地改架构适应灵活的脚本机制的时候，再用起这套黄金搭档就好像有些力不从心了。起初觉得是<code>SQLAlchemy</code>太过<strong>笨重</strong>，常常是翻了大半天文档也挤不出半行代码，而且大部分高级的功能也用不到。于是就移花接木般地改用了<code>peewee</code>这个库，果然是轻量级的ORM库，写起来也顺手多了。</p>
+<p>又是为了适配自定义脚本的机制，由于每个扫描脚本返回结果的数据最好能灵活地反应数据本身的结构，这样传统用ORM定义字段就不太好使了，最好是能用<code>JSON</code>格式来保存结果。还好<code>PostgreSQL</code>在9.4版本加入了一个叫<code>JSONB</code>的字段类型，正好适用于这种灵活的数据场景，同时，翻遍文档挠破头皮的我还发现，<code>JSONB</code>字段正是从一种叫做<code>NoSQL</code>的玩意儿里面偷师过来的。以<code>MongoDB</code>为代表的<code>NoSQL</code>，中文译作<strong>非关系型数据库</strong>, 自然是为了和传统<strong>关系型数据库</strong>对着干才起了个这样大逆不道的名字。两者最大区别就在于<code>NoSQL</code>可以说省去了建表这样的操作，数据可以直接以松散的key-value方式存放在数据库中。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/04/03/没关系也没关系/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -345,7 +492,7 @@
 <p>如果说《三体》是高中课本，那么这部小说就是大学教材。</p>
 </blockquote>
 <p>于是稀里糊涂开始了追随朝圣者的道路；最近又上了一门唤作<em>人工智能</em> 的课程；加上这几天，大家都在关注的Alpha Go 大战李世石的事情。这些毫不相关的片段汇聚在这个阴晴不定的季节，在我这越发不灵光的大脑中竟混杂成了些不得不说的想法。</p>
-<p><img src="https://s-media-cache-ak0.pinimg.com/564x/a3/57/6a/a3576af7351ec1c6481068de6180a741.jpg" alt="hyperion"></p>
+<p><img src="https://s-media-cache-ak0.pinimg.com/564x/a3/57/6a/a3576af7351ec1c6481068de6180a741.jpg" alt="hyperion"><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/03/12/海伯利安/#more" rel="contents">
@@ -355,7 +502,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     <div>
       
@@ -490,8 +637,7 @@
 
       
         
-          <p>趁着过年有时间通关了《刺客信条2》三部曲，俗称E叔三部曲。<br>
-其中第一作是在上个暑假玩的。为了抵抗读代码带来的憋得慌效应，找点借口就把《兄弟会》和《启示录》打通了。</p>
+          <p>趁着过年有时间通关了《刺客信条2》三部曲，俗称E叔三部曲。<br>其中第一作是在上个暑假玩的。为了抵抗读代码带来的憋得慌效应，找点借口就把《兄弟会》和《启示录》打通了。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/02/18/就让我当一回导师/#more" rel="contents">
@@ -501,7 +647,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     <div>
       
@@ -636,10 +782,9 @@
 
       
         
-          <p>From: <a href="https://adsecurity.org/?p=2362" target="_blank" rel="noopener">Attack Methods for Gaining Domain Admin Rights in Active Directory</a><br>
-by Sean Metcalf</p>
+          <p>From: <a href="https://adsecurity.org/?p=2362" target="_blank" rel="noopener">Attack Methods for Gaining Domain Admin Rights in Active Directory</a><br>by Sean Metcalf</p>
 <p>译文首发于：<a href="http://drops.wooyun.org/tips/12021" target="_blank" rel="noopener">乌云知识库</a></p>
-<p>对于一个攻击者来说，有很多方法能在活动目录中获得域管理员权限。这篇文章旨在介绍一些当下比较流行的方法，这里介绍的方法都基于一个前提——攻击者已经获得内网中一台（或几台）机器的权限并且获得了普通域用户的账户。</p>
+<p>对于一个攻击者来说，有很多方法能在活动目录中获得域管理员权限。这篇文章旨在介绍一些当下比较流行的方法，这里介绍的方法都基于一个前提——攻击者已经获得内网中一台（或几台）机器的权限并且获得了普通域用户的账户。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/01/12/Attack-Methods-for-Gaining-Domain-Admin-Rights-in-Active-Directory/#more" rel="contents">
@@ -649,7 +794,7 @@ by Sean Metcalf</p>
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     <div>
       
@@ -784,8 +929,7 @@ by Sean Metcalf</p>
 
       
         
-          <p>总是在过节的时候产生一些稀奇古怪的想法。<br>
-由于一个总所周知的小典故，漏洞的英文是Bug，直译过来是臭虫，那么自然找漏洞就可以理解为“抓虫”，接下来想简单谈一谈关于找漏洞（侧重Web方面但应该也适用于其他范畴）的一些想法。结合自己和前人的经验加上了解到的情况，总结出三条规律，故此称为“抓虫三定律”。</p>
+          <p>总是在过节的时候产生一些稀奇古怪的想法。<br>由于一个总所周知的小典故，漏洞的英文是Bug，直译过来是臭虫，那么自然找漏洞就可以理解为“抓虫”，接下来想简单谈一谈关于找漏洞（侧重Web方面但应该也适用于其他范畴）的一些想法。结合自己和前人的经验加上了解到的情况，总结出三条规律，故此称为“抓虫三定律”。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2015/12/25/抓虫三定律/#more" rel="contents">
@@ -795,7 +939,7 @@ by Sean Metcalf</p>
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     <div>
       
@@ -965,153 +1109,6 @@ by Sean Metcalf</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://matshao.com/2015/11/28/GitHub- 简易装逼小记/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Matthew Shao">
-    <meta itemprop="description" content>
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Mid Station">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/28/GitHub- 简易装逼小记/" itemprop="url">
-                  GitHub 简易装逼小记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-28T19:27:57+08:00">
-                2015-11-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hack/" itemprop="url" rel="index">
-                    <span itemprop="name">Hack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近思维有点混乱，得强迫自己写点什么东西来理顺一下思维。自从上了大学，除了话变少了，码字好像也越来越不顺手了，经常表达不出自己的想法。这可不行，想当初老子语文考试写作文哄骗老师的能力还是有那么一点厉害的。写点什么好呢，就随便写写最近在GitHub上混的事情好了。</p>
-<p>GitHub的大名我是早就听说过了，被誉为是广大码农的救赎，从此以敲代码为生的广大互联网工作者就走上了以代码结交损友的不归路。各大开源项目纷纷在GitHub拉起大旗，招兵买马，霸占山头，企图借助这一神奇的社区做大做强。而我对于GitHub的认识在很长一段时间仅仅停留在<code>git clone</code>这一命令上，因为很多神器都是依托GitHub来发布的，更不用说各种乱七八糟的依赖包，万一系统源中没有收录，<code>git clone</code>往往是值得信赖的灵丹妙药。</p>
-<p>如果你只打算通过GitHub安装开源软件或者纯粹读读大牛们写的代码，一条<code>git clone</code>加上浏览器足矣。但是，年轻人，看着有些写得那么烂的代码，你就没有一种想死磕对面程序员，通过自己动手修改代码拯救整个开源项目的冲动吗？看着有些写得这么好的代码，你就没有一种想认识对面程序员互相切磋切磋的冲动？或者是你有一个惊天动地的idea，想让世界各地的程序员来帮助你完成这个idea，把它的光辉照耀到世界的每一处角落。如果你有上述的任何症状，这时你就需要一个叫做git的东西来帮你打开新世界的大门。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/11/28/GitHub- 简易装逼小记/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1150,14 +1147,14 @@ by Sean Metcalf</p>
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matthew Shao">
           <p class="site-author-name" itemprop="name">Matthew Shao</p>
-          <p class="site-description motion-element" itemprop="description">👋🤷🔄🌐🔄🔄🤼🔄🔄🐚😭🤼🤼🔄🌐🤼😭🌐🤼🌐🔄🌐🤼🤼🤼</p>
+          <p class="site-description motion-element" itemprop="description">Twenty-Five</p>
         </div>
         <nav class="site-state motion-element">
         
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
