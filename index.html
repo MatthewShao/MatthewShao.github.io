@@ -340,7 +340,7 @@
 
       
         
-          <p>真的想不到事隔一年多再为这个系列续上一篇。在强网杯的RealWorld题目遇到之前调过的漏洞，心里却是没底。为了做这道题目，眼睁睁看着三大桌面虚拟化软件在我的ThinkPad上大打出手。当然不是因为主力的Hyper-v虚拟机和主办方提供的vmware虚拟机镜像会打架，临时需要把windows系统升级到新的2004版本才能跑；也不是因为用现场龟速外网花了半天升级完成后发现Hyper-v还是会跟vmware嵌套虚拟化打架，而vmware里面的64位virtualbox一定要嵌套虚拟化才能运行；说到底就是因为太菜了，之前调试复现的时候都在debug版本上面，只是跟着exp照虎画猫过了一遍，也没有彻底弄懂。学艺不精因为偷懒欠下的债，始终都是要还的。</p>
+          <p>来自强网杯线下赛的一题VbEscape(VE)，真的想不到事隔一年多再为这个系列续上一篇。在强网杯的RealWorld题目遇到之前调过的漏洞，心里却是没底。为了做这道题目，眼睁睁看着三大桌面虚拟化软件在我的ThinkPad上大打出手。当然不是因为主力的Hyper-v虚拟机和主办方提供的vmware虚拟机镜像会打架，临时需要把windows系统升级到新的2004版本才能跑；也不是因为用现场龟速外网花了半天升级完成后发现Hyper-v还是会跟vmware嵌套虚拟化打架，而vmware里面的64位virtualbox一定要嵌套虚拟化才能运行；说到底就是因为太菜了，之前调试复现的时候都在debug版本上面，只是跟着exp照虎画猫过了一遍，也没有彻底弄懂。学艺不精因为偷懒欠下的债，始终都是要还的。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/09/22/VirtualBox-Exploitation-3/#more" rel="contents">
@@ -485,9 +485,12 @@
 
       
         
-          <p>相信多年后想起2020的夏天还是会会心一笑 。<br>似乎永远花不完的夜宵券，腾云三楼铁板烧窗口，每周上新的免费雪糕承担了体重上升的借口，<br>亲身参与中国队伍首次DEFCON CTF夺冠，见识过顶级选手的神仙操作，多熬了几个通宵也是值得，<br>没有比赛的周末会和阿良到豫园站旁边的ChaletPlus喝可以续杯的Tequila Sunrise或Sea Breeze。</p>
+          <p>相信多年后想起2020的夏天还是会会心一笑 。<br>
+似乎永远花不完的夜宵券，腾云三楼铁板烧窗口，每周上新的免费雪糕承担了体重上升的借口，<br>
+亲身参与中国队伍首次DEFCON CTF夺冠，见识过顶级选手的神仙操作，多熬了几个通宵也是值得，<br>
+没有比赛的周末会和阿良到豫园站旁边的ChaletPlus喝可以续杯的Tequila Sunrise或Sea Breeze。</p>
 <p>This is a challenge from QiangWangBei Quals this year. QiangWangBei is considered to be one of the top CTF game in China.The challenge is a http server in MIPS64, only two solved during the game (from 0ops and eee). I’ve found the vulnerability and constructed a PoC during the game, but didn’t have enough time to build a system-mode emulation environment to finish the expliot. Also, because unfamiliar with uclibc, I didn’t come up with a viable method to hijack the control flow.</p>
-<p>After the game finished, I recalled how to build the QEMU debugging environement with buildroot. I shared this knowledge with my colleague @ruan, he wrote a detailed <a href="https://ruan777.github.io/2020/08/25/mips64%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" target="_blank" rel="noopener">writeup</a> (in chinese) about the building steps. So in this writeup I’ll focus on the challenge itself. I finished this challenge with some hints from <a href="https://ctftime.org/user/18030" target="_blank" rel="noopener">@Himyth</a>. Thanks @Himyth and @ruan!<br>
+<p>After the game finished, I recalled how to build the QEMU debugging environement with buildroot. I shared this knowledge with my colleague @ruan, he wrote a detailed <a href="https://ruan777.github.io/2020/08/25/mips64%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" target="_blank" rel="noopener">writeup</a> (in chinese) about the building steps. So in this writeup I’ll focus on the challenge itself. I finished this challenge with some hints from <a href="https://ctftime.org/user/18030" target="_blank" rel="noopener">@Himyth</a>. Thanks @Himyth and @ruan!</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/09/04/QWB2020-Quals-mipsgame/#more" rel="contents">
@@ -497,7 +500,7 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
 
     <div>
       
@@ -632,7 +635,13 @@
 
       
         
-          <p><blockquote class="blockquote-center"><br>多少个世纪以来，总会有人在新的道路上迈出宝贵的第一步，<br>而他们除了自己的洞察力之外并没有别的装备。<br>他们的目的各不相同，可是他们都有这样一个共性：<br>他们迈出的那一步是第一步，那条道路是前人没有走过的，那种洞察力不是剽窃而来的。<br> —— 艾茵·兰德<br></blockquote><br>
+          <blockquote class="blockquote-center">
+多少个世纪以来，总会有人在新的道路上迈出宝贵的第一步，
+而他们除了自己的洞察力之外并没有别的装备。
+他们的目的各不相同，可是他们都有这样一个共性：
+他们迈出的那一步是第一步，那条道路是前人没有走过的，那种洞察力不是剽窃而来的。
+ —— 艾茵·兰德
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/07/06/源泉/#more" rel="contents">
@@ -642,7 +651,7 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
 
     <div>
       
@@ -755,8 +764,8 @@
 
       
         
-          <p>Last weekend I played DEF CON CTF Quals 2020 with team A*0*E, having so much fun with my teammates and I successfully solved a shellcode challenge called nooopsled. At last 7 teams solved this challenge and you can download the files from <a href="[https://github.com/o-o-overflow/dc2020q-dc2020q-nooopsled-public](https://github.com/o-o-overflow/dc2020q-dc2020q-nooopsled-public">OOO’s github repo</a>).</p>
-<p>This is a challenge in the format of golf 🏌️‍♂️, you can see the description of this new type of challenge on <a href="[https://oooverflow.io/dc-ctf-2020-quals/](https://oooverflow.io/dc-ctf-2020-quals/">OOO’s official webpage</a>). For short, we are required to input a shellcode in the length of 1024 bytes, in the architecture of RISC-V64 or arm64. The server will receive our shellcode and start to execute it from the index of 0, 1, 2 …..1024, and record the number of success attempt to read out the <code>flag</code> file. The error threshold start from 1, and increase 1 every 84 seconds. Every team have 8 hours for preparing their shellcode.<br>
+          <p>Last weekend I played DEF CON CTF Quals 2020 with team A*0*E, having so much fun with my teammates and I successfully solved a shellcode challenge called nooopsled. At last 7 teams solved this challenge and you can download the files from <a href="%5Bhttps://github.com/o-o-overflow/dc2020q-dc2020q-nooopsled-public%5D(https://github.com/o-o-overflow/dc2020q-dc2020q-nooopsled-public)">OOO’s github repo</a>.</p>
+<p>This is a challenge in the format of golf 🏌️‍♂️, you can see the description of this new type of challenge on <a href="%5Bhttps://oooverflow.io/dc-ctf-2020-quals/%5D(https://oooverflow.io/dc-ctf-2020-quals/)">OOO’s official webpage</a>. For short, we are required to input a shellcode in the length of 1024 bytes, in the architecture of RISC-V64 or arm64. The server will receive our shellcode and start to execute it from the index of 0, 1, 2 …1024, and record the number of success attempt to read out the <code>flag</code> file. The error threshold start from 1, and increase 1 every 84 seconds. Every team have 8 hours for preparing their shellcode.</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/05/18/DEFCON-2020-Quals-nooopsled/#more" rel="contents">
@@ -766,7 +775,7 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
 
     <div>
       
@@ -901,9 +910,11 @@
 
       
         
-          <p>今天是来到陌生城市的第66天，隔离起来的第52天，距离原定的复工日期已经18天。<br>总算等到重回正轨的好消息了。<br>国外的情况还是很严峻啊，祝福国外的朋友平安顺利。</p>
+          <p>今天是来到陌生城市的第66天，隔离起来的第52天，距离原定的复工日期已经18天。<br>
+总算等到重回正轨的好消息了。<br>
+国外的情况还是很严峻啊，祝福国外的朋友平安顺利。</p>
 <p>This time is a challenge from last week’s CTF game organized by XCTF with many Chinese universities. This chanllenge is a linux kernel exploitation designed by SixStar Team. I didn’t finished it during the game, most of the time I spent on searching for objects to refill the size <code>0x20-0x70</code>, only at very last moment I realize there was a freelist harderned in the kernel. Many teams solved it by unexpected solution because of the deployment mistake, which is unpleasant, but it is still a good challenge.</p>
-<p>I learned the solution from <a href="https://kirin-say.top/2020/03/10/Kernoob-kmalloc-without-SMAP/" target="_blank" rel="noopener">Kernoob: kmalloc without SMAP</a>, thanks Kirin! Based on his writeup, I will make some notes about the debugging and details of the bypass.<br>
+<p>I learned the solution from <a href="https://kirin-say.top/2020/03/10/Kernoob-kmalloc-without-SMAP/" target="_blank" rel="noopener">Kernoob: kmalloc without SMAP</a>, thanks Kirin! Based on his writeup, I will make some notes about the debugging and details of the bypass.</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/03/15/XCTF新春战疫-kernoob/#more" rel="contents">
@@ -913,7 +924,7 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
 
     <div>
       
@@ -1054,7 +1065,7 @@
 <li>*CTF2019：OOB</li>
 <li>GoogleCTF2018: Just-in-time</li>
 </ul>
-<p>各路大神的writeup已经足够详细了，这里只记录一下解决v8题目比较关键的知识点。<br>
+<p>各路大神的writeup已经足够详细了，这里只记录一下解决v8题目比较关键的知识点。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/02/21/v8-exploit/#more" rel="contents">
@@ -1064,7 +1075,7 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
 
     <div>
       
