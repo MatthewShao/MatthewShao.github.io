@@ -1045,7 +1045,7 @@ pre .javascript .function {
 .site-subtitle {
   margin-top: 10px;
   font-size: 13px;
-  color: grey-dark;
+  color: #fff;
 }
 .use-motion .brand {
   opacity: 0;
@@ -1718,7 +1718,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4bff2d;
+  background: #21878b;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2559,7 +2559,7 @@ embed {
   overflow: hidden;
 }
 #centerbg {
-  background-image: url("../images/winter-mountain.jpg");
+  background-image: url("../images/yuumei1.jpg");
 }
 #centerbg {
   width: 100%;
@@ -2642,7 +2642,7 @@ embed {
   margin: 0 10px;
 }
 .index-menu .menu-item a {
-  color: #555;
+  color: #fff;
 }
 .index-menu a {
   border: none;
