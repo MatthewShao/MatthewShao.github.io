@@ -1718,7 +1718,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #47c7db;
+  background: #79ffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2559,7 +2559,7 @@ embed {
   overflow: hidden;
 }
 #centerbg {
-  background-image: url("../images/yuumei1.jpg");
+  background-image: url("../images/float1.jpg");
 }
 #centerbg {
   width: 100%;

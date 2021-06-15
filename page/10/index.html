@@ -633,15 +633,28 @@
       
         
           
-            <h2 id="0x01-What"><a href="#0x01-What" class="headerlink" title="0x01 What"></a>0x01 What</h2><p>Centaur 是一个<strong>基于代理转发的分布式扫描系统</strong>。</p>
-<h2 id="0x02-Why"><a href="#0x02-Why" class="headerlink" title="0x02 Why"></a>0x02 Why</h2><h3 id="为什么需要这样的软件？"><a href="#为什么需要这样的软件？" class="headerlink" title="为什么需要这样的软件？"></a>为什么需要这样的软件？</h3><p>互联网时代，企业需要确保自己网络的安全来保障业务的正常运作。渗透测试就是其中一种通过发现漏洞来确保网络安全的测试方式，而专业完整的渗透测试对于测试人员来说往往费时费力，单一地用扫描器发现漏洞误报率高，效率低，流量大容易拖慢网络。所以一个灵活快捷的辅助型扫描系统将大大降低测试人员的工作量，提高测试的效率。</p>
-<h3 id="为什么采用这种架构？"><a href="#为什么采用这种架构？" class="headerlink" title="为什么采用这种架构？"></a>为什么采用这种架构？</h3><p>之前也有写过基于scarpy的爬虫式扫描脚本，效果不是很理想，原因如下：</p>
+            <h2 id="0x01-What"><a class="header-anchor" href="#0x01-What">¶</a>0x01 What</h2>
+<p>Centaur 是一个<strong>基于代理转发的分布式扫描系统</strong>。</p>
+<h2 id="0x02-Why"><a class="header-anchor" href="#0x02-Why">¶</a>0x02 Why</h2>
+<h3 id="为什么需要这样的软件？"><a class="header-anchor" href="#为什么需要这样的软件？">¶</a>为什么需要这样的软件？</h3>
+<p>互联网时代，企业需要确保自己网络的安全来保障业务的正常运作。渗透测试就是其中一种通过发现漏洞来确保网络安全的测试方式，而专业完整的渗透测试对于测试人员来说往往费时费力，单一地用扫描器发现漏洞误报率高，效率低，流量大容易拖慢网络。所以一个灵活快捷的辅助型扫描系统将大大降低测试人员的工作量，提高测试的效率。</p>
+<h3 id="为什么采用这种架构？"><a class="header-anchor" href="#为什么采用这种架构？">¶</a>为什么采用这种架构？</h3>
+<p>之前也有写过基于scarpy的爬虫式扫描脚本，效果不是很理想，原因如下：</p>
 <ul>
 <li>精准度。大多数情况下扫描系统都是对某一固定的目标进行检测，而基于爬虫的扫描系统发散性较强，往往几个链接就爬到了其他无关站点导致偏离目标。</li>
 <li>灵活度。由于scarpy的架构，一旦开始了抓取就容易失去控制，即使通过输出看见偏移了目标站点也无法即使改变方式。另外对url的识别也不够成熟。</li>
-<li>效率。其实一切问题都是效率的问题，爬虫适合大规模抓取url，但是实际可能存在漏洞的url少之又少，还要写比较精密的过滤器来去重和识别。<br>一般Web检测都是针对目标站点的，基于代理转发的办法就相对与通过人工控制输入流，用半自动的方法提高针对性和精确度。浏览器挂上代理，代理部分处理接收的HTTP(S)数据包转发到服务器端，服务器端通过异步的方法把扫描的任务分发到各个子节点，子节点完成任务后把结果重新传回服务端并存入数据库。在渗透测试中测试人员的经验起到决定性的作用，Centaur可以把测试人员的经验和机器扫描的速度结合起来，测试人员只需正常地浏览页面，点击可能出现漏洞的链接，后台就自动开始对链接进行检测。Centaur是希腊神话中的半人马，取其为名因为系统结合了人的智慧和机器的速度，恰是战场所向披靡的半人马。</li>
+<li>效率。其实一切问题都是效率的问题，爬虫适合大规模抓取url，但是实际可能存在漏洞的url少之又少，还要写比较精密的过滤器来去重和识别。<br>
+一般Web检测都是针对目标站点的，基于代理转发的办法就相对与通过人工控制输入流，用半自动的方法提高针对性和精确度。浏览器挂上代理，代理部分处理接收的HTTP(S)数据包转发到服务器端，服务器端通过异步的方法把扫描的任务分发到各个子节点，子节点完成任务后把结果重新传回服务端并存入数据库。在渗透测试中测试人员的经验起到决定性的作用，Centaur可以把测试人员的经验和机器扫描的速度结合起来，测试人员只需正常地浏览页面，点击可能出现漏洞的链接，后台就自动开始对链接进行检测。Centaur是希腊神话中的半人马，取其为名因为系统结合了人的智慧和机器的速度，恰是战场所向披靡的半人马。</li>
 </ul>
-<h2 id="0x03-How"><a href="#0x03-How" class="headerlink" title="0x03 How"></a>0x03 How</h2><p>上面提到系统的三个部分，接下来详细谈谈实现方式。<br>首先根据经验，Web安全中最容易直接获取系统权限危害系统数据的漏洞一般有三类：<br>    1. 上传漏洞<br>    2. SQL注入<br>    3. 弱口令<br>在测试过程中寻找这三类漏洞的时间占的时间比重很大，因为一旦发现攻陷系统就是分分钟的事情了，而Centaur目前主要也是往这三个方向挖掘漏洞。<br>架构：<br><img src="http://7j1yti.com1.z0.glb.clouddn.com/Centaur.png" alt="img"><span class="image-caption">img</span></p>
+<h2 id="0x03-How"><a class="header-anchor" href="#0x03-How">¶</a>0x03 How</h2>
+<p>上面提到系统的三个部分，接下来详细谈谈实现方式。<br>
+首先根据经验，Web安全中最容易直接获取系统权限危害系统数据的漏洞一般有三类：<br>
+1. 上传漏洞<br>
+2. SQL注入<br>
+3. 弱口令<br>
+在测试过程中寻找这三类漏洞的时间占的时间比重很大，因为一旦发现攻陷系统就是分分钟的事情了，而Centaur目前主要也是往这三个方向挖掘漏洞。<br>
+架构：<br>
+<img src="http://7j1yti.com1.z0.glb.clouddn.com/Centaur.png" alt="img"><span class="image-caption">img</span></p>
 <ul>
 <li>Cilent(客户端)：基于mitmproxy实现，mitmproxy所提供的libmproxy库提供灵活的方式来处理代理方式接收到的HTTP包，通过filter(过滤器)来进行去重，去掉不适用的url，去掉不相关站点链接等操作，然后通过handler把数据包按GET，POST，PATH三个分类转发到Server(服务端)，其中GET对应的是SQL注入漏洞，POST对应的是POST类型的SQL注入漏洞和弱口令，PATH主要对应上传漏洞和列目录漏洞。</li>
 <li>Server(服务端)：通过restful api的方式接收到数据包以后通过异步的方法调用celery任务分发系统，celery能自动检测在线的Worker(子节点)，并把任务分发到Worker上。Server还负责把子节点的扫描结果储存到数据库里。</li>
@@ -765,7 +778,9 @@
       
         
           
-            <p>大概从两年多前从同学那知道了美乐网之后，美乐就成了听歌的主要站点。每每打开浏览器都会不自觉的首先打开美乐，顺手点开推荐歌单。因为这里，与许多好音乐不期而遇，不巧，音乐又与当时的心情勾结在一起。与其说打开“赞过的歌单”是满满的好音乐，不如说是五味杂陈的心情记忆。<br>在用一样习惯了的东西的时候也许从来不问为什么，只知道它很好，却不会思考它背后的运作。网站从UI到各种设置都很人性化，光鲜的外表掩盖了免费背后的辛酸。得知网站在明天就要停止服务，心情自是沉闷。可能只是把好的东西当作理所当然，只是低估了创业的艰辛，只是天真地认为天长地久。<br><strong>即使停掉服务器，音符还会在心中跳动，谢谢你，美乐。</strong></p>
+            <p>大概从两年多前从同学那知道了美乐网之后，美乐就成了听歌的主要站点。每每打开浏览器都会不自觉的首先打开美乐，顺手点开推荐歌单。因为这里，与许多好音乐不期而遇，不巧，音乐又与当时的心情勾结在一起。与其说打开“赞过的歌单”是满满的好音乐，不如说是五味杂陈的心情记忆。<br>
+在用一样习惯了的东西的时候也许从来不问为什么，只知道它很好，却不会思考它背后的运作。网站从UI到各种设置都很人性化，光鲜的外表掩盖了免费背后的辛酸。得知网站在明天就要停止服务，心情自是沉闷。可能只是把好的东西当作理所当然，只是低估了创业的艰辛，只是天真地认为天长地久。<br>
+<strong>即使停掉服务器，音符还会在心中跳动，谢谢你，美乐。</strong></p>
 
           
         
@@ -896,8 +911,6 @@
 **所以还是那句话，值得做的事情都是有门槛的，一旦越过了门槛就会感觉努力都是值得的。**
 到现在，换用机械键盘时也会不自觉地想用食指触碰键盘中央找小红点。偶尔用office也会理所当然地想用hjkl来移动光标。
 此谓中毒太深。
-
-
 
           
         
@@ -1030,10 +1043,11 @@
 从一开始就看不惯Tyrell这厮，心想为什么要花那么多功夫来对一个不择手段上位的2B高管进行展开。最后我算是明白了，同样是Hack people，只是采取的方法不同。遑论Tyrell背后是有什么大阴谋，Tyrell的所作所为在某种程度上和Elliot的Hack是殊途同归的。相同的是对人控制的野心，不同的只是手法。相比之下只是前者做得更肆无忌惮死皮赖脸。两人分线展开叙述最后没头没脑地就一起干了一票大的。剧情不明朗，也不好给这个Tyrell一个定位。
 # 0x04 Tools
 要是以前，我肯定把这个放在第一个写。不得不说这剧绝对算是“有干货”的那类。有些片子只会遍几个炫酷的见面再敲击几下键盘就算是完成了入侵过程。但是，这片可是直接放特写让你看清命令行的每个字符，真真切切，与现实接轨。Metasploit，SET,还有Raspberry Pi，让行家有种神奇的爽快感。还顺便争论一下KDE和Gnome哪个好用，或者是教导一下小青年们破解不了WPA-2加密的WIFI信号时应该怎么办。好玩归好玩，工具是其次，重要的还是灵魂。
-
-<h1 id="？"><a href="#？" class="headerlink" title="？"></a>？</h1><p>感觉10集看完下来有不少细节是可以前后呼应来揭示真相的，然而感觉剧情已成次要，最是喜欢每集Elliot深沉的自言自语，总是能给我带来新的思考。就选择第一集的一段来结尾。</p>
+<h1>？</h1>
+<p>感觉10集看完下来有不少细节是可以前后呼应来揭示真相的，然而感觉剧情已成次要，最是喜欢每集Elliot深沉的自言自语，总是能给我带来新的思考。就选择第一集的一段来结尾。</p>
 <blockquote>
-<p><em>What is it about society that disappoints you so much?</em><br>Oh, I don’t know. Is it that we collectively thought Steve Jobs was a great man, even when we knew he made billions off the backs of children? Or maybe it’s that it fells like all our heroes are conterfeit. The world itself’s just one big hoax. Spamming each other with our running commentary of bullshit masquerading as insight, our social media faking as intimacy. Or is it that we voted for this? Not with our rigged elections, but with our things, our proterty, our money. I’m not saying anything new. We all know why we do this, not because Hunger Games books make us happy but because we wanna be sedated. Becuse it’s painful not to pretend, because we’re cowards.</p>
+<p><em>What is it about society that disappoints you so much?</em><br>
+Oh, I don’t know. Is it that we collectively thought Steve Jobs was a great man, even when we knew he made billions off the backs of children? Or maybe it’s that it fells like all our heroes are conterfeit. The world itself’s just one big hoax. Spamming each other with our running commentary of bullshit masquerading as insight, our social media faking as intimacy. Or is it that we voted for this? Not with our rigged elections, but with our things, our proterty, our money. I’m not saying anything new. We all know why we do this, not because Hunger Games books make us happy but because we wanna be sedated. Becuse it’s painful not to pretend, because we’re cowards.</p>
 </blockquote>
 
           
