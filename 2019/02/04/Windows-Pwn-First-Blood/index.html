@@ -88,13 +88,13 @@
 
 
 
-<meta name="description" content="两周前开始尝试在Windows下搞事情，Pwn到一定程度就发现Linux平台的实战目标还是比较有限的，或者说要想获取高价值的漏洞最好还是从WIndows下手。 之前就有照着有些年头的教程摸索过Windows Pwn的方法，然而Win 7下面32位的例子显然已经过时了。这次找到35C3的一个议题照着学习:《35C3 Modern Windows Userspace Exploitation》以下两张">
+<meta name="description" content="两周前开始尝试在Windows下搞事情，Pwn到一定程度就发现Linux平台的实战目标还是比较有限的，或者说要想获取高价值的漏洞最好还是从WIndows下手。 之前就有照着有些年头的教程摸索过Windows Pwn的方法，然而Win 7下面32位的例子显然已经过时了。这次找到35C3的一个议题照着学习:《35C3 Modern Windows Userspace Exploitation》 以下两">
 <meta name="keywords" content="pwn, Windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows Pwn First Blood">
 <meta property="og:url" content="http://matshao.com/2019/02/04/Windows-Pwn-First-Blood/index.html">
 <meta property="og:site_name" content="Mid Station">
-<meta property="og:description" content="两周前开始尝试在Windows下搞事情，Pwn到一定程度就发现Linux平台的实战目标还是比较有限的，或者说要想获取高价值的漏洞最好还是从WIndows下手。 之前就有照着有些年头的教程摸索过Windows Pwn的方法，然而Win 7下面32位的例子显然已经过时了。这次找到35C3的一个议题照着学习:《35C3 Modern Windows Userspace Exploitation》以下两张">
+<meta property="og:description" content="两周前开始尝试在Windows下搞事情，Pwn到一定程度就发现Linux平台的实战目标还是比较有限的，或者说要想获取高价值的漏洞最好还是从WIndows下手。 之前就有照着有些年头的教程摸索过Windows Pwn的方法，然而Win 7下面32位的例子显然已经过时了。这次找到35C3的一个议题照着学习:《35C3 Modern Windows Userspace Exploitation》 以下两">
 <meta property="og:locale" content="zh-hk">
 <meta property="og:image" content="https://i.loli.net/2019/05/28/5cec80d193a5d96502.jpeg">
 <meta property="og:image" content="https://i.loli.net/2019/05/28/5cec80d11275357325.png">
@@ -103,7 +103,7 @@
 <meta property="og:updated_time" content="2019-05-28T00:31:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows Pwn First Blood">
-<meta name="twitter:description" content="两周前开始尝试在Windows下搞事情，Pwn到一定程度就发现Linux平台的实战目标还是比较有限的，或者说要想获取高价值的漏洞最好还是从WIndows下手。 之前就有照着有些年头的教程摸索过Windows Pwn的方法，然而Win 7下面32位的例子显然已经过时了。这次找到35C3的一个议题照着学习:《35C3 Modern Windows Userspace Exploitation》以下两张">
+<meta name="twitter:description" content="两周前开始尝试在Windows下搞事情，Pwn到一定程度就发现Linux平台的实战目标还是比较有限的，或者说要想获取高价值的漏洞最好还是从WIndows下手。 之前就有照着有些年头的教程摸索过Windows Pwn的方法，然而Win 7下面32位的例子显然已经过时了。这次找到35C3的一个议题照着学习:《35C3 Modern Windows Userspace Exploitation》 以下两">
 <meta name="twitter:image" content="https://i.loli.net/2019/05/28/5cec80d193a5d96502.jpeg">
 
 
@@ -357,27 +357,45 @@
 
       
         <p>两周前开始尝试在Windows下搞事情，Pwn到一定程度就发现Linux平台的实战目标还是比较有限的，或者说要想获取高价值的漏洞最好还是从WIndows下手。</p>
-<p>之前就有照着有些年头的教程摸索过Windows Pwn的方法，然而Win 7下面32位的例子显然已经过时了。这次找到35C3的一个议题照着学习:<a href="https://github.com/saaramar/35C3_Modern_Windows_Userspace_Exploitation#35c3-modern-windows-userspace-exploitation" target="_blank" rel="noopener">《35C3 Modern Windows Userspace Exploitation》</a><br>以下两张图便是照葫芦画瓢写出exploit以后的心情：</p>
+<p>之前就有照着有些年头的教程摸索过Windows Pwn的方法，然而Win 7下面32位的例子显然已经过时了。这次找到35C3的一个议题照着学习:<a href="https://github.com/saaramar/35C3_Modern_Windows_Userspace_Exploitation#35c3-modern-windows-userspace-exploitation" target="_blank" rel="noopener">《35C3 Modern Windows Userspace Exploitation》</a><br>
+以下两张图便是照葫芦画瓢写出exploit以后的心情：</p>
 <p><img src="https://i.loli.net/2019/05/28/5cec80d193a5d96502.jpeg" alt="My exploit"><span class="image-caption">My exploit</span></p>
 <a id="more"></a>
 <p>下面记录以下期间遇到的一些坑点和经验</p>
-<h2 id="Windows-7"><a href="#Windows-7" class="headerlink" title="Windows 7"></a>Windows 7</h2><p>Winworld这个题目原本设计就是在Win 10上面运行的，拿到源码以后发现在程序开头调用了许多新API来检测mitigation的状态，而Win 7上面是没有这些API的，所以要把相关代码给注释掉。题目自带一个AppJailLauncher，相当于一个Windows底下的stdio服务器和沙盒。同样在Win 7下面也是不能直接运行这个程序的，开始我还花了很多时间找AppJailLauncher的源码修改成兼容WIn 7的版本，其实是多此一举。</p>
-<p>最方便的方法其实和LInux下面Pwn题目开端口一样，只需要下载nmap，用里面的ncat来打开端口转发stdio即可，具体命令如下：<br><code>ncat -vc &quot;winworld.exe&quot; -kl 127.0.0.1 4444</code></p>
+<h2 id="Windows-7"><a class="header-anchor" href="#Windows-7">¶</a>Windows 7</h2>
+<p>Winworld这个题目原本设计就是在Win 10上面运行的，拿到源码以后发现在程序开头调用了许多新API来检测mitigation的状态，而Win 7上面是没有这些API的，所以要把相关代码给注释掉。题目自带一个AppJailLauncher，相当于一个Windows底下的stdio服务器和沙盒。同样在Win 7下面也是不能直接运行这个程序的，开始我还花了很多时间找AppJailLauncher的源码修改成兼容WIn 7的版本，其实是多此一举。</p>
+<p>最方便的方法其实和LInux下面Pwn题目开端口一样，只需要下载nmap，用里面的ncat来打开端口转发stdio即可，具体命令如下：<br>
+<code>ncat -vc &quot;winworld.exe&quot; -kl 127.0.0.1 4444</code></p>
 <p>通过TCP连接上端口之后ncat就会自动打开一个进程，要调试的时候只需要用windbg attach上对应进程即可。</p>
-<h2 id="IDA-amp-C"><a href="#IDA-amp-C" class="headerlink" title="IDA &amp; C++"></a>IDA &amp; C++</h2><p>题目给了一个exe文件还有一个pdb，有pdb的话逆向难度就降低很多了，起码符号表有了，即使是C++写的程序看起来也不算太吃力。但是提供的pdb里面还是没有结构体的信息，一些关键的结构体还是需要手动逆向。在之前很长一段时间里面，如果比赛遇到C++的题目通常都是出于束手无策的情况，如果有其他选择的情况下一般不会先对它下手，实在要硬着头皮上的时候也只能是看运气。</p>
+<h2 id="IDA-C"><a class="header-anchor" href="#IDA-C">¶</a>IDA &amp; C++</h2>
+<p>题目给了一个exe文件还有一个pdb，有pdb的话逆向难度就降低很多了，起码符号表有了，即使是C++写的程序看起来也不算太吃力。但是提供的pdb里面还是没有结构体的信息，一些关键的结构体还是需要手动逆向。在之前很长一段时间里面，如果比赛遇到C++的题目通常都是出于束手无策的情况，如果有其他选择的情况下一般不会先对它下手，实在要硬着头皮上的时候也只能是看运气。</p>
 <p>我觉得主要原因是C++面向对象的特性导致需要逆向很多结构体，即便是普通的string对象处理起来也不轻松，很多关键的地方如果结构体没有逆向出来基本上程序的逻辑也是看不懂的。经过一段时间的摸索我从以下两个角度简单谈一谈解题的方法：</p>
-<h3 id="C-STL"><a href="#C-STL" class="headerlink" title="C++ STL"></a>C++ STL</h3><p>在目前IDA的反编译功能对C++ STL支持还仅仅属于凑合能看的级别，相信用IDA打开过C++程序的朋友的会深有体会。要能读懂STL相关的代码，首先要把一些基本的STL结构体弄清楚，比如string和vector。除了直接读STL相关的代码，这里也有一个捷径，逆向工程经典教程<a href="https://beginners.re/" target="_blank" rel="noopener">《Reverse Engineering for beginners》</a>第53章专门有提到一些常见模板结构体在MSVC和GCC下面的具体实现，比如说std::string的结构体在MSVC和GCC下面的实现就存在较大的差异：</p>
+<h3 id="C-STL"><a class="header-anchor" href="#C-STL">¶</a>C++ STL</h3>
+<p>在目前IDA的反编译功能对C++ STL支持还仅仅属于凑合能看的级别，相信用IDA打开过C++程序的朋友的会深有体会。要能读懂STL相关的代码，首先要把一些基本的STL结构体弄清楚，比如string和vector。除了直接读STL相关的代码，这里也有一个捷径，逆向工程经典教程<a href="https://beginners.re/" target="_blank" rel="noopener">《Reverse Engineering for beginners》</a>第53章专门有提到一些常见模板结构体在MSVC和GCC下面的具体实现，比如说std::string的结构体在MSVC和GCC下面的实现就存在较大的差异：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MSVC</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">std_string</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">union</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> * ptr;</span><br><span class="line">  &#125; u;</span><br><span class="line">  <span class="keyword">size_t</span> size; <span class="comment">// AKA 'Mysize' in MSVC</span></span><br><span class="line">  <span class="keyword">size_t</span> capacity; <span class="comment">// AKA 'Myres' in MSVC</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// GCC</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">std_string</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">size_t</span> length;</span><br><span class="line">  <span class="keyword">size_t</span> capacity;</span><br><span class="line">  <span class="keyword">size_t</span> refcount;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>re4b这里从逆向工程实用性出发介绍了模板结构体在不同编译器下面的表现形式，在逆向的使用我们只需要配合IDA的新建结构体功能导入对应的结构体，就能比较容易理清逻辑。<br>接下来要通过对照反编译代码和源代码之间的关系来学习到反编译代码里面的一些规律，比如说你要看懂下图中这一块代码其实是在对a1字符串做析构的操作。<br><img src="https://i.loli.net/2019/05/28/5cec80d11275357325.png" alt="C++ Decompile example"><span class="image-caption">C++ Decompile example</span><br>用逆向大佬队友的话说就是“拿头看”，C++编译器执行的优化比起C编译器相对要复杂一些，可能也是IDA反编译本身的局限性，反编译出来的代码和源代码之间的对应程度没有C语言程序那么友好，往往会发现反编译出来的流程中间插入一段源代码中没有的代码，这时候有可能是函数调用被展开了，或者说进行了一些构造析构函数的操作，总的来说还是靠经验吧。</p>
-<h3 id="Custom-Structure"><a href="#Custom-Structure" class="headerlink" title="Custom Structure"></a>Custom Structure</h3><p>对于程序中自定义的结构体（类），新发现一个非常好用的IDA插件**<a href="https://github.com/igogo-x86/HexRaysPyTools" target="_blank" rel="noopener">HexRaysPyTools</a>**<br>，能够自动遍历收集结构体成员变量的偏移位置信息，收集好了偏移地址再调整变量类型和名称，对于结构体的逆向非常高效。</p>
-<h2 id="调用规约"><a href="#调用规约" class="headerlink" title="调用规约"></a>调用规约</h2><p>在动态调试的时候有个关键的问题点是数据流的追踪，也就是函数调用时候参数的传递和返回值的传递问题，在32位的时候，LInux和WIndows都是用过把参数压栈来传参，而在64位的系统中，两者都会借用寄存器来传递参数，Linux是把前四个参数分别放到rdi，rsi，rdx，rcx中；而Windows是依次利用rcx，rdx，r8，r9；函数的返回值都会放到rax当中。</p>
-<h2 id="Windbg"><a href="#Windbg" class="headerlink" title="Windbg"></a>Windbg</h2><p>毫无疑问，调试Linux程序的调试器首选是gdb，而Windows下面的选择其实更多，有传统逆向选手偏爱的Ollydbg，immunity debugger，也有官方出品的Windbg。不过考虑到对64位的支持和在后期内核调试的学习成本，感觉还是Windbg用起来会比较顺手。看到许多大牛在分析漏洞的时候都是用原生配置的windbg通过命令来进行调试，我还是用惯了windbg里面pwndbg那样的插件，于是就找来了一份主题配置，该有的窗口都有了，熟悉命令以后用起来挺顺手的。<br><img src="https://i.loli.net/2019/05/28/5cec80d25967821277.png" alt="Windbg"><span class="image-caption">Windbg</span></p>
+<p>re4b这里从逆向工程实用性出发介绍了模板结构体在不同编译器下面的表现形式，在逆向的使用我们只需要配合IDA的新建结构体功能导入对应的结构体，就能比较容易理清逻辑。<br>
+接下来要通过对照反编译代码和源代码之间的关系来学习到反编译代码里面的一些规律，比如说你要看懂下图中这一块代码其实是在对a1字符串做析构的操作。<br>
+<img src="https://i.loli.net/2019/05/28/5cec80d11275357325.png" alt="C++ Decompile example"><span class="image-caption">C++ Decompile example</span><br>
+用逆向大佬队友的话说就是“拿头看”，C++编译器执行的优化比起C编译器相对要复杂一些，可能也是IDA反编译本身的局限性，反编译出来的代码和源代码之间的对应程度没有C语言程序那么友好，往往会发现反编译出来的流程中间插入一段源代码中没有的代码，这时候有可能是函数调用被展开了，或者说进行了一些构造析构函数的操作，总的来说还是靠经验吧。</p>
+<h3 id="Custom-Structure"><a class="header-anchor" href="#Custom-Structure">¶</a>Custom Structure</h3>
+<p>对于程序中自定义的结构体（类），新发现一个非常好用的IDA插件**<a href="https://github.com/igogo-x86/HexRaysPyTools" target="_blank" rel="noopener">HexRaysPyTools</a>**<br>
+，能够自动遍历收集结构体成员变量的偏移位置信息，收集好了偏移地址再调整变量类型和名称，对于结构体的逆向非常高效。</p>
+<h2 id="调用规约"><a class="header-anchor" href="#调用规约">¶</a>调用规约</h2>
+<p>在动态调试的时候有个关键的问题点是数据流的追踪，也就是函数调用时候参数的传递和返回值的传递问题，在32位的时候，LInux和WIndows都是用过把参数压栈来传参，而在64位的系统中，两者都会借用寄存器来传递参数，Linux是把前四个参数分别放到rdi，rsi，rdx，rcx中；而Windows是依次利用rcx，rdx，r8，r9；函数的返回值都会放到rax当中。</p>
+<h2 id="Windbg"><a class="header-anchor" href="#Windbg">¶</a>Windbg</h2>
+<p>毫无疑问，调试Linux程序的调试器首选是gdb，而Windows下面的选择其实更多，有传统逆向选手偏爱的Ollydbg，immunity debugger，也有官方出品的Windbg。不过考虑到对64位的支持和在后期内核调试的学习成本，感觉还是Windbg用起来会比较顺手。看到许多大牛在分析漏洞的时候都是用原生配置的windbg通过命令来进行调试，我还是用惯了windbg里面pwndbg那样的插件，于是就找来了一份主题配置，该有的窗口都有了，熟悉命令以后用起来挺顺手的。<br>
+<img src="https://i.loli.net/2019/05/28/5cec80d25967821277.png" alt="Windbg"><span class="image-caption">Windbg</span></p>
 <p>在加上pykd插件就可以运行一些python的脚本来配合调试，但是比较苦恼的是很多文章都提到的mona脚本在64位下面不太灵光，至少我尝试时候搜索rop gadget的脚本不能正常运行，只好借助Linux老一套的方法用ropper和ROPGadget一类的工具来找gadget。</p>
-<h2 id="Pwintools"><a href="#Pwintools" class="headerlink" title="Pwintools"></a>Pwintools</h2><p>一直被我视作Pwn选手必备工具的Pwntools在Windows下面因为某些依赖的问题加载不起来，还好已经有人做了简化的兼容版，写exp时候用到的基本功能都涵盖了，赞一个<code>spawn_debugger</code>的功能。</p>
-<h2 id="ASLR"><a href="#ASLR" class="headerlink" title="ASLR"></a>ASLR</h2><p>根据《35C3 Modern Windows Userspace Exploitation》里面的Exploit，我从头开始写了Win7 和 Win10 TH1下面的exploit，见识到了闻名已久的Heap Spray（堆喷射）技巧。在linux用户态的Pwn里面一般很少见到Heap Spray的运用，可能浏览器和内核态会用到；而Windows由于Low Frequency Heap（LFH）的机制，在用户态里面就要通过Heap Spray的技巧来利用UAF漏洞了。对于Win7简单的堆空间管理机制和Win 10 TH1 LFH的缺陷，再到最新Win 10 RS5里面的实现，<a href="https://github.com/saaramar" target="_blank" rel="noopener">Saar Amar</a>都在议题里面介绍得非常详细。</p>
-<p>这里有个需要注意的点，WIndows的dll库（如ntdll）的地址随机化是在每次系统启动的时候进行的，不像Linux程序的libc基地址每次重新启动程序都会变化。因此在泄露库函数地址来进行ret2dll攻击（类比于ret2libc）的时候，即使当前程序挂掉了也没有关系，下次程序重新运行的时候dll的基地址还是一样的。<br>（作者提供的exploit会在泄露ntdll地址的时候挂掉然后重启进程来完成后续流程，自己写exploit的时候花了好大力气去避免泄露的时候进程崩溃，后面发现其实多此一举）。</p>
-<h2 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h2><p>正所谓没有调查就没有发言权，动手调试过当代Windows下的漏洞利用就能发现，Windows早已不是XP时代任人鱼肉的系统，也看出来微软这些年在漏洞利用防护所作出的努力，不说别的光是奖金丰厚的mitigation bounty就是一层对用户有效的保障。<br><img src="https://i.loli.net/2019/05/28/5cec80d1e2e2b86985.png" alt="Mitigation.png"><span class="image-caption">Mitigation.png</span><br>虽说目前Windows平台的Pwn题目还不算太多，但玩起来还是非常有意思的，也可以想象到Windows Pwn题目会作为CTF选手通往实战目标的进阶道路，只怕这道路上能打本地打不了远程的情况要远比之前所接触的更多更复杂。</p>
+<h2 id="Pwintools"><a class="header-anchor" href="#Pwintools">¶</a>Pwintools</h2>
+<p>一直被我视作Pwn选手必备工具的Pwntools在Windows下面因为某些依赖的问题加载不起来，还好已经有人做了简化的兼容版，写exp时候用到的基本功能都涵盖了，赞一个<code>spawn_debugger</code>的功能。</p>
+<h2 id="ASLR"><a class="header-anchor" href="#ASLR">¶</a>ASLR</h2>
+<p>根据《35C3 Modern Windows Userspace Exploitation》里面的Exploit，我从头开始写了Win7 和 Win10 TH1下面的exploit，见识到了闻名已久的Heap Spray（堆喷射）技巧。在linux用户态的Pwn里面一般很少见到Heap Spray的运用，可能浏览器和内核态会用到；而Windows由于Low Frequency Heap（LFH）的机制，在用户态里面就要通过Heap Spray的技巧来利用UAF漏洞了。对于Win7简单的堆空间管理机制和Win 10 TH1 LFH的缺陷，再到最新Win 10 RS5里面的实现，<a href="https://github.com/saaramar" target="_blank" rel="noopener">Saar Amar</a>都在议题里面介绍得非常详细。</p>
+<p>这里有个需要注意的点，WIndows的dll库（如ntdll）的地址随机化是在每次系统启动的时候进行的，不像Linux程序的libc基地址每次重新启动程序都会变化。因此在泄露库函数地址来进行ret2dll攻击（类比于ret2libc）的时候，即使当前程序挂掉了也没有关系，下次程序重新运行的时候dll的基地址还是一样的。<br>
+（作者提供的exploit会在泄露ntdll地址的时候挂掉然后重启进程来完成后续流程，自己写exploit的时候花了好大力气去避免泄露的时候进程崩溃，后面发现其实多此一举）。</p>
+<h2 id="Closure"><a class="header-anchor" href="#Closure">¶</a>Closure</h2>
+<p>正所谓没有调查就没有发言权，动手调试过当代Windows下的漏洞利用就能发现，Windows早已不是XP时代任人鱼肉的系统，也看出来微软这些年在漏洞利用防护所作出的努力，不说别的光是奖金丰厚的mitigation bounty就是一层对用户有效的保障。<br>
+<img src="https://i.loli.net/2019/05/28/5cec80d1e2e2b86985.png" alt="Mitigation.png"><span class="image-caption">Mitigation.png</span><br>
+虽说目前Windows平台的Pwn题目还不算太多，但玩起来还是非常有意思的，也可以想象到Windows Pwn题目会作为CTF选手通往实战目标的进阶道路，只怕这道路上能打本地打不了远程的情况要远比之前所接触的更多更复杂。</p>
 
       
     </div>
@@ -554,7 +572,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-7"><span class="nav-number">1.</span> <span class="nav-text">Windows 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDA-amp-C"><span class="nav-number">2.</span> <span class="nav-text">IDA &amp; C++</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C-STL"><span class="nav-number">2.1.</span> <span class="nav-text">C++ STL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Structure"><span class="nav-number">2.2.</span> <span class="nav-text">Custom Structure</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用规约"><span class="nav-number">3.</span> <span class="nav-text">调用规约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windbg"><span class="nav-number">4.</span> <span class="nav-text">Windbg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pwintools"><span class="nav-number">5.</span> <span class="nav-text">Pwintools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASLR"><span class="nav-number">6.</span> <span class="nav-text">ASLR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure"><span class="nav-number">7.</span> <span class="nav-text">Closure</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-7"><span class="nav-number">1.</span> <span class="nav-text">¶Windows 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDA-C"><span class="nav-number">2.</span> <span class="nav-text">¶IDA &amp; C++</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C-STL"><span class="nav-number">2.1.</span> <span class="nav-text">¶C++ STL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Structure"><span class="nav-number">2.2.</span> <span class="nav-text">¶Custom Structure</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用规约"><span class="nav-number">3.</span> <span class="nav-text">¶调用规约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windbg"><span class="nav-number">4.</span> <span class="nav-text">¶Windbg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pwintools"><span class="nav-number">5.</span> <span class="nav-text">¶Pwintools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASLR"><span class="nav-number">6.</span> <span class="nav-text">¶ASLR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure"><span class="nav-number">7.</span> <span class="nav-text">¶Closure</span></a></li></ol></div>
             
 
           </div>

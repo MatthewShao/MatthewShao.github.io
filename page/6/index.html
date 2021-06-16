@@ -474,7 +474,9 @@
 
       
         
-          <p>有了之前<a href="http://matshao.com/2019/02/04/Windows-Pwn-First-Blood/">Windows-Pwn-First-Blood</a>的基础，趁热打铁把之前存下来介绍JS engine exploitation的文章给一起学习了。<br><a href="https://doar-e.github.io/blog/2018/11/19/introduction-to-spidermonkey-exploitation/" target="_blank" rel="noopener">Introduction to SpiderMonkey exploitation.</a><br>SpiderMonkey也就是Firefox使用的JavaScript引擎，之前在CTF比赛中也碰到过几次。力荐这篇文章，作者写得非常用心，可以说是手把手教了，从js引擎的编译到windbg的使用，其中对于spidermonkey数据的存储形式（JSValue）以及对象的结构（JSObjects）讲得非常详细。更加难得的是作者把原本在Linux上面的<a href="https://ctftime.org/task/6000" target="_blank" rel="noopener">Blaze CTF题目</a>迁移到Windows 10 RS5上面来练习，循序渐进给出了三个不同程度的exploit，借助一道题目发散思维学习，真正把题目利用到了极致。</p>
+          <p>有了之前<a href="http://matshao.com/2019/02/04/Windows-Pwn-First-Blood/">Windows-Pwn-First-Blood</a>的基础，趁热打铁把之前存下来介绍JS engine exploitation的文章给一起学习了。<br>
+<a href="https://doar-e.github.io/blog/2018/11/19/introduction-to-spidermonkey-exploitation/" target="_blank" rel="noopener">Introduction to SpiderMonkey exploitation.</a><br>
+SpiderMonkey也就是Firefox使用的JavaScript引擎，之前在CTF比赛中也碰到过几次。力荐这篇文章，作者写得非常用心，可以说是手把手教了，从js引擎的编译到windbg的使用，其中对于spidermonkey数据的存储形式（JSValue）以及对象的结构（JSObjects）讲得非常详细。更加难得的是作者把原本在Linux上面的<a href="https://ctftime.org/task/6000" target="_blank" rel="noopener">Blaze CTF题目</a>迁移到Windows 10 RS5上面来练习，循序渐进给出了三个不同程度的exploit，借助一道题目发散思维学习，真正把题目利用到了极致。</p>
 <p>有了<a href="https://twitter.com/0vercl0k" target="_blank" rel="noopener">@0vercl0k</a>这篇教科书式的文章，自不敢画蛇添足，以下仅对学习过程中的一些思考作下记录。</p>
           <!--noindex-->
           <div class="post-button text-center">
@@ -600,7 +602,8 @@
         
           <blockquote class="blockquote-center"><p>希望，是像钻石一样珍贵的东西。</p>
 </blockquote>
-<p>我问自己，要怎么才能向一位科学知识极其有限的老人讲这个故事？毕竟老人很难理解什么是空间站，什么是行星发动机，甚至地球的自转公转。<br>简单地说，这是一个关于取舍的故事，本质上和那些沉船灾难片差不多，只不过这艘船非常非常大，大到装着全世界的人类；这艘船也非常非常小，小到要2500年才可能到达终点。</p>
+<p>我问自己，要怎么才能向一位科学知识极其有限的老人讲这个故事？毕竟老人很难理解什么是空间站，什么是行星发动机，甚至地球的自转公转。<br>
+简单地说，这是一个关于取舍的故事，本质上和那些沉船灾难片差不多，只不过这艘船非常非常大，大到装着全世界的人类；这艘船也非常非常小，小到要2500年才可能到达终点。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/02/08/取舍-《流浪地球》/#more" rel="contents">
@@ -746,7 +749,8 @@
       
         
           <p>两周前开始尝试在Windows下搞事情，Pwn到一定程度就发现Linux平台的实战目标还是比较有限的，或者说要想获取高价值的漏洞最好还是从WIndows下手。</p>
-<p>之前就有照着有些年头的教程摸索过Windows Pwn的方法，然而Win 7下面32位的例子显然已经过时了。这次找到35C3的一个议题照着学习:<a href="https://github.com/saaramar/35C3_Modern_Windows_Userspace_Exploitation#35c3-modern-windows-userspace-exploitation" target="_blank" rel="noopener">《35C3 Modern Windows Userspace Exploitation》</a><br>以下两张图便是照葫芦画瓢写出exploit以后的心情：</p>
+<p>之前就有照着有些年头的教程摸索过Windows Pwn的方法，然而Win 7下面32位的例子显然已经过时了。这次找到35C3的一个议题照着学习:<a href="https://github.com/saaramar/35C3_Modern_Windows_Userspace_Exploitation#35c3-modern-windows-userspace-exploitation" target="_blank" rel="noopener">《35C3 Modern Windows Userspace Exploitation》</a><br>
+以下两张图便是照葫芦画瓢写出exploit以后的心情：</p>
 <p><img src="https://i.loli.net/2019/05/28/5cec80d193a5d96502.jpeg" alt="My exploit"></p>
           <!--noindex-->
           <div class="post-button text-center">
@@ -894,7 +898,9 @@
         
           <blockquote class="blockquote-center"><p>也让今日用回忆拥抱过去，用希望拥抱着未来——纪伯伦</p>
 </blockquote>
-<p>写于2018年的最后一小时。<br>看的书多了反而不敢轻易表露自己的情感，就像朋友圈的配图永远都放不满九张，反反复复编辑好多次才能按下发表的按钮。害怕自己的思想过于浅显引人发笑，或者是担忧此刻的情绪遭到未来时光的审判。<br>于是只能把今年的书单列下来充作年终总结，却也发现能够恰到好处地勾勒出今年的轨迹。</p>
+<p>写于2018年的最后一小时。<br>
+看的书多了反而不敢轻易表露自己的情感，就像朋友圈的配图永远都放不满九张，反反复复编辑好多次才能按下发表的按钮。害怕自己的思想过于浅显引人发笑，或者是担忧此刻的情绪遭到未来时光的审判。<br>
+于是只能把今年的书单列下来充作年终总结，却也发现能够恰到好处地勾勒出今年的轨迹。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/12/31/Booklist2018/#more" rel="contents">
@@ -1017,7 +1023,10 @@
 
       
         
-          <h2 id="2017年4月"><a href="#2017年4月" class="headerlink" title="2017年4月"></a>2017年4月</h2><p>故事的开头是刷cnbeta新闻的时候看到了一篇类似的报道，时间应该是在去年4月7号左右。<br><img src="https://upload-images.jianshu.io/upload_images/1735469-4b08ffb661c20fb5.png" alt="隔离见证"><br>隔离见证这么玄乎的名词我自然是看不懂的，但是暴涨1.4亿这么简单直白的信号还是勾起了我的好奇心，同时还有一些不切实际的回忆。</p>
+          <h2 id="2017年4月"><a class="header-anchor" href="#2017年4月">¶</a>2017年4月</h2>
+<p>故事的开头是刷cnbeta新闻的时候看到了一篇类似的报道，时间应该是在去年4月7号左右。<br>
+<img src="https://upload-images.jianshu.io/upload_images/1735469-4b08ffb661c20fb5.png" alt="隔离见证"><br>
+隔离见证这么玄乎的名词我自然是看不懂的，但是暴涨1.4亿这么简单直白的信号还是勾起了我的好奇心，同时还有一些不切实际的回忆。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/06/数字游戏/#more" rel="contents">
