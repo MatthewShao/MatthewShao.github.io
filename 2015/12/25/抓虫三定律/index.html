@@ -1,38 +1,700 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+
+    
+  
+
+<html class="theme-next logos use-motion" lang="zh-hk">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="总是在过节的时候产生一些稀奇古怪的想法。由于一个总所周知的小典故，漏洞的英文是Bug，直译过来是臭虫，那么自然找漏洞就可以理解为“抓虫”，接下来想简单谈一谈关于找漏洞（侧重Web方面但应该也适用于其他范畴）的一些想法。结合自己和前人的经验加上了解到的情况，总结出三条规律，故此称为“抓虫三定律”。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抓虫三定律">
+<meta property="og:url" content="http://matshao.com/2015/12/25/抓虫三定律/index.html">
+<meta property="og:site_name" content="Mid Station">
+<meta property="og:description" content="总是在过节的时候产生一些稀奇古怪的想法。由于一个总所周知的小典故，漏洞的英文是Bug，直译过来是臭虫，那么自然找漏洞就可以理解为“抓虫”，接下来想简单谈一谈关于找漏洞（侧重Web方面但应该也适用于其他范畴）的一些想法。结合自己和前人的经验加上了解到的情况，总结出三条规律，故此称为“抓虫三定律”。">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2015-12-26T12:44:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="抓虫三定律">
+<meta name="twitter:description" content="总是在过节的时候产生一些稀奇古怪的想法。由于一个总所周知的小典故，漏洞的英文是Bug，直译过来是臭虫，那么自然找漏洞就可以理解为“抓虫”，接下来想简单谈一谈关于找漏洞（侧重Web方面但应该也适用于其他范畴）的一些想法。结合自己和前人的经验加上了解到的情况，总结出三条规律，故此称为“抓虫三定律”。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Logos',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://matshao.com/2015/12/25/抓虫三定律/">
+
+
+
+
+
+  <title> 抓虫三定律 | Mid Station </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="header-logos"> 
+      <div class="site-meta ">
+  
+    <div class="site-meta-headline">
+      <a href="/">
+        <img class="custom-logo-image" src="/images/logo_light.png" alt="Mid Station">
+      </a>
+    </div>
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mid Station</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ 
+            
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2015/12/25/抓虫三定律/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Matthew Shao">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Mid Station">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                抓虫三定律
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-25T22:31:35+08:00">
+                2015-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hack/" itemprop="url" rel="index">
+                    <span itemprop="name">Hack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>总是在过节的时候产生一些稀奇古怪的想法。<br>由于一个总所周知的小典故，漏洞的英文是Bug，直译过来是臭虫，那么自然找漏洞就可以理解为“抓虫”，接下来想简单谈一谈关于找漏洞（侧重Web方面但应该也适用于其他范畴）的一些想法。结合自己和前人的经验加上了解到的情况，总结出三条规律，故此称为“抓虫三定律”。</p>
+<a id="more"></a>
+
+<h2 id="Ⅰ-漏洞是普遍存在的"><a href="#Ⅰ-漏洞是普遍存在的" class="headerlink" title="Ⅰ.漏洞是普遍存在的"></a>Ⅰ.漏洞是普遍存在的</h2><p>这是很简单但是至关重要的一条规律。理解这条规律首先就要理解漏洞的本质，漏洞其实就是<strong>错误</strong>。这些错误可能是程序员认知错误带来的，也可能是错误的执行（编码方式方法）带来的。就像学生做作业常常犯错一样，我们不可能要求每位程序员都编写出十全十美的代码；学生作业上的错误会有老师来发现纠正，而如果没有相应的检测和发现，程序员所犯的错误将持续地在系统中存在，从而影响到系统的安全性和稳定性。<br>当初我刚开始尝试找漏洞的时候，总是借助一些现成的工具，或者生搬硬凑一些检测方法来测试。例如检测SQL注入时会用到经典的单引号法和<code>and 1=1</code>法，初学者往往只是通过返回结果的不同来判断漏洞是否存在，而没有留意到造成错误的原因，这种一知半解的初步检测就会产生“这里没有漏洞”的假象。没有检测到漏洞其实并不等于没有漏洞，如果深入了解漏洞产生的原因，我们就会发现其实漏洞还是存在的——因为错误没有被很好地纠正过来。没有被恰当地修复的漏洞，总是有许多方法去利用，有时候报错注入不行，我们可以尝试盲注的方法；有时候GET方法不行，我们可以找POST方法的点；有时候被WAF过滤了，我们还有很多方法绕过。</p>
+<p>对于开发者，通过这条规律能够促使他们重新审视自己的系统是否存在健全可靠。而对于测试者，这更是一种支撑测试能够顺利进行的信念。</p>
+<h2 id="Ⅱ-系统的安全性不取决于漏洞风险的总和，而是取决于风险最高的漏洞。"><a href="#Ⅱ-系统的安全性不取决于漏洞风险的总和，而是取决于风险最高的漏洞。" class="headerlink" title="Ⅱ.系统的安全性不取决于漏洞风险的总和，而是取决于风险最高的漏洞。"></a>Ⅱ.系统的安全性不取决于漏洞风险的总和，而是取决于风险最高的漏洞。</h2><p>这就是我们所熟悉的“<del>饭桶</del>木桶效应”——一个木桶能装多少水取决于它最短的那块木板。</p>
+<p>我们可以把漏洞按照风险程度来划分，高危漏洞是指那些利用简单而又能直接获取较高权限的漏洞，而相对的，低危漏洞利用起来比较复杂，而且造成的危害也相当有限。也许补上一百个低危漏洞也比不上补上一个高危漏洞有效，因为补上低危漏洞仅仅相当于不断垒高木桶的最高木板的高度，但是由于短板的存在，木桶容量并没有发生变化，所以只有补上高危的漏洞才能真正提高系统的安全水平。乌云上有众多高危漏洞的实例已经充分证明了这条定理的正确性，就像<a href="http://www.wooyun.org/whitehats/%E7%8C%AA%E7%8C%AA%E4%BE%A0" target="_blank" rel="noopener">猪猪侠</a>所说的：</p>
+<blockquote>
+<p>  安全是一个整体，保证安全不在于强大的地方有多强大，而在于真正薄弱的地方在哪里。 </p>
+</blockquote>
+<p>这条规律给测试者一个启发，要想在有限的时间和成本中获得系统安全性能的提高，就应该首先处理风险较高的漏洞。要明确一点，测试的时候最佳的处理方式不是要找到所有的漏洞去实现天方夜谭般的绝对安全，而是要按优先次序补上有可能被利用并危害到系统安全的漏洞，从而实现安全性能渐进式地整体提高。</p>
+<h2 id="III-没有银弹"><a href="#III-没有银弹" class="headerlink" title="III.没有银弹"></a>III.没有银弹</h2><p>银弹在欧洲传说中是狼人、吸血鬼等怪物的克星，拥有一发致命的效果，后来被用作致命武器的代名词，引申为具有极端有效性的解决方法。诚然，我们希望有这样的一枚银弹来穿透系统，一劳永逸地解决所有的漏洞。但是这样的银弹不可能存在，就像道哥在《白帽子讲Web安全》中提到，安全是一个动态的概念。随着系统的迭代更新和使用，不断会有新的漏洞被暴露出来。同时也因为错误的激发需要满足一定的条件，没有一种方式能够让所有漏洞自动暴露在我们面前，只有通过不同的检测手段对不同的测试点进行测试，才能达到逐个发现，逐个击破的效果。<br>因为这条银弹规律的存在，注定了如果采用黑盒测试的方式进行测试的话，需要测试的目标点其实是固定的，利用某种工具的目的只是为了覆盖更多的目标点，提高效率，优化工作流程。</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上“抓虫三定律”说到底可以总结为渗透测试人员之所以能够混口饭吃的原因，仔细体会可以从中找到渗透测试的一些法门。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/06/搬家/" rel="next" title="搬家">
+                <i class="fa fa-chevron-left"></i> 搬家
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/12/Attack-Methods-for-Gaining-Domain-Admin-Rights-in-Active-Directory/" rel="prev" title="从活动目录获取域管理员权限的各种姿势">
+                从活动目录获取域管理员权限的各种姿势 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
-
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          
+          </div>
+          
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matthew Shao">
+          <p class="site-author-name" itemprop="name">Matthew Shao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MatthewShao" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ⅰ-漏洞是普遍存在的"><span class="nav-number">1.</span> <span class="nav-text">Ⅰ.漏洞是普遍存在的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ⅱ-系统的安全性不取决于漏洞风险的总和，而是取决于风险最高的漏洞。"><span class="nav-number">2.</span> <span class="nav-text">Ⅱ.系统的安全性不取决于漏洞风险的总和，而是取决于风险最高的漏洞。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-没有银弹"><span class="nav-number">3.</span> <span class="nav-text">III.没有银弹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matthew Shao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Logos
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/schemes/logos.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

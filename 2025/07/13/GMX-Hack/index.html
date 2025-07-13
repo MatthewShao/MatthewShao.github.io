@@ -1,38 +1,695 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+
+    
+  
+
+<html class="theme-next logos use-motion" lang="zh-hk">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="7 月 9 日凌晨 3 点 17 分（UTC），去中心化衍生品交易所 GMX 在 Arbitrum 主网遭到攻击，损失约 4200 万美元。慢雾（SlowMist）安全团队确认，黑客利用 GMX v1 的两处设计缺陷，通过一次“重入攻击”在 0.2 秒内完成资金转移。 这是一个新的时代。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GMX Hack">
+<meta property="og:url" content="http://matshao.com/2025/07/13/GMX-Hack/index.html">
+<meta property="og:site_name" content="Mid Station">
+<meta property="og:description" content="7 月 9 日凌晨 3 点 17 分（UTC），去中心化衍生品交易所 GMX 在 Arbitrum 主网遭到攻击，损失约 4200 万美元。慢雾（SlowMist）安全团队确认，黑客利用 GMX v1 的两处设计缺陷，通过一次“重入攻击”在 0.2 秒内完成资金转移。 这是一个新的时代。">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2025-07-13T14:10:14.602Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GMX Hack">
+<meta name="twitter:description" content="7 月 9 日凌晨 3 点 17 分（UTC），去中心化衍生品交易所 GMX 在 Arbitrum 主网遭到攻击，损失约 4200 万美元。慢雾（SlowMist）安全团队确认，黑客利用 GMX v1 的两处设计缺陷，通过一次“重入攻击”在 0.2 秒内完成资金转移。 这是一个新的时代。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Logos',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://matshao.com/2025/07/13/GMX-Hack/">
+
+
+
+
+
+  <title> GMX Hack | Mid Station </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="header-logos"> 
+      <div class="site-meta ">
+  
+    <div class="site-meta-headline">
+      <a href="/">
+        <img class="custom-logo-image" src="/images/logo_light.png" alt="Mid Station">
+      </a>
+    </div>
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mid Station</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ 
+            
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2025/07/13/GMX-Hack/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Matthew Shao">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Mid Station">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GMX Hack
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2025-07-13T20:58:54+08:00">
+                2025-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>7 月 9 日凌晨 3 点 17 分（UTC），去中心化衍生品交易所 GMX 在 Arbitrum 主网遭到攻击，损失约 4200 万美元。慢雾（SlowMist）安全团队确认，黑客利用 GMX v1 的两处设计缺陷，通过一次“重入攻击”在 0.2 秒内完成资金转移。</p>
+<p>这是一个新的时代。</p>
+<a id="more"></a>
+
+<p>没有《十一罗汉》里乔治·克鲁尼的精密排练，也无需《树大招风》中三大贼王的街头火拼—甚至连 GTA5 夸张的劫案剧本都暴露出想象力的匮乏：攻击者只需一行精心构造的 calldata，便让天量的资金据为己有。若把金额换算成传统银行劫案，这已足够让任何国家的头版连挂三天。</p>
+<p>然而中文舆论场却像被按下了消音键：主流门户零报道，安全圈也没有讨论热度，仿佛事件发生在平行宇宙。</p>
+<p>更吊诡的是受害者的应对策略。GMX 团队在链上留言：“你已证明技术实力，现在选择 500 万美元赏金还是终身逃亡？”——这不是谈判，而是公开承认自身防御体系的彻底破产。在传统金融里，银行被抢后至少可以冻结账户、追踪钞票序列号；而在链上，项目方唯一能做的只是喊话——用 10% 的赃款换取“白帽”身份。</p>
+<p>于是出现了最讽刺的一幕：黑客归还资金后，摇身一变成为了大义凛然的白帽黑客。现实世界里，劫匪即便全额退赃也难逃刑责；链上世界却用“Responsible Disclosure”把重罪洗成荣誉。法律真空下的危险套利：当代码可以定义善恶，司法便退居二线，而用户的资金安全只能寄希望于少数人的道德底线。</p>
+<p>在AI大模型能力突飞猛进的当下，发动一次攻击需要的时间成本和难度无疑是降低了。美国上个月通过了稳定币法案，在可以预见的未来，无数人辛勤劳动获得的财富都会涌入这片被视为热土的网络地带，然而大众对于“代码即法律”的黑暗森林中的风险否能够接受？ 网络安全行业是否准备好承担更加重要的责任呢？</p>
+<h2 id="时间线（UTC）"><a href="#时间线（UTC）" class="headerlink" title="时间线（UTC）"></a>时间线（UTC）</h2><p>07-09</p>
+<ul>
+<li>   <strong>03:17</strong>　攻击发生，4200 万美元被转出。</li>
+<li>   <strong>09:30</strong>　慢雾发布初步分析报告，社区确认漏洞。</li>
+<li>   <strong>15:00</strong>　GMX 官方推特承诺：若黑客归还全部资金，将不再追究法律责任，并额外支付 500 万美元漏洞赏金。</li>
+</ul>
+<p>07-10</p>
+<ul>
+<li>  <strong>02:45</strong>　GMX 通过链上备注向黑客地址留言：“你已证明技术实力；收下 500 万赏金与继续隐匿赃款，是‘自由花钱’与‘持续冒险’之间的选择。”</li>
+<li>  <strong>14:20</strong>　黑客在链上回复：“ok, funds will be returned later.”</li>
+</ul>
+<p>07-11</p>
+<ul>
+<li><strong>08:10</strong>　黑客开始分批归还：<ul>
+<li>10,000 ETH（约 2,650 万美元）直接转回 GMX 多签地址；</li>
+<li>1,050 万 FRAX 稳定币随后到账；</li>
+<li>剩余约 300 万美元差额以其他代币补齐。</li>
+</ul>
+</li>
+<li>  <strong>11:30</strong>　GMX 公告确认已收到 4,050 万美元，500 万赏金已转至黑客指定地址。</li>
+<li>  <strong>16:00</strong>　GMX 发布详细事后报告，称漏洞已在最新版本修复，用户资产“零损失”，补偿金来自国库漏洞赏金池。</li>
+</ul>
+<p>同一天，国内媒体刊登新闻</p>
+<blockquote>
+<p>上海市国资委党委召开中心组学习会，围绕加密货币与稳定币的发展趋势及应对策略开展学习。市国资委党委书记、主任贺青指出，要全面贯彻落实十二届市委七次全会精神，坚持创新驱动，保持对新兴技术的敏锐感知，加强对数字货币的研究探索。坚持产数融合，探索区块链技术在跨境贸易、供应链金融、资产数字化等领域的运用。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/12/22/AIGC-of-2023/" rel="next" title="AIGC of 2023">
+                <i class="fa fa-chevron-left"></i> AIGC of 2023
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
-
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          
+          </div>
+          
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matthew Shao">
+          <p class="site-author-name" itemprop="name">Matthew Shao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MatthewShao" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#时间线（UTC）"><span class="nav-number">1.</span> <span class="nav-text">时间线（UTC）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matthew Shao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Logos
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/schemes/logos.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,38 +1,676 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+
+    
+  
+
+<html class="theme-next logos use-motion" lang="zh-hk">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="起初是听见了别人评论这部科幻小说：  如果说《三体》是高中课本，那么这部小说就是大学教材。  于是稀里糊涂开始了追随朝圣者的道路；最近又上了一门唤作人工智能 的课程；加上这几天，大家都在关注的Alpha Go 大战李世石的事情。这些毫不相关的片段汇聚在这个阴晴不定的季节，在我这越发不灵光的大脑中竟混杂成了些不得不说的想法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="海伯利安">
+<meta property="og:url" content="http://matshao.com/2016/03/12/海伯利安/index.html">
+<meta property="og:site_name" content="Mid Station">
+<meta property="og:description" content="起初是听见了别人评论这部科幻小说：  如果说《三体》是高中课本，那么这部小说就是大学教材。  于是稀里糊涂开始了追随朝圣者的道路；最近又上了一门唤作人工智能 的课程；加上这几天，大家都在关注的Alpha Go 大战李世石的事情。这些毫不相关的片段汇聚在这个阴晴不定的季节，在我这越发不灵光的大脑中竟混杂成了些不得不说的想法。">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:image" content="https://s-media-cache-ak0.pinimg.com/564x/a3/57/6a/a3576af7351ec1c6481068de6180a741.jpg">
+<meta property="og:updated_time" content="2016-03-13T03:06:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="海伯利安">
+<meta name="twitter:description" content="起初是听见了别人评论这部科幻小说：  如果说《三体》是高中课本，那么这部小说就是大学教材。  于是稀里糊涂开始了追随朝圣者的道路；最近又上了一门唤作人工智能 的课程；加上这几天，大家都在关注的Alpha Go 大战李世石的事情。这些毫不相关的片段汇聚在这个阴晴不定的季节，在我这越发不灵光的大脑中竟混杂成了些不得不说的想法。">
+<meta name="twitter:image" content="https://s-media-cache-ak0.pinimg.com/564x/a3/57/6a/a3576af7351ec1c6481068de6180a741.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Logos',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://matshao.com/2016/03/12/海伯利安/">
+
+
+
+
+
+  <title> 海伯利安 | Mid Station </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="header-logos"> 
+      <div class="site-meta ">
+  
+    <div class="site-meta-headline">
+      <a href="/">
+        <img class="custom-logo-image" src="/images/logo_light.png" alt="Mid Station">
+      </a>
+    </div>
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mid Station</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ 
+            
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2016/03/12/海伯利安/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Matthew Shao">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Mid Station">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                海伯利安
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-12T21:53:19+08:00">
+                2016-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/碎念/" itemprop="url" rel="index">
+                    <span itemprop="name">碎念</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>起初是听见了别人评论这部科幻小说：</p>
+<blockquote>
+<p>如果说《三体》是高中课本，那么这部小说就是大学教材。</p>
+</blockquote>
+<p>于是稀里糊涂开始了追随朝圣者的道路；最近又上了一门唤作<em>人工智能</em> 的课程；加上这几天，大家都在关注的Alpha Go 大战李世石的事情。这些毫不相关的片段汇聚在这个阴晴不定的季节，在我这越发不灵光的大脑中竟混杂成了些不得不说的想法。</p>
+<p><img src="https://s-media-cache-ak0.pinimg.com/564x/a3/57/6a/a3576af7351ec1c6481068de6180a741.jpg" alt="hyperion"><span class="image-caption">hyperion</span></p>
+<a id="more"></a>
+
+<p>没错，《海伯利安》算是有关人工智能的科幻作品，但也不算是，至少最让我心醉神迷的部分是那几个一心寻死的朝圣者本来准备永远烂在肚子里面的故事。至于看完这部小说（指《海伯利安》和《海伯利安的陨落》两部曲）之后，再回头看看当初吸引我翻开这部书的那句比喻，竟是如此的苍白无力，什么高中课本大学教材，《红楼梦》和《哈姆雷特》能比较吗？</p>
+<p>在《海伯利安》描绘的未来世界里面，人工智能在人类社会中扮演了极其重要的角色，甚至进化出了独立的思维和不同的人格，它们能够判断，能够思考，能够预测，能够处理多到无法想象的数据，它们也许是人类有史以来最完美的作品。回到现实生活中，今时今日，Alpha Go也恰好具有这些特点，判断、思考、预测、甚至在一天内与自己对弈的次数能够超过职业棋手一生时间内对弈的次数。而现在Alpha Go还能走出棋谱中检索不到的走法，我们是不是可以说，它已经具备了某种思维？</p>
+<p>人是种很奇怪的动物，当他作为一个创造者，他总是希望自己的作品能够出类拔萃、尽善尽美；同时人也与生俱来带有一种对异类的不信任、或者说是提防。如今处于食物链顶端的人类当然不会忘记，智慧是来自造物者的恩赐，正是这自然界中独一无二的优势让人类成为地球的霸主；如今人类在某种程度上有能力担当造物者的角色，如果以自身的智慧作为蓝本设计出的作品体现出了超乎设计者本身的智慧，一种可能被取代的不安感便会适时的不胫而走。</p>
+<p>《海伯利安》中，移情始终是人工智能无法触及的人类特征。就像《银翼杀手》原著小说——《仿生人会梦见电子羊吗？》里面的情节一样，移情作为人类思维的最后一座高地，竟然成为对抗人工智能的武器。课本中对人工智能的定义是：<em>Can acting rationally.</em> 即能理性地行动，而移情，往往是与理性背道而驰的。千百年来，科学家们前赴后继苦苦追求的绝对理性思维，最终或许能够在人工智能上得以实现。反倒是看上去无法理喻，甚至是带那么一点瑕疵的感性思维将会成为人工智能向人类思维靠近的绊脚石。毕竟，对感情而言，任何的基于数学的推理计算都是不公允的。</p>
+<p>那天下午不懂装懂地看围棋人机大战时候，大脑中冒出一个带有一丝寒意的想法：在不远的未来，围棋界会不会将在人工智能的淫威之下抬不起头，人类战胜人工智能才是普天同庆的大新闻。倘若Alpha Go真的是那毁灭世界罪魁祸首的前身，不如干脆把围棋作为高考科目之一，好让一代又一代的四有青年投身到对抗人工智能的圣战之中。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/18/就让我当一回导师/" rel="next" title="就让我当一回导师">
+                <i class="fa fa-chevron-left"></i> 就让我当一回导师
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/03/没关系也没关系/" rel="prev" title="没关系也没关系">
+                没关系也没关系 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
-
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          
+          </div>
+          
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matthew Shao">
+          <p class="site-author-name" itemprop="name">Matthew Shao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MatthewShao" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matthew Shao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Logos
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/schemes/logos.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

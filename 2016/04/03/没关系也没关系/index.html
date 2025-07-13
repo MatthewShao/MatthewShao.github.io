@@ -1,38 +1,676 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+
+    
+  
+
+<html class="theme-next logos use-motion" lang="zh-hk">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="计划着有时间就要陆续把Centaur完善起来了，虽说现在怎么看都只能算是一匹弱智矮脚马，有机会还是要往怪兽的方向发展一下。 也算是历史遗留问题，在为Centaur做架构选型的时候，因为有前面的烂尾项目铺路，就颇为放心地沿用了PostgreSQL来做数据库，心想搭配着SQLAlchemy应该也出不了什么乱子。到了上学期末心血来潮大刀阔斧地改架构适应灵活的脚本机制的时候，再用起这套黄金搭档就好像有些力">
+<meta property="og:type" content="article">
+<meta property="og:title" content="没关系也没关系">
+<meta property="og:url" content="http://matshao.com/2016/04/03/没关系也没关系/index.html">
+<meta property="og:site_name" content="Mid Station">
+<meta property="og:description" content="计划着有时间就要陆续把Centaur完善起来了，虽说现在怎么看都只能算是一匹弱智矮脚马，有机会还是要往怪兽的方向发展一下。 也算是历史遗留问题，在为Centaur做架构选型的时候，因为有前面的烂尾项目铺路，就颇为放心地沿用了PostgreSQL来做数据库，心想搭配着SQLAlchemy应该也出不了什么乱子。到了上学期末心血来潮大刀阔斧地改架构适应灵活的脚本机制的时候，再用起这套黄金搭档就好像有些力">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2016-04-03T15:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="没关系也没关系">
+<meta name="twitter:description" content="计划着有时间就要陆续把Centaur完善起来了，虽说现在怎么看都只能算是一匹弱智矮脚马，有机会还是要往怪兽的方向发展一下。 也算是历史遗留问题，在为Centaur做架构选型的时候，因为有前面的烂尾项目铺路，就颇为放心地沿用了PostgreSQL来做数据库，心想搭配着SQLAlchemy应该也出不了什么乱子。到了上学期末心血来潮大刀阔斧地改架构适应灵活的脚本机制的时候，再用起这套黄金搭档就好像有些力">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Logos',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://matshao.com/2016/04/03/没关系也没关系/">
+
+
+
+
+
+  <title> 没关系也没关系 | Mid Station </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="header-logos"> 
+      <div class="site-meta ">
+  
+    <div class="site-meta-headline">
+      <a href="/">
+        <img class="custom-logo-image" src="/images/logo_light.png" alt="Mid Station">
+      </a>
+    </div>
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mid Station</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ 
+            
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2016/04/03/没关系也没关系/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Matthew Shao">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Mid Station">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                没关系也没关系
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-03T22:18:01+08:00">
+                2016-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hack/" itemprop="url" rel="index">
+                    <span itemprop="name">Hack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>计划着有时间就要陆续把Centaur完善起来了，虽说现在怎么看都只能算是一匹弱智矮脚马，有机会还是要往怪兽的方向发展一下。</p>
+<p>也算是历史遗留问题，在为Centaur做架构选型的时候，因为有前面的烂尾项目铺路，就颇为放心地沿用了<code>PostgreSQL</code>来做数据库，心想搭配着<code>SQLAlchemy</code>应该也出不了什么乱子。到了上学期末心血来潮大刀阔斧地改架构适应灵活的脚本机制的时候，再用起这套黄金搭档就好像有些力不从心了。起初觉得是<code>SQLAlchemy</code>太过<strong>笨重</strong>，常常是翻了大半天文档也挤不出半行代码，而且大部分高级的功能也用不到。于是就移花接木般地改用了<code>peewee</code>这个库，果然是轻量级的ORM库，写起来也顺手多了。</p>
+<p>又是为了适配自定义脚本的机制，由于每个扫描脚本返回结果的数据最好能灵活地反应数据本身的结构，这样传统用ORM定义字段就不太好使了，最好是能用<code>JSON</code>格式来保存结果。还好<code>PostgreSQL</code>在9.4版本加入了一个叫<code>JSONB</code>的字段类型，正好适用于这种灵活的数据场景，同时，翻遍文档挠破头皮的我还发现，<code>JSONB</code>字段正是从一种叫做<code>NoSQL</code>的玩意儿里面偷师过来的。以<code>MongoDB</code>为代表的<code>NoSQL</code>，中文译作<strong>非关系型数据库</strong>, 自然是为了和传统<strong>关系型数据库</strong>对着干才起了个这样大逆不道的名字。两者最大区别就在于<code>NoSQL</code>可以说省去了建表这样的操作，数据可以直接以松散的key-value方式存放在数据库中。</p>
+<a id="more"></a>
+
+<p>怀着<strong>能跑就好，先跑起来再说</strong>的唯物主义伟大观念，我选择暂时无视<code>NoSQL</code>,继续用着<code>PostgreSQL</code>。到了寒假接近结束的时候，适应了自定义脚本操作的Centaur架构上还是有着重大的缺陷。此时的脚本机制是这样的：Server接受了Client发送过来的HTTP包以后，通过<code>Celery</code>将任务分发到各个Worker，Worker执行完任务直接将结果发送到数据库。这就使得Worker获得了直接对数据库的操作权限，显然是不够安全的，而且还要在Worker上引用ORM对结果进行实例化再保存，增加了脚本逻辑的复杂度。新方案是在Worker完成任务后直接把结果通过RESTful API发送会服务器，再由服务器实例化后存入数据库。好像是增加了服务器的负担，但好处是能使各个部件能够隔离开来，逻辑也比较清晰。</p>
+<p>随后继续为Centaur增添了几个新功能，尤其是用<code>Flask</code>搭建Web界面时，总是有种隔靴搔痒的感觉。<code>Flask</code>总是有很多方法帮我们实现想要的效果。比如导航栏、分页条，网上有很多现成的代码供我们参考，但是步骤都是要在前端用<code>HTML</code>先写好界面，再用<code>Flask</code>进行数据绑定渲染模板，搞不好还得用<code>JavaScript</code>添加几个动作。这样繁琐的步骤加上繁复的调试，项目烂尾的机率突然陡增。目前比较有吸引力的一个解决方案是采用<code>AngularJS</code>等框架实现前后端的终极分离。</p>
+<p>也是处于这个考虑，即使有了<code>JSONB</code>的加持，<code>PostgreSQL</code>在这个场景中也称不上顺手，干脆就直接转向<code>NoSQL</code>使用<code>MongoDB</code>。当然这也是经过仔细考虑的，作为扫描系统，或者说爬虫一类的系统，出于一下特点不妨使用<code>NoSQL</code>：</p>
+<ol>
+<li>对事务的原子性要求不强。即使不能保证原子性，也不会产生损失（相对与金融系统）</li>
+<li>保存的数据比较“脏”。比如说爬虫爬下来的HTTP响应包就挺合适的，因为由于服务器的差异，响应包经常是“缺胳膊少腿”的，HTTP头少字段，cookie包含空值等都经常碰到。<code>NoSQL</code>此时灵活的结构就很合适</li>
+<li>不好为数据建表，或者说你懒得建表。</li>
+</ol>
+<p>于是今天花了一个下午完成了转用<code>MongoDB</code>的代码重构，幸亏之前改变了Worker提交结果的方式，整个过程还算比较顺利。说到底还是没有脱离ORM，这次用了<code>mongoengine</code>这个库，忙完后对着代码发了会呆：既然都是用ORM，又何必转到<code>MongoDB</code>？</p>
+<p>事到如此，也没关系了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/12/海伯利安/" rel="next" title="海伯利安">
+                <i class="fa fa-chevron-left"></i> 海伯利安
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/09/三件小事/" rel="prev" title="三件小事">
+                三件小事 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
-
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          
+          </div>
+          
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matthew Shao">
+          <p class="site-author-name" itemprop="name">Matthew Shao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MatthewShao" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matthew Shao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Logos
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/schemes/logos.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,38 +1,655 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+
+    
+  
+
+<html class="theme-next logos use-motion" lang="zh-hk">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="碎念,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="记得7年前人工智能课堂上，Professor何谈到Alpha Go在围棋界大杀特杀对IT业界的影响，他说自己坚信所谓的强人工智能不会来临。然而2023，它迈着六亲不认的步伐来了。 从年初到年底，每过两三周就会被AIGC迅猛的发展震惊一次。春节饭桌上是跟亲戚们聊起如何被chatgpt展示出的惊人理解力给吓到，之后没几周大模型就在国内彻底火了；当然不是我的功劳，想必也是有无数率先接触到chatgpt的">
+<meta name="keywords" content="碎念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIGC of 2023">
+<meta property="og:url" content="http://matshao.com/2023/12/22/AIGC-of-2023/index.html">
+<meta property="og:site_name" content="Mid Station">
+<meta property="og:description" content="记得7年前人工智能课堂上，Professor何谈到Alpha Go在围棋界大杀特杀对IT业界的影响，他说自己坚信所谓的强人工智能不会来临。然而2023，它迈着六亲不认的步伐来了。 从年初到年底，每过两三周就会被AIGC迅猛的发展震惊一次。春节饭桌上是跟亲戚们聊起如何被chatgpt展示出的惊人理解力给吓到，之后没几周大模型就在国内彻底火了；当然不是我的功劳，想必也是有无数率先接触到chatgpt的">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2025-07-13T12:49:52.083Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIGC of 2023">
+<meta name="twitter:description" content="记得7年前人工智能课堂上，Professor何谈到Alpha Go在围棋界大杀特杀对IT业界的影响，他说自己坚信所谓的强人工智能不会来临。然而2023，它迈着六亲不认的步伐来了。 从年初到年底，每过两三周就会被AIGC迅猛的发展震惊一次。春节饭桌上是跟亲戚们聊起如何被chatgpt展示出的惊人理解力给吓到，之后没几周大模型就在国内彻底火了；当然不是我的功劳，想必也是有无数率先接触到chatgpt的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Logos',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://matshao.com/2023/12/22/AIGC-of-2023/">
+
+
+
+
+
+  <title> AIGC of 2023 | Mid Station </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="header-logos"> 
+      <div class="site-meta ">
+  
+    <div class="site-meta-headline">
+      <a href="/">
+        <img class="custom-logo-image" src="/images/logo_light.png" alt="Mid Station">
+      </a>
+    </div>
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mid Station</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ 
+            
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://matshao.com/2023/12/22/AIGC-of-2023/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Matthew Shao">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Mid Station">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Mid Station" src="/images/logo_light.png">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AIGC of 2023
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2023-12-22T23:01:52+08:00">
+                2023-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记得7年前人工智能课堂上，Professor何谈到Alpha Go在围棋界大杀特杀对IT业界的影响，他说自己坚信所谓的强人工智能不会来临。然而2023，它迈着六亲不认的步伐来了。</p>
+<p>从年初到年底，每过两三周就会被AIGC迅猛的发展震惊一次。春节饭桌上是跟亲戚们聊起如何被chatgpt展示出的惊人理解力给吓到，之后没几周大模型就在国内彻底火了；当然不是我的功劳，想必也是有无数率先接触到chatgpt的尝鲜者把这款划时代的产品作为饭桌上的谈资，让其开始走进国内大众视野。</p>
+<a id="more"></a>
+
+<p>三月份我开始尝试用stable-diffusion，发现webui相关的生态已经发展的非常完善，还有civitai这样成熟的模型分享社区。后来租用了云上的cpu尝试自己训练lora模型，因为之前做算法研究时候对huggging face的相关工具用得比较多，各位赛博菩萨贡献的开源代码也相当成熟，体验过程非常顺利。稍后开始帮朋友做一些AI画图相关的简单需求。到了七月份sdxl出来的时候又被模型的升级震撼了一次，画面细节的全面提升以及对细节的把握，感觉之前积累的很多prompting trick都用不上了。后来还有dall-e 3和stable diffusion turbo，进化的速度可以说超乎了想象。</p>
+<p>LLM方面就更是如此了，刚开始用GPT-4就觉得它好像能读懂我的意图，哪怕是提问较为模糊，它也能直击痛处给出详细的回答；由于地区限制等原因，今年用的最多的是claude，在速度和回答的质量上都让我非常满意。如果从其他指标可能涉及主观因素，就挑一个数值指标来说明吧。去年年中的时候，我参加的算法项目还在为挑选一个2048 context window的基础模型而煞费苦心，到了今年GPT-4上来就是32k的context window，claude宣称达到了100k，后面又加到了200k。先不论里面又多少水分，200k的上下文长度可能在大多数的场景都不需要接向量数据库了，能够直接把对话关联的所有信息全部塞进去一个对话当中。</p>
+<p>在开发效率提升上，去年用github copilot的时候，总是有种隔靴搔痒的感觉，自动补全的代码总是差点意思。前段时间尝试在GPT-4中通过直接对话来做一个gpts 的API，从schema涉及到python fastapi实现，再到服务部署，nginx转发配置，整个流程可能只花了30分钟左右，这种开发效率在从前是不敢想象的。我承认如果从一个零基础小白的角度去使用GPT-4可能还不能很好地完成任务，期间给出很多似是而非或者走弯路的方案还是需要有一定经验才能正确识别调整方向，但作为程序员的效率提升工具是绰绰有余的。</p>
+<p>最近开始用cursor.sh，这款IDE给我的感觉是真的打破了传统IDE基于代码补全的智能化思路，真的将AIGC的强大能力融入到编码的各个子任务当中，而且也为LLM可能出现幻觉的毛病通过IDE所提供的上下文进行补足。这是我目前用到最顺手的AI based IDE了。</p>
+<p>在学习探索的过程中，也发现了很多令人印象深刻的国外创业公司，比如模型托管部署领域的replicate，和文本嵌入领域的cohere，这些公司的文档写得非常清晰易懂，让人能够非常低成本地就能尝试他们的服务，然后直接了当的接入现成的流程当中。他们提供的服务对一个创业开发者来说都是非常友好且具有吸引力的。我在想国内什么时候能够有一批这样的公司，为创业公司提供基础建设的创业公司，才真正称得上是具备了AI发展的合适土壤。当用GPT开发一个应用只需要20分钟的时候，我们可能还需要花上100倍的时间去走审批流程符合监管，这才是对先进生产力最无情的扼杀。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/碎念/" rel="tag"># 碎念</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/12/31/Booklist2021/" rel="next" title="Booklist2021">
+                <i class="fa fa-chevron-left"></i> Booklist2021
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2025/07/13/GMX-Hack/" rel="prev" title="GMX Hack">
+                GMX Hack <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
-
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          
+          </div>
+          
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matthew Shao">
+          <p class="site-author-name" itemprop="name">Matthew Shao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MatthewShao" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matthew Shao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Logos
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/schemes/logos.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
